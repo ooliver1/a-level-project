@@ -11,5 +11,7 @@
     "titleBar.inactiveBackground": "#39147e99",
     "titleBar.inactiveForeground": "#e7e7e799"
   },
-  "peacock.color": "#39147e"
+  "peacock.color": "#39147e",
+  "cSpell.enabled": true,
+  "cSpell.words": ["playscrabble"]
 }
