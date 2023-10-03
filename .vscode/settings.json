@@ -13,5 +13,6 @@
   },
   "peacock.color": "#39147e",
   "cSpell.enabled": true,
-  "cSpell.words": ["playscrabble"]
+  "cSpell.words": ["linebreak", "pagebreak", "playscrabble", "xcolor"],
+  "typst-preview.fontPaths": ["./fonts"]
 }
