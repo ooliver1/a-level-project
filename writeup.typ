@@ -48,6 +48,26 @@ My users are a group of 15-19 year old students which sometimes play video games
 
 === Existing Solutions
 
+==== ogcopen.com
+#image("./images/ogcopen.png", height: 250pt)
+
+`ogcopen.com` is an online 3D golf game. It has multiplayer with random people and groups.
+
+This game has high-detail graphics to look similar to real golf, as well as complex controls for the ball such as intensity, accuracy and placement.
+
+Unfortunately it does not seem to have settings for UI theme and does not seem to respect browser text size in some places. This makes it difficult to read for visually impaired people.
+
+This game is a bit too complex for the style of game I am looking for. The controls are too hard to understand, and there are too many elements like equipment and training. I am going more for a crazy golf style game where anyone can get started with a shallow learning curve.
+
+==== Backyard Mini Golf
+#image("./images/backyard-mini-golf.png", height: 250pt)
+
+`Backyard Mini Golf` is a 2D mini golf game. It is single-player only with levels.
+
+Despite it not having multiplayer, the interface is similar to what I am looking for. Simple and easy to understand, no initial skill required. The text is large but not intrusive, and there are no complicated elements added.
+
+One disadvantage is that you cannot rotate the camera around the ball, so you are stuck with a static orthogonal camera where you can only pan. The green/yellow colour scheme looks all "yellow" with protanopia and deuteranopia colour blindness.
+
 ==== playscrabble.com
 #image("./images/playscrabble.png", height: 250pt)
 

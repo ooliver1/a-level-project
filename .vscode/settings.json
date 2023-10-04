@@ -13,6 +13,13 @@
   },
   "peacock.color": "#39147e",
   "cSpell.enabled": true,
-  "cSpell.words": ["linebreak", "pagebreak", "playscrabble", "xcolor"],
+  "cSpell.words": [
+    "linebreak",
+    "ogcopen",
+    "pagebreak",
+    "playscrabble",
+    "protanopia",
+    "xcolor"
+  ],
   "typst-preview.fontPaths": ["./fonts"]
 }
