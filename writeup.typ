@@ -91,8 +91,10 @@ One downside is the fact that chess requires a lot of initial knowledge to be ab
 === Limitations of the Proposed Solution
 
 My game would require a Wi-Fi connection. It could use a LAN for local play, but not bluetooth. This is a limitation as school/college Wi-Fi can be unreliable or not accessible at times, and some students may not have access to Wi-Fi at home.
-// Visual impairment - high contrast elements
-// Keyboard and Mouse
+
+Some visual impairments may be a limitation too. As the game will be 3D, it may be difficult to interpret with a visual impairment. I will try to make the game as accessible as possible with changes such as high contrast, but it may not be possible to make it accessible for all visual impairments.
+
+The game will be controlled with a keyboard and mouse. This is a limitation as some students may not have access to a mouse, or may not be able to use a mouse due to a physical impairment. This would not be something I can solve completely initially, but a low amount of keyboard inputs would mean they can be remapped to a controller or an accessible input device.
 
 === Solution Requirements Specification
 
