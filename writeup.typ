@@ -36,6 +36,7 @@ Nottingham College
 #outline(target: sel, indent: 1em, title: text(16pt)[Contents])
 #pagebreak()
 
+// TODO: sub headings for analysis, such as "research", "requirements", "Questionnaire" where the current headings lie.
 == Analysis
 
 === Problem Identification
@@ -47,6 +48,8 @@ My users are a group of 15-19 year old students which sometimes play video games
 === Questionnaire
 
 === Existing Solutions
+
+// TODO: Evaluate how you can pair up in multiplayer modes (invite code, link, search)
 
 ==== ogcopen.com
 #image("./images/ogcopen.png", height: 250pt)
@@ -88,6 +91,9 @@ One downside is the fact that chess requires a lot of initial knowledge to be ab
 
 === Features of the Proposed Solution
 
+// TODO:
+// Main menu, scoreboard, time remaining, what controls (drag mouse, how to pan (mouse, keyboard option))
+
 === Limitations of the Proposed Solution
 
 My game would require a Wi-Fi connection. It could use a LAN for local play, but not bluetooth. This is a limitation as school/college Wi-Fi can be unreliable or not accessible at times, and some students may not have access to Wi-Fi at home.
@@ -96,10 +102,40 @@ Some visual impairments may be a limitation too. As the game will be 3D, it may 
 
 The game will be controlled with a keyboard and mouse. This is a limitation as some students may not have access to a mouse, or may not be able to use a mouse due to a physical impairment. This would not be something I can solve completely initially, but a low amount of keyboard inputs would mean they can be remapped to a controller or an accessible input device.
 
+// TODO:
+// They may play to distract from college/revision?
+
 === Stakeholder Requirements
 
-// Requirements by stakeholders ("simple to understand")
+// TODO: Requirements by stakeholders ("simple to understand")
+==== Design
+#table(
+  columns: (1fr, 1fr),
+  align: horizon,
+  [*Requirement*], [*Explanation*]
+)
+
+==== Functionality
+#table(
+  columns: (1fr, 1fr),
+  align: horizon,
+  [*Requirement*], [*Explanation*]
+)
+
+==== Hardware and Software
+// TODO: Look at pacman example, quite a few generic shiz.
+==== Functionality
+#table(
+  columns: (1fr, 1fr),
+  align: horizon,
+  [*Requirement*], [*Explanation*]
+)
 
 === Measurable Success Criteria for Proposed Solution
 
 // What I will actually do to solve the stakeholder requirements ("buttons with clear text")
+#table(
+  columns: (1fr, 1fr),
+  align: horizon,
+  [*Criteria*], [*How to get evidence*]
+)
