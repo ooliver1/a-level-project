@@ -96,10 +96,10 @@ Some visual impairments may be a limitation too. As the game will be 3D, it may 
 
 The game will be controlled with a keyboard and mouse. This is a limitation as some students may not have access to a mouse, or may not be able to use a mouse due to a physical impairment. This would not be something I can solve completely initially, but a low amount of keyboard inputs would mean they can be remapped to a controller or an accessible input device.
 
-=== Solution Requirements Specification
+=== Stakeholder Requirements
 
-// List of basic requirements like "camera view is ..."
+// Requirements by stakeholders ("simple to understand")
 
 === Measurable Success Criteria for Proposed Solution
 
-// Generic requirements that refer to the problem definition.
+// What I will actually do to solve the stakeholder requirements ("buttons with clear text")
