@@ -31,7 +31,8 @@ Nottingham College
   strong(it)
 }
 // Hide main title.
-#let sel = range(2, 100).fold(heading.where(level: 2), (s, d) => s.or(heading.where(level: d)))
+// Hide after 4th level, at least for now since that has the specific "existing solutions", which looks weird and clutters.
+#let sel = range(2, 5).fold(heading.where(level: 2), (s, d) => s.or(heading.where(level: d)))
 
 #outline(target: sel, indent: 1em, title: text(16pt)[Contents])
 #pagebreak()
@@ -40,18 +41,21 @@ Nottingham College
 == Analysis
 
 === Problem Identification
+
 In exam time, students can get stressed from revising for exams. Many students use video games as a way to escape from revision from time to time, but many games require too much of a time investment to be able to play for short periods of time. Multiplayer games can help during exam time as it can be a time to socialise during breaks while revising. Many recent games also require powerful computers to run the graphics requirements they meet, so I propose a game which has simpler graphics, shorter round times, and is multiplayer.
 
-=== Clients
+==== Clients
 My users are a group of 15-19 year old students which sometimes play video games. Many of them prefer smaller games where you do not have to worry if you have time to finish the game/round. Many of them also have low powered laptops, so a game that is easier on the graphics is more enjoyable due to less lag.
 
 === Questionnaire
 
-=== Existing Solutions
+=== Research
+
+==== Existing Solutions
 
 // TODO: Evaluate how you can pair up in multiplayer modes (invite code, link, search)
 
-==== ogcopen.com
+===== ogcopen.com
 #image("./images/ogcopen.png", height: 250pt)
 
 `ogcopen.com` is an online 3D golf game. It has multiplayer with random people and groups.
@@ -62,7 +66,7 @@ Unfortunately it does not seem to have settings for UI theme and does not seem t
 
 This game is a bit too complex for the style of game I am looking for. The controls are too hard to understand, and there are too many elements like equipment and training. I am going more for a crazy golf style game where anyone can get started with a shallow learning curve.
 
-==== Backyard Mini Golf
+===== Backyard Mini Golf
 #image("./images/backyard-mini-golf.png", height: 250pt)
 
 `Backyard Mini Golf` is a 2D mini golf game. It is single-player only with levels.
@@ -71,7 +75,7 @@ Despite it not having multiplayer, the interface is similar to what I am looking
 
 One disadvantage is that you cannot rotate the camera around the ball, so you are stuck with a static orthogonal camera where you can only pan. The green/yellow colour scheme looks all "yellow" with protanopia and deuteranopia colour blindness.
 
-==== playscrabble.com
+===== playscrabble.com
 #image("./images/playscrabble.png", height: 250pt)
 
 `playscrabble.com` is an online implementation of the Scrabble word board game. It has multiplayer and single-player against the computer.
@@ -80,7 +84,7 @@ Some good things about this include the fact that you can add a time limit to ga
 
 One downside with online scrabble is the fact that it requires a lot of skill to get good at the game. The time limit also limits the time on your turn quite drastically, so you are forced to rush your turn.
 
-==== chess.com
+===== chess.com
 #image("./images/chess.png", height: 250pt)
 
 `chess.com` is an online implementation of the Chess board game. It also has multiplayer and single-player against the computer.
@@ -89,12 +93,12 @@ This game also has the ability to add a time limit to games. The game is the mai
 
 One downside is the fact that chess requires a lot of initial knowledge to be able to play well, and a high skill cap which is not as good for playing against friends.
 
-=== Features of the Proposed Solution
+==== Features of the Proposed Solution
 
 // TODO:
 // Main menu, scoreboard, time remaining, what controls (drag mouse, how to pan (mouse, keyboard option))
 
-=== Limitations of the Proposed Solution
+==== Limitations of the Proposed Solution
 
 My game would require a Wi-Fi connection. It could use a LAN for local play, but not bluetooth. This is a limitation as school/college Wi-Fi can be unreliable or not accessible at times, and some students may not have access to Wi-Fi at home.
 
@@ -105,24 +109,26 @@ The game will be controlled with a keyboard and mouse. This is a limitation as s
 // TODO:
 // They may play to distract from college/revision?
 
-=== Stakeholder Requirements
+=== Requirements
+
+==== Stakeholder Requirements
 
 // TODO: Requirements by stakeholders ("simple to understand")
-==== Design
+===== Design
 #table(
   columns: (1fr, 1fr),
   align: horizon,
   [*Requirement*], [*Explanation*]
 )
 
-==== Functionality
+===== Functionality
 #table(
   columns: (1fr, 1fr),
   align: horizon,
   [*Requirement*], [*Explanation*]
 )
 
-==== Hardware and Software
+===== Hardware and Software
 // TODO: Look at pacman example, quite a few generic shiz.
 ==== Functionality
 #table(
@@ -131,7 +137,7 @@ The game will be controlled with a keyboard and mouse. This is a limitation as s
   [*Requirement*], [*Explanation*]
 )
 
-=== Measurable Success Criteria for Proposed Solution
+==== Measurable Success Criteria for Proposed Solution
 
 // What I will actually do to solve the stakeholder requirements ("buttons with clear text")
 #table(

@@ -20,6 +20,6 @@
     "playscrabble",
     "protanopia",
     "xcolor"
-  ],
-  "typst-preview.fontPaths": ["./fonts"]
+  ]
+  // "typst-preview.fontPaths": ["./fonts"]
 }
