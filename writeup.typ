@@ -104,6 +104,8 @@ I like it when the rules are pretty simple but the game can be played in differe
 I don't like it when seemingly benign aspects of a game (i.e. character selection or locations on a map) give a player an unfair advantage over their competitors
 ======= 5. What would you like to see in a game like this?
 More collaboration between teammates
+======= Extra Comments
+// Pico Park [...]
 
 ====== Enoki
 
@@ -119,15 +121,14 @@ The meta progression that some games have that give players unfair advantages ov
 Players being able to hijack other players' controls
 
 ...
-// Wow almost like I asked people that already play putt party
+// Wow almost like I asked people that have played putt party
 // analyse the answers and probably change the following questions maybe?
 
-1. How would you like to control your ball?
-2. How many holes would you like to play per game?
-3. How long should the time limit be per hole?
-4. What items would you like to see in the game?
-5. What type of music would you like in the background?
-6. How should you be able to join a multiplayer game with a friend?
++ How would you like to control your ball and camera?
++ Should there be items/power-ups, and if so, what should they do?
++ How should the co-op part of the game work?
++ What kind of music would you like in the background?
++ How should you be able to join a multiplayer game (invite code, add via in-game friend, etc.)?
 
 === Research
 
@@ -135,30 +136,10 @@ Players being able to hijack other players' controls
 
 // TODO: Evaluate how you can pair up in multiplayer modes (invite code, link, search)
 
-// replace this with pico park perhaps
-===== ogcopen.com
-#image("./images/ogcopen.png", height: 250pt)
-
-`ogcopen.com` is an online 3D golf game. It has multiplayer with random people and groups.
-
-This game has high-detail graphics to look similar to real golf, as well as complex controls for the ball such as intensity, accuracy and placement.
-
-Unfortunately it does not seem to have settings for UI theme and does not seem to respect browser text size in some places. This makes it difficult to read for visually impaired people.
-
-This game is a bit too complex for the style of game I am looking for. The controls are too hard to understand, and there are too many elements like equipment and training. I am going more for a crazy golf style game where anyone can get started with a shallow learning curve.
-
-// replace with putt party maybe
-===== Backyard Mini Golf
-#image("./images/backyard-mini-golf.png", height: 250pt)
-
-`Backyard Mini Golf` is a 2D mini golf game. It is single-player only with levels.
-
-Despite it not having multiplayer, the interface is similar to what I am looking for. Simple and easy to understand, no initial skill required. The text is large but not intrusive, and there are no complicated elements added.
-
-One disadvantage is that you cannot rotate the camera around the ball, so you are stuck with a static orthogonal camera where you can only pan. The green/yellow colour scheme looks all "yellow" with protanopia and deuteranopia colour blindness.
-
+// putt party
 // bomb party
-// scribbl.io
+// pico park
+// scrabble.io
 
 ==== Features of the Proposed Solution
 
