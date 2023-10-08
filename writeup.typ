@@ -5,7 +5,8 @@
 #show heading.where(level: 4): set text(16pt)
 #set text(14pt)
 
-#align(center)[
+#page[
+#set align(center)
 Oliver Wilkes
 
 Nottingham College
@@ -24,8 +25,8 @@ Nottingham College
 2023/24
 ]
 ]
-#pagebreak()
 
+#page[
 // Strong 2nd level.
 #show outline.entry.where(level: 2): it => {
   strong(it)
@@ -35,9 +36,8 @@ Nottingham College
 #let sel = range(2, 5).fold(heading.where(level: 2), (s, d) => s.or(heading.where(level: d)))
 
 #outline(target: sel, indent: 1em, title: text(16pt)[Contents])
-#pagebreak()
+]
 
-// TODO: sub headings for analysis, such as "research", "requirements", "Questionnaire" where the current headings lie.
 == Analysis
 
 === Problem Identification
@@ -63,7 +63,7 @@ The clients I have chosen to interview have played arcade-style games before. Th
 
 ===== Responses
 
-// Set name headings to be a different colour to differentiate names and questions.
+// TODO: Set name headings to be a different colour to differentiate names and questions.
 ====== Milan
 
 ======= 1. Have you played a multiplayer arcade-style game before?
@@ -105,7 +105,7 @@ I don't like it when seemingly benign aspects of a game (i.e. character selectio
 ======= 5. What would you like to see in a game like this?
 More collaboration between teammates
 ======= Extra Comments
-// Pico Park [...]
+I like Pico Park where several players (2+) have to learn and use the physics system of the game to their advantage, reach certain checkpoints, and use teamwork in order to complete a level. I want more of that in arcade-style games.
 
 ====== Enoki
 
@@ -210,7 +210,7 @@ The game will be controlled with a keyboard and mouse. This is a limitation as s
 )
 
 ===== Hardware and Software
-// TODO: Look at pacman example, quite a few generic shiz.
+// TODO: Look at pacman example, quite a few generic stuff.
 ==== Functionality
 #table(
   columns: (1fr, 1fr),
