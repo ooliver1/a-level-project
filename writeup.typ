@@ -120,15 +120,48 @@ The meta progression that some games have that give players unfair advantages ov
 ======= 5. What would you like to see in a game like this?
 Players being able to hijack other players' controls
 
-...
-// Wow almost like I asked people that have played putt party
-// analyse the answers and probably change the following questions maybe?
+===== Analysis
+
+From those questions, I have gathered a general idea of what my clients would like to see in a game like this. They would like to see a game that is simple to understand, but has a lot of replayability. They would also like to see a game that has a competitive aspect, but is not frustrating to lose. They would also like to see a game that has a multiplayer aspect, but is not unfair to players that are new to the game. Every game should act almost ephemeral in a way, where the previous game does not affect the next game. This keeps it to the arcade style as standard arcade games do not have progression between games.
+
+A co-operative aspect is something that Milan, Alex and Gwen mentioned in their responses. This could be something implemented as an extra game-mode in the game, but it would not be the main focus of the game. It would be something that could be played if the players wanted to, but it would not be forced upon them.
+
+==== Second Interview
+
+In this second interview, I asked my clients more specific questions about the mechanics of the game. I asked about the controls, the camera, the items and the co-op aspect of the game. This allows me to curate success criteria for my game, and a set of requirements that I can use to make my game.
+
+===== Interview Questions
 
 + How would you like to control your ball and camera?
 + Should there be items/power-ups, and if so, what should they do?
 + How should the co-op part of the game work?
 + What kind of music would you like in the background?
 + How should you be able to join a multiplayer game (invite code, add via in-game friend, etc.)?
+
+===== Responses
+
+====== Milan
+====== Alex
+
+/*
+1. Camera that follows the ball, click on ball to shoot ball, everywhere else to move the cam (putt party)
+2. Yes, not sure
+3. A few ideas: 1. One person can edit the course, other one shoots the ball. 2. One player moves the cam one the ball 3. One player has a camera locked onto the ball but cant see where its going to hit other player only has a top down view but can see where the ball hits
+4. tetr.io battle music
+5. invite code / link and friends seem reasonable (so you can play with "strangers" and friends)
+*/
+
+====== Gwen
+
+/*
+1. the camera should loosely follow the ball, if 3d the ball should have a ‘forward’ direction that the camera should follow behind
+2. items/power ups should be available but not necessary to complete a level, they should essentially give the player ability modify the game difficultly
+3. there should be sections of the game that require multiple players to be in different places to achieve a goal
+4. there should be a quiet ambient music at all/most times and louder music based on events that happen in-game
+5. players should be able to send invitations from in a game to other players they want to play with, for the receiver to accept or deny
+*/
+
+====== Enoki
 
 === Research
 
