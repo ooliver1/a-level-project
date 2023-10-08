@@ -47,10 +47,9 @@ In exam time, students can get stressed from revising for exams. Many students u
 ==== Clients
 My users are a group of 15-19 year old students which sometimes play video games. Many of them prefer smaller games where you do not have to worry if you have time to finish the game/round. Many of them also have low powered laptops, so a game that is easier on the graphics is more enjoyable due to less lag.
 
-=== Questionnaire
+=== Interview
 
-~~I have chosen to use a questionnaire with short answers to interview my clients. In this first questionnaire, I wanted to get a general idea of what is most important in this genre of game. I asked these questions:~~
-sharp gave long answers yoo
+// Short intro on types of questions, why I want this kind of answers.
 
 1. Have you played a multiplayer arcade-style game before?
 2. If so, how many different games in this genre have you played?
@@ -89,6 +88,7 @@ Gwen
 */
 ...
 // Wow almost like I asked people that already play putt party
+// analyse the answers and probably change the following questions maybe?
 
 1. How would you like to control your ball?
 2. How many holes would you like to play per game?
