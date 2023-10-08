@@ -49,6 +49,54 @@ My users are a group of 15-19 year old students which sometimes play video games
 
 === Questionnaire
 
+~~I have chosen to use a questionnaire with short answers to interview my clients. In this first questionnaire, I wanted to get a general idea of what is most important in this genre of game. I asked these questions:~~
+sharp gave long answers yoo
+
+1. Have you played a multiplayer arcade-style game before?
+2. If so, how many different games in this genre have you played?
+3. What were your favourite parts of these games?
+4. What were your least favourite parts of these games?
+5, What would you like to see in a game like this?
+
+/*
+Milan
+1. Yes, I have.
+2. Probably something around 20.
+(I'd assume most of the discord activities count, and then there's some steam games like Golf With Your Friends, Ultimate Chicken Horse, etc.)
+3. I particularly enjoy how these games facilitate a competitive environment while not being particularly frustrating to lose. Compared to real competitive games, it's easy to jump into a game like this with a group of friends and just have a good time trying to win, even if you end up doing poorly.
+4. Generally, there's a very simple premise behind this type of game. After a couple hours of play it can feel like I've seen everything the game has to offer, which leads to me growing tired of such a game particularly quickly.
+5. This mostly relates to my answer to (4.), where I think some extra thought into replayability can go a long way. Something like impactful powerups can drastically change the flow of a game, which can go a long way towards keeping it interesting.
+
+(Another pretty cool example of this is Ultimate Chicken Horse (sick name), where the whole premise of the game is to have the players "create" the levels on the fly in a match. Each player gets to pick one of a few random items at the beginning of each round which they then place. Levels generally start off impossible to clear so players need to cooperate to make it winnable, and from there they start placing stuff to make it hard to clear. The goal of the game is to clear the stage while making others unable to clear it.)
+*/
+
+/*
+Alex
+1. Yes
+2. Atleast 10 🤷
+3. Playing against/with friends --> competition / teamwork
+4. When someone is a lot better than the rest of the group (skill gap)
+5. Skill levelling (chess.com has this when playing with friends, making it harder for one of the players?
+*/
+
+/*
+Gwen
+1. yes
+2. ~5
+3. i like it when the rules are pretty simple but the game can be played in different ways  based on the player
+4. i dont like it when seemingly benign aspects of a game (ie character selection or locations on a map) give a player an unfair advantage over their competitors
+5. more collaboration between teammates
+*/
+...
+// Wow almost like I asked people that already play putt party
+
+1. How would you like to control your ball?
+2. How many holes would you like to play per game?
+3. How long should the time limit be per hole?
+4. What items would you like to see in the game?
+5. What type of music would you like in the background?
+6. How should you be able to join a multiplayer game with a friend?
+
 === Research
 
 ==== Existing Solutions
@@ -75,23 +123,8 @@ Despite it not having multiplayer, the interface is similar to what I am looking
 
 One disadvantage is that you cannot rotate the camera around the ball, so you are stuck with a static orthogonal camera where you can only pan. The green/yellow colour scheme looks all "yellow" with protanopia and deuteranopia colour blindness.
 
-===== playscrabble.com
-#image("./images/playscrabble.png", height: 250pt)
-
-`playscrabble.com` is an online implementation of the Scrabble word board game. It has multiplayer and single-player against the computer.
-
-Some good things about this include the fact that you can add a time limit to games. The interface is easy to understand for the most part, with the game on one side and information about the game itself on the other. There is also a dark interface which is a good accessibility feature for the visually impaired.
-
-One downside with online scrabble is the fact that it requires a lot of skill to get good at the game. The time limit also limits the time on your turn quite drastically, so you are forced to rush your turn.
-
-===== chess.com
-#image("./images/chess.png", height: 250pt)
-
-`chess.com` is an online implementation of the Chess board game. It also has multiplayer and single-player against the computer.
-
-This game also has the ability to add a time limit to games. The game is the main centre of the interface, taking up most of the screen. This also has a dark interface for accessibility. You can play against a friend or via matchmaking online, which is useful if nobody else is available to play.
-
-One downside is the fact that chess requires a lot of initial knowledge to be able to play well, and a high skill cap which is not as good for playing against friends.
+// bomb party
+// scribbl.io
 
 ==== Features of the Proposed Solution
 
