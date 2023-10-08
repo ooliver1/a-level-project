@@ -45,47 +45,79 @@ Nottingham College
 In exam time, students can get stressed from revising for exams. Many students use video games as a way to escape from revision from time to time, but many games require too much of a time investment to be able to play for short periods of time. Multiplayer games can help during exam time as it can be a time to socialise during breaks while revising. Many recent games also require powerful computers to run the graphics requirements they meet, so I propose a game which has simpler graphics, shorter round times, and is multiplayer.
 
 ==== Clients
-My users are a group of 15-19 year old students which sometimes play video games. Many of them prefer smaller games where you do not have to worry if you have time to finish the game/round. Many of them also have low powered laptops, so a game that is easier on the graphics is more enjoyable due to less lag.
+My users are a group of 16-19 year old students which sometimes play video games. Many of them prefer smaller games where you do not have to worry if you have time to finish the game/round. Many of them also have low powered laptops, so a game that is easier on the graphics is more enjoyable due to less lag.
 
 === Interview
 
-// Short intro on types of questions, why I want this kind of answers.
+==== First Interview
+
+===== Interview Questions
+
+The clients I have chosen to interview have played arcade-style games before. The aim of my first interview is to gather a general idea of mechanics and play styles that my clients enjoy. I will ask them questions about similar games they have played, and what they liked and disliked about them.
 
 1. Have you played a multiplayer arcade-style game before?
 2. If so, how many different games in this genre have you played?
 3. What were your favourite parts of these games?
 4. What were your least favourite parts of these games?
-5, What would you like to see in a game like this?
+5. What would you like to see in a game like this?
 
-/*
-Milan
-1. Yes, I have.
-2. Probably something around 20.
-(I'd assume most of the discord activities count, and then there's some steam games like Golf With Your Friends, Ultimate Chicken Horse, etc.)
-3. I particularly enjoy how these games facilitate a competitive environment while not being particularly frustrating to lose. Compared to real competitive games, it's easy to jump into a game like this with a group of friends and just have a good time trying to win, even if you end up doing poorly.
-4. Generally, there's a very simple premise behind this type of game. After a couple hours of play it can feel like I've seen everything the game has to offer, which leads to me growing tired of such a game particularly quickly.
-5. This mostly relates to my answer to (4.), where I think some extra thought into replayability can go a long way. Something like impactful powerups can drastically change the flow of a game, which can go a long way towards keeping it interesting.
+===== Responses
 
-(Another pretty cool example of this is Ultimate Chicken Horse (sick name), where the whole premise of the game is to have the players "create" the levels on the fly in a match. Each player gets to pick one of a few random items at the beginning of each round which they then place. Levels generally start off impossible to clear so players need to cooperate to make it winnable, and from there they start placing stuff to make it hard to clear. The goal of the game is to clear the stage while making others unable to clear it.)
-*/
+// Set name headings to be a different colour to differentiate names and questions.
+====== Milan
 
-/*
-Alex
-1. Yes
-2. Atleast 10 🤷
-3. Playing against/with friends --> competition / teamwork
-4. When someone is a lot better than the rest of the group (skill gap)
-5. Skill levelling (chess.com has this when playing with friends, making it harder for one of the players?
-*/
+======= 1. Have you played a multiplayer arcade-style game before?
+Yes, I have.
+======= 2. If so, how many different games in this genre have you played?
+Probably something around 20. The new Discord activities, Golf With Your Friends, Ultimate Chicken Horse, etc.
+======= 3. What were your favourite parts of these games?
+I particularly enjoy how these games facilitate a competitive environment while not being particularly frustrating to lose. Compared to real competitive games, it's easy to jump into a game like this with a group of friends and just have a good time trying to win, even if you end up doing poorly.
+======= 4. What were your least favourite parts of these games?
+Generally, there's a very simple premise behind this type of game. After a couple hours of play it can feel like I've seen everything the game has to offer, which leads to me growing tired of such a game particularly quickly.
+======= 5. What would you like to see in a game like this?
+5. This mostly relates to my answer to (4.), where I think some extra thought into replayability can go a long way. Something like impactful power-ups can drastically change the flow of a game, which can go a long way towards keeping it interesting.
+======= Extra Comments
+Another pretty cool example of this is Ultimate Chicken Horse, where the whole premise of the game is to have the players "create" the levels on the fly in a match. Each player gets to pick one of a few random items at the beginning of each round which they then place. Levels generally start off impossible to clear so players need to cooperate to make it winnable, and from there they start placing stuff to make it hard to clear. The goal of the game is to clear the stage while making others unable to clear it.
 
-/*
-Gwen
-1. yes
-2. ~5
-3. i like it when the rules are pretty simple but the game can be played in different ways  based on the player
-4. i dont like it when seemingly benign aspects of a game (ie character selection or locations on a map) give a player an unfair advantage over their competitors
-5. more collaboration between teammates
-*/
+====== Alex
+
+======= 1. Have you played a multiplayer arcade-style game before?
+Yes
+======= 2. If so, how many different games in this genre have you played?
+At least 10
+======= 3. What were your favourite parts of these games?
+Playing against/with friends --> competition / teamwork
+======= 4. What were your least favourite parts of these games?
+When someone is a lot better than the rest of the group (skill gap)
+======= 5. What would you like to see in a game like this?
+Skill levelling (chess.com has this when playing with friends, making it harder for one of the players)
+
+====== Gwen
+
+======= 1. Have you played a multiplayer arcade-style game before?
+Yes
+======= 2. If so, how many different games in this genre have you played?
+About 5
+======= 3. What were your favourite parts of these games?
+I like it when the rules are pretty simple but the game can be played in different ways based on the player
+======= 4. What were your least favourite parts of these games?
+I don't like it when seemingly benign aspects of a game (i.e. character selection or locations on a map) give a player an unfair advantage over their competitors
+======= 5. What would you like to see in a game like this?
+More collaboration between teammates
+
+====== Enoki
+
+======= 1. Have you played a multiplayer arcade-style game before?
+Yes
+======= 2. If so, how many different games in this genre have you played?
+10-15
+======= 3. What were your favourite parts of these games?
+The multiplayer aspect of it with different player interacting with each other in meaningful ways
+======= 4. What were your least favourite parts of these games?
+The meta progression that some games have that give players unfair advantages over others
+======= 5. What would you like to see in a game like this?
+Players being able to hijack other players' controls
+
 ...
 // Wow almost like I asked people that already play putt party
 // analyse the answers and probably change the following questions maybe?
@@ -103,6 +135,7 @@ Gwen
 
 // TODO: Evaluate how you can pair up in multiplayer modes (invite code, link, search)
 
+// replace this with pico park perhaps
 ===== ogcopen.com
 #image("./images/ogcopen.png", height: 250pt)
 
@@ -114,6 +147,7 @@ Unfortunately it does not seem to have settings for UI theme and does not seem t
 
 This game is a bit too complex for the style of game I am looking for. The controls are too hard to understand, and there are too many elements like equipment and training. I am going more for a crazy golf style game where anyone can get started with a shallow learning curve.
 
+// replace with putt party maybe
 ===== Backyard Mini Golf
 #image("./images/backyard-mini-golf.png", height: 250pt)
 
