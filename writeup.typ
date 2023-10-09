@@ -169,6 +169,7 @@ In this second interview, I asked my clients more specific questions about the m
 
 // TODO: Evaluate how you can pair up in multiplayer modes (invite code, link, search)
 
+redoing examples
 // putt party
 // bomb party
 // pico park
@@ -194,6 +195,7 @@ The game will be controlled with a keyboard and mouse. This is a limitation as s
 
 ==== Stakeholder Requirements
 
+waiting on interview responses for full requirements list
 // TODO: Requirements by stakeholders ("simple to understand")
 ===== Design
 #table(
