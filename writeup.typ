@@ -163,6 +163,14 @@ In this second interview, I asked my clients more specific questions about the m
 
 ====== Enoki
 
+/*
+1. putt-party like ideally
+2. yes, ideally more focused on affecting others rather than yourself, more extreme stuff is always more fun
+3. potentially either have them take turns controlling the ball or have one ball that's not controlled by anyone but everyone has to hit it (like in pool ball thing 8ball wawa) until it gets in the hole (maybe)
+4. anything works (arknights (it's been a long night and I can feel your anger))
+5. in game friend is more steps, a code / url is easier (for players and you to implement), more transient and more accessible
+*/
+
 === Research
 
 ==== Existing Solutions
