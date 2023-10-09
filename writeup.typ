@@ -143,35 +143,45 @@ In this second interview, I asked my clients more specific questions about the m
 ====== Milan
 ====== Alex
 
-/*
-1. Camera that follows the ball, click on ball to shoot ball, everywhere else to move the cam (putt party)
-2. Yes, not sure
-3. A few ideas: 1. One person can edit the course, other one shoots the ball. 2. One player moves the cam one the ball 3. One player has a camera locked onto the ball but cant see where its going to hit other player only has a top down view but can see where the ball hits
-4. tetr.io battle music
-5. invite code / link and friends seem reasonable (so you can play with "strangers" and friends)
-*/
+======= 1. How would you like to control your ball and camera?
+I would like to control the ball with the mouse, and the camera with the keyboard.
+======= 2. Should there be items/power-ups, and if so, what should they do?
+Yes, not sure.
+======= 3. How should the co-op part of the game work?
+A few ideas:
+1. One person can edit the course, other one shoots the ball.
+2. One player moves the camera, one controls the ball
+3. One player has a camera locked onto the ball but can't see where it's going to hit, other player only has a top down view but can see where the ball hits
+======= 4. What kind of music would you like in the background?
+Tetr.io battle music
+======= 5. How should you be able to join a multiplayer game (invite code, add via in-game friend, etc.)?
+Invite code / link and friends seem reasonable (so you can play with "strangers" and friends)
 
 ====== Gwen
 
-/*
-1. the camera should loosely follow the ball, if 3d the ball should have a ‘forward’ direction that the camera should follow behind
-2. items/power ups should be available but not necessary to complete a level, they should essentially give the player ability modify the game difficultly
-3. there should be sections of the game that require multiple players to be in different places to achieve a goal
-4. there should be a quiet ambient music at all/most times and louder music based on events that happen in-game
-5. players should be able to send invitations from in a game to other players they want to play with, for the receiver to accept or deny
-*/
+======= 1. How would you like to control your ball and camera?
+The camera should loosely follow the ball, if 3d the ball should have a ‘forward’ direction that the camera should follow behind
+======= 2. Should there be items/power-ups, and if so, what should they do?
+Items/power ups should be available but not necessary to complete a level, they should essentially give the player ability modify the game difficultly
+======= 3. How should the co-op part of the game work?
+There should be sections of the game that require multiple players to be in different places to achieve a goal
+======= 4. What kind of music would you like in the background?
+There should be a quiet ambient music at all/most times and louder music based on events that happen in-game
+======= 5. How should you be able to join a multiplayer game (invite code, add via in-game friend, etc.)?
+Players should be able to send invitations from in a game to other players they want to play with, for the receiver to accept or deny
 
 ====== Enoki
 
-/*
-1. putt-party like ideally
-2. yes, ideally more focused on affecting others rather than yourself, more extreme stuff is always more fun
-3. potentially either have them take turns controlling the ball or have one ball that's not controlled by anyone but everyone has to hit it (like in pool ball thing 8ball wawa) until it gets in the hole (maybe)
-4. anything works (arknights (it's been a long night and I can feel your anger))
-5. in game friend is more steps, a code / url is easier (for players and you to implement), more transient and more accessible
-*/
-
-=== Research
+======= 1. How would you like to control your ball and camera?
+Similar to putt party
+======= 2. Should there be items/power-ups, and if so, what should they do?
+Yes, ideally more focused on affecting others rather than yourself, more extreme stuff is always more fun
+======= 3. How should the co-op part of the game work?
+Potentially either have them take turns controlling the ball or have one ball that's not controlled by anyone but everyone has to hit it (like in pool) until it gets in the hole
+======= 4. What kind of music would you like in the background?
+Anything works
+======= 5. How should you be able to join a multiplayer game (invite code, add via in-game friend, etc.)?
+In game friend is more steps, a code / url is easier, more transient and more accessible
 
 ==== Existing Solutions
 
