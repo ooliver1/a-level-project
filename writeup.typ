@@ -221,7 +221,6 @@ waiting on interview responses for full requirements list
 
 ===== Hardware and Software
 // TODO: Look at pacman example, quite a few generic stuff.
-==== Functionality
 #table(
   columns: (1fr, 1fr),
   align: horizon,
