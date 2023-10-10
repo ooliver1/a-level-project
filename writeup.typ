@@ -275,28 +275,43 @@ The game could also act as a distraction from revision or school work. This is a
 
 ==== Stakeholder Requirements
 
-waiting on interview responses for full requirements list
-// TODO: Requirements by stakeholders ("simple to understand")
+// where to split design vs functionality?
 ===== Design
 #table(
   columns: (1fr, 1fr),
-  align: horizon,
-  [*Requirement*], [*Explanation*]
+  align: top,
+  [*Requirement*], [*Explanation*],
+  [Main menu], [The game should have a main menu so the player can choose what to do.],
+  [Full screen and windowed], [The option of full screen is useful for smaller screens like laptops, but windowed is useful for large screens like desktops.],
+  [Simple to understand], [The game should be simple to understand so it is easy to pick up and play.],
+  [Simple graphics], [The game should have simple graphics so it is not too graphically intensive.],
+  [Simple controls], [The game should have minimal controls so it can be learned straight away.],
+  [Following camera], [The camera should follow the ball so the player can see where they are going.],
 )
 
 ===== Functionality
 #table(
   columns: (1fr, 1fr),
-  align: horizon,
-  [*Requirement*], [*Explanation*]
+  align: top,
+  [*Requirement*], [*Explanation*],
+  [High Contrast Colour Palette], [The game should have a high contrast colour palette so it is accessible to people with visual impairments, whilst also looking playful too.],
+  [Drag and point controls], [The controls should be drag and point so it is simple to understand.],
+  [Power of shot controlled by drag], [The power of the shot should be controlled by how far the player drags the mouse.],
+  [Items that affect other players], [There should be items that affect other players so the game is more interesting.],
+  [Co-operative aspect], [There should be a co-operative aspect to the game so players can work together if they wish.],
+  [Simple URL/code to join a multiplayer game], [There should be a simple URL/code to join a multiplayer game so it is easy to join.],
+  [Arcade-style ambient music], [There should be arcade-style ambient music so it is not too distracting.],
 )
 
 ===== Hardware and Software
-// TODO: Look at pacman example, quite a few generic stuff.
 #table(
   columns: (1fr, 1fr),
-  align: horizon,
-  [*Requirement*], [*Explanation*]
+  align: top,
+  [*Requirement*], [*Explanation*],
+  [Keyboard and mouse], [The game should be playable with a keyboard and mouse.],
+  // TODO:
+  [Minimum ...], [The game should be playable on a minimum of ... (pc specs, todo, no realistic target right now).],
+  [Windows >=10, macOS >=13.1, Linux x86_64], [These are the operating system versions that the game should be at minimum playable on.]
 )
 
 ==== Measurable Success Criteria for Proposed Solution
@@ -304,6 +319,6 @@ waiting on interview responses for full requirements list
 // What I will actually do to solve the stakeholder requirements ("buttons with clear text")
 #table(
   columns: (1fr, 1fr),
-  align: horizon,
+  align: top,
   [*Criteria*], [*How to get evidence*]
 )
