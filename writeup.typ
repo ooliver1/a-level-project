@@ -3,6 +3,7 @@
 #show heading.where(level: 2): set text(20pt)
 #show heading.where(level: 3): set text(18pt)
 #show heading.where(level: 4): set text(16pt)
+#set page(numbering: "1")
 #set text(14pt)
 
 #page[
@@ -206,11 +207,43 @@ In game friend is more steps, a code / url is easier, more transient and more ac
 
 // TODO: Evaluate how you can pair up in multiplayer modes (invite code, link, search)
 
-redoing examples
-// putt party
-// bomb party
-// pico park
-// scrabble.io
+===== Putt Party
+#image("./images/putt-party.png", height: 250pt)
+
+Putt party is a Discord "activity" built in to voice channels. This is an example of what my game will be like, as it is arcade-style and multiplayer. It can be played many times with different results as there are items in the many courses, and it is not frustrating to lose at. It implements multiplayer very well as you just join the same voice channel as your friends. It is simple to understand as the controls are just drag and point with the mouse, and it is not too graphically intensive. It is also not too long, as each hole has a time limit.
+
+One of the downsides though is that you all have to have Discord to be able to play together. The window is quite small as it is a small section of the voice channel overview, so is difficult to see sometimes, especially on smaller screens like laptops.
+
+====== Parts of Putt Party I Can Apply
+
+Multiple of my interviewees have mentioned the controls of putt party, or similar controls. I will take inspiration from this as a way to control the ball.
+
+===== Bomb Party
+#image("./images/bomb-party.png", height: 250pt)
+
+Bomb Party is a small party game where you have to type words based on a prompt. It is fast-paced, multiplayer, and has a competitive aspect. It is simple to understand as the controls are just typing, and it is not too graphically intensive. It is also usually not too long as you can configure turn limits and difficulty. The multiplayer aspect is implemented with a 4 letter code that can be entered or used via a link (`domain.tld/CODE`).
+
+====== Parts of Bomb Party I Can Apply
+
+The multiplayer aspect of Bomb Party is something I can apply to my game. It is simple to understand and easy to use, so I will use a similar system in my game. This system was supported by Enoki, Alex and Milan in their responses.
+
+===== Pico Park
+#image("./images/pico-park.png", height: 250pt)
+
+Pico Park is a co-operative multiplayer game where you have to work together to complete levels. It also has simple graphics and has short levels, which can get quite difficult as it requires co-ordination of multiple people. It is simple to understand as the controls are just arrow keys and space.
+
+====== Parts of Pico Park I Can Apply
+
+I will consider the ways they make players work together and see how they can fit in a golf-style game. Gwen suggested to look at this game as it has a co-operative aspect.
+
+===== Golf With Your Friends
+#image("./images/golf-with-your-friends.png", height: 250pt)
+
+Golf With Your Friends is a 3D multiplayer golf game. It has a bit more complex graphics compared to the other games, but still simple to understand. It has a lot of different courses, and a lot of different game modes. It has a lot of replayability as there are many different ways to play the game. It is also not too long as each hole has a time limit. It has both online and local multiplayer support. There are no items but it has the concept of choosing where to hit your ball, and the power of the shot which makes the controls more complex.
+
+====== Parts of Golf With Your Friends I Can Apply
+
+As this is a 3D game, I can take into consideration how the camera follows the ball on this, which was mentioned by Milan and Gwen in their responses. I can also look at how local multiplayer works too to consider adding.
 
 ==== Features of the Proposed Solution
 
