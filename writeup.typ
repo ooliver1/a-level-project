@@ -141,6 +141,25 @@ In this second interview, I asked my clients more specific questions about the m
 ===== Responses
 
 ====== Milan
+
+======= 1. How would you like to control your ball and camera?
+I think the most intuitive camera setup would be
+- The camera is centred onto the ball.
+- You can zoom in and out using the scroll wheel,
+- You can click and drag with middle mouse/right click to rotate the camera around the ball,
+- You can click and drag with left click to shoot the ball at different levels of power.
+(Essentially the same as Golf With Your Friends/Putt Party)
+It could be interesting to experiment with some control fine-tuning like gear effect (think Wii Sports where you can shoot the ball along different trajectories by introducing effect), though that probably only makes any real amount of sense in sufficiently large courses.
+Lastly, it may be nice to have a way to detach the camera from the ball to scout ahead and discover the course.
+======= 2. Should there be items/power-ups, and if so, what should they do?
+Given the focus of a "multiplayer arcade-style" game, I do believe there should be power-ups. I feel like the main focus for these power-ups should be affecting every player in the game. Essentially, anything that isn't downright frustrating but is still sufficient to put a wrench in the works for the "victims" should be good. An example of this could be a wind effect that can influence every player's next shot(s).
+======= 3. How should the co-op part of the game work?
+As far as co-op is concerned, I feel like it's important that players get to play on the same hole simultaneously, especially so when taking power-ups into account. You could then make a decision between whether you want there to be distinct turns (i.e. each player gets to do one swing, then waits for all other players to have finished their swing, until the hole is cleared). Introducing turns in this fashion could make power-ups more impactful as you could have them stay active for a number of turns, making players unable to just wait it out.
+======= 4. What kind of music would you like in the background?
+You could lean into the arcade side of things and make peppy music you would hear in actual arcade games. Something chiptune-like could also work depending on the graphical style of the game. Overall, as long as the music matches the creative direction of the game, I think a lot of different styles could work. An interesting example here is Golf With Your Friends. This game heavily leans into creative map design with an exploration element, and this is reflected well in the music. The bgm for that game could actually fit pretty well into an RPG-style game.
+======= 5. How should you be able to join a multiplayer game (invite code, add via in-game friend, etc.)?
+I think at a base level, using invite codes is fine, as long as groups aren't disbanded after each game. Entering an invite code once for a session of play with friends is more than acceptable. If the game were to be launched on a platform such as Steam, integrating with the platform's built-in friends system would be a nice addition. For a standalone game, however, I don't think a friends system is really a hard requirement.
+
 ====== Alex
 
 ======= 1. How would you like to control your ball and camera?
