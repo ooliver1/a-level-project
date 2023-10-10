@@ -203,9 +203,21 @@ Anything works
 ======= 5. How should you be able to join a multiplayer game (invite code, add via in-game friend, etc.)?
 In game friend is more steps, a code / url is easier, more transient and more accessible
 
-==== Existing Solutions
+===== Analysis
 
-// TODO: Evaluate how you can pair up in multiplayer modes (invite code, link, search)
+From these questions, I now have a more specific set of requirements for my game. I will use these requirements to create a set of success criteria below.
+
+Question 1 has shown that putt party provides an ideal control scheme, but a possible keyboard control as suggested by Alex could be more accessible too.
+
+Question 2's results explain how items provide a different experience for every run of the game, and Enoki suggested that power ups that affect others more than yourself are more fun.
+
+Question 3 is still a bit undecided, but Milan suggested that players should be able to play on the same hole simultaneously, and Gwen suggested that there should be sections of the game that require multiple players to be in different places to achieve a goal.
+
+Question 4's results can be combined into one idea. Arcade-like ambient music, with more intense music for events such as when time is running out.
+
+Question 5 demonstrates a simple URL/code is good enough to join a multiplayer game, and Enoki suggested that an in-game friend system is not necessary but a nice to have.
+
+==== Existing Solutions
 
 ===== Putt Party
 #image("./images/putt-party.png", height: 250pt)
