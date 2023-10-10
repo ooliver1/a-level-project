@@ -259,8 +259,7 @@ As this is a 3D game, I can take into consideration how the camera follows the b
 
 ==== Features of the Proposed Solution
 
-// TODO:
-// Main menu, scoreboard, time remaining, what controls (drag mouse, how to pan (mouse, keyboard option))
+My solution will be a game with a main menu to select whether to host a room, join a room or change settings. When entering a round, there will be a heads-up display with information about the game such as the time left, scoreboard, and the current hole. The controls will be drag and point, the camera will follow the ball but still be possible to rotate with the mouse or keyboard, and the power of the shot will be controlled by how far you drag the mouse. There will be items that affect other players, and there will be a co-operative aspect to the game as a separate game mode. There will be a simple URL/code to join a multiplayer game, and there will be arcade-style ambient music.
 
 ==== Limitations of the Proposed Solution
 
