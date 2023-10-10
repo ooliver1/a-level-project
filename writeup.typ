@@ -314,11 +314,28 @@ The game could also act as a distraction from revision or school work. This is a
   [Windows >=10, macOS >=13.1, Linux x86_64], [These are the operating system versions that the game should be at minimum playable on.]
 )
 
-==== Measurable Success Criteria for Proposed Solution
+==== Measurable Success Criteria for the Proposed Solution
 
 // What I will actually do to solve the stakeholder requirements ("buttons with clear text")
 #table(
   columns: (1fr, 1fr),
   align: top,
-  [*Criteria*], [*How to get evidence*]
+  [*Criteria*], [*How to get evidence*],
+  [Clear main menu], [Screenshot of the main menu.],
+  [Fullscreen and windowed options], [Screenshot of the application being fullscreen and windowed.],
+  [Simple controls], [Screenshot of the controls menu.],
+  [Following camera], [Screenshot of the camera following the ball.],
+  [High Contrast Colour Palette], [Screenshot of the game interface.],
+  [Drag and point controls], [Screenshot of the ball being controlled.],
+  [Power of shot controlled by drag], [Screenshot of the ball being controlled.],
+  [Items that affect other players], [Screenshot of the items.],
+  [Co-operative aspect], [Screenshot of the co-operative aspect.],
+  [Simple URL/code to join a multiplayer game], [Screenshot of the URL/code being used.],
+  [Arcade-style ambient music], [The code for the music, and where it came from.],
+  [Keyboard and mouse controls], [Screenshot of the controls menu.],
+  [Settings menu], [Screenshot of the settings menu.],
+  [Simple graphics], [Screenshot of the game, and framerate/GPU usage statistics.],
+  [Scoreboard], [Screenshot of the scoreboard.],
+  [Time limit], [Screenshot of the time limit.],
+  [Configurable controls], [Screenshot of the controls menu.]
 )
