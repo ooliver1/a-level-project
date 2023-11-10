@@ -48,6 +48,25 @@ In exam time, students can get stressed from revising for exams. Many students u
 ==== Clients
 My users are a group of 16-19 year old students which sometimes play video games. Many of them prefer smaller games where you do not have to worry if you have time to finish the game/round. Many of them also have low powered laptops, so a game that is easier on the graphics is more enjoyable due to less lag.
 
+==== Computational Methods
+
+===== Problem Recognition
+
+The first part of the problem is taking user input and translating it into in-game movement. This movement needs to be calculated on the course, and the ball has to interact with any obstacles in the way. Once this is done as single player, multiplayer would need to be implemented. This involves connecting other players to the game, and synchronising the game state between all players, while using minimal bandwidth. Players can also interact with each other via items, which involves player to player interactions.
+
+===== Problem Decomposition
+
+The different steps the game would have to take are:
+
+- Take user input
+- Translate this into target and power
+- Send this to the server for processing
+- Check active items and apply them
+- Calculate the ball's movement
+- Check for collisions with obstacles
+- Check for collisions with other players
+- 
+
 === Interview
 
 ==== First Interview
