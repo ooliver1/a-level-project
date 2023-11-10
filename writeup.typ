@@ -56,16 +56,22 @@ The first part of the problem is taking user input and translating it into in-ga
 
 ===== Problem Decomposition
 
-The different steps the game would have to take are:
+The different components the game involves are:
 
-- Take user input
-- Translate this into target and power
-- Send this to the server for processing
-- Check active items and apply them
-- Calculate the ball's movement
-- Check for collisions with obstacles
-- Check for collisions with other players
-- 
++ Connecting to the network to play multiplayer
++ Take user input and and serialise it to send to the server
++ Process multiple players' movements on the server
++ Synchronise state to the client, which shows the ball(s) moving
+
+===== Divide and Conquer
+
+These steps can be solved on their own for the most part, as each component can be designed separately, and implemented modularly.
+
+===== Abstraction
+
+Many different abstractions can be done between these components. When movements are sent to the server, the server is not concerned with what buttons the user pressed, but what direction the ball will move in. This abstraction allows the server to process movement without having to worry about the input method.
+
+Similarly, the client should not have to process collisions with obstacles, but just show the ball moving via instructions from the server. This abstraction allows all players to have synchronised states easily, reduces processing on the client, and makes cheating harder.
 
 === Interview
 
