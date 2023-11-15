@@ -365,3 +365,13 @@ The game could also act as a distraction from revision or school work. This is a
   [Time limit], [Screenshot of the time limit.],
   [Configurable controls], [Screenshot of the controls menu.]
 )
+
+== Design
+
+Key points:
+- Interface design
+- Program structure
+- Algorithms - validation
+- Features
+- Key variables/data structures/classes
+- Testing approach
