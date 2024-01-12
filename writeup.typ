@@ -375,3 +375,35 @@ Key points:
 - Features
 - Key variables/data structures/classes
 - Testing approach
+
+=== User Interface
+
+==== Main Screen
+
+#import "@preview/cetz:0.1.2"
+
+#let label(item, text) = {
+  import cetz.draw: *
+
+}
+#cetz.canvas(
+  length: 0.3pt, 
+{
+  import cetz.draw: *
+
+  rect((0, 0), (1366, 768))
+  content((), anchor: "bottom-left", [Window])
+  circle((683, 384), radius: 60, fill: xcolor.royal-purple)
+  content((), text(xcolor.white)[Ball])
+
+  rect((763, 728), (603, 648), fill: xcolor.royal-purple)
+  content((), anchor: "top-right", [Time limit])
+  content((683, 688), text(xcolor.white)[0:30])
+
+  rect((40, 728), (390, 548), fill: xcolor.royal-purple)
+  content((), anchor: "top-left", [Scoreboard])
+
+  rect((1326, 728), (926, 628), fill: xcolor.royal-purple)
+  content((), anchor: "top-right", [Items])
+})
+// PROCESS: Decided to put items top right instead of bottom, so the bottom is free for controlling and seeing the ball.
