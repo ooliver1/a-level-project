@@ -22,4 +22,4 @@ version_control/autoload_on_startup=true
 
 [gui]
 
-theme/custom="res://theme.tres"
+theme/custom="res://UI/themes/kenneyUI.tres"
