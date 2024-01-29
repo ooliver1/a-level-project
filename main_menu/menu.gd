@@ -1,7 +1,6 @@
 extends MarginContainer
 
 func _ready() -> void:
-	randomize()
 	var dir := DirAccess.open("res://UI/themes")
 	var files := PackedStringArray()
 	for file in dir.get_files():
