@@ -245,7 +245,7 @@ Question 5 demonstrates a simple URL/code is good enough to join a multiplayer g
 ==== Existing Solutions
 
 ===== Putt Party
-#image("./images/putt-party.png", height: 250pt)
+#image("./images/analysis/putt-party.png", height: 250pt)
 
 Putt party is a Discord "activity" built in to voice channels. This is an example of what my game will be like, as it is arcade-style and multiplayer. It can be played many times with different results as there are items in the many courses, and it is not frustrating to lose at. It implements multiplayer very well as you just join the same voice channel as your friends. It is simple to understand as the controls are just drag and point with the mouse, and it is not too graphically intensive. It is also not too long, as each hole has a time limit.
 
@@ -256,7 +256,7 @@ One of the downsides though is that you all have to have Discord to be able to p
 Multiple of my interviewees have mentioned the controls of putt party, or similar controls. I will take inspiration from this as a way to control the ball.
 
 ===== Bomb Party
-#image("./images/bomb-party.png", height: 250pt)
+#image("./images/analysis/bomb-party.png", height: 250pt)
 
 Bomb Party is a small party game where you have to type words based on a prompt. It is fast-paced, multiplayer, and has a competitive aspect. It is simple to understand as the controls are just typing, and it is not too graphically intensive. It is also usually not too long as you can configure turn limits and difficulty. The multiplayer aspect is implemented with a 4 letter code that can be entered or used via a link (`domain.tld/CODE`).
 
@@ -265,7 +265,7 @@ Bomb Party is a small party game where you have to type words based on a prompt.
 The multiplayer aspect of Bomb Party is something I can apply to my game. It is simple to understand and easy to use, so I will use a similar system in my game. This system was supported by Enoki, Alex and Milan in their responses.
 
 ===== Pico Park
-#image("./images/pico-park.png", height: 250pt)
+#image("./images/analysis/pico-park.png", height: 250pt)
 
 Pico Park is a co-operative multiplayer game where you have to work together to complete levels. It also has simple graphics and has short levels, which can get quite difficult as it requires co-ordination of multiple people. It is simple to understand as the controls are just arrow keys and space.
 
@@ -274,7 +274,7 @@ Pico Park is a co-operative multiplayer game where you have to work together to 
 I will consider the ways they make players work together and see how they can fit in a golf-style game. Gwen suggested to look at this game as it has a co-operative aspect.
 
 ===== Golf With Your Friends
-#image("./images/golf-with-your-friends.png", height: 250pt)
+#image("./images/analysis/golf-with-your-friends.png", height: 250pt)
 
 Golf With Your Friends is a 3D multiplayer golf game. It has a bit more complex graphics compared to the other games, but still simple to understand. It has a lot of different courses, and a lot of different game modes. It has a lot of replayability as there are many different ways to play the game. It is also not too long as each hole has a time limit. It has both online and local multiplayer support. There are no items but it has the concept of choosing where to hit your ball, and the power of the shot which makes the controls more complex.
 
@@ -378,31 +378,20 @@ Key points:
 
 === User Interface
 
-==== Main Screen
+==== Main Menu
 
-#import "@preview/cetz:0.1.2"
+#image("./images/design/menu.png", height: 250pt)
 
-#let label(item, text) = {
-  import cetz.draw: *
-}
-#cetz.canvas(
-  length: 0.3pt, 
-{
-  import cetz.draw: *
+This is the main menu the user sees when starting the game. There are only two main clear options on if the user is ready to play or if they want to change any settings.
 
-  rect((0, 0), (1366, 768))
-  content((), anchor: "bottom-left", [Window])
-  circle((683, 384), radius: 60, fill: xcolor.royal-purple)
-  content((), text(xcolor.white)[Ball])
+Links to success criteria:
+- Clear main menu
+- Simple graphics
 
-  rect((763, 728), (603, 648), fill: xcolor.royal-purple)
-  content((), anchor: "top-right", [Time limit])
-  content((683, 688), text(xcolor.white)[0:30])
+===== Options Button
+When clicking the options button, an options menu will appear. This will allow the user to change settings such as the volume, graphics, and controls.
 
-  rect((40, 728), (390, 548), fill: xcolor.royal-purple)
-  content((), anchor: "top-left", [Scoreboard])
+Links to success criteria
+- Includes a settings menu
 
-  rect((1326, 728), (926, 628), fill: xcolor.royal-purple)
-  content((), anchor: "top-right", [Items])
-})
-// PROCESS: Decided to put items top right instead of bottom, so the bottom is free for controlling and seeing the ball.
+==== Options Menu
