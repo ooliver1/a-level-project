@@ -382,16 +382,10 @@ Key points:
 
 #image("./images/design/menu.png", height: 250pt)
 
-This is the main menu the user sees when starting the game. There are only two main clear options on if the user is ready to play or if they want to change any settings.
+This is the main menu the user sees when starting the game. There are only two main clear options on if the user is ready to play or if they want to change any settings. The background is a placeholder and may be replaced with a preview of one of the levels, to show the player what the game is like before they play. The options button will give the player a list of settings they can change for their own experience, such as graphics settings and controls. The buttons are in the center of the screen, with clear and large labels to let the player know what these buttons do.
 
 Links to success criteria:
 - Clear main menu
 - Simple graphics
-
-===== Options Button
-When clicking the options button, an options menu will appear. This will allow the user to change settings such as the volume, graphics, and controls.
-
-Links to success criteria
-- Includes a settings menu
 
 ==== Options Menu
