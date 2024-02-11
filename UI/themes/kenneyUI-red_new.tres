@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=34 format=3 uid="uid://cdo5s5i4b7yf8"]
+[gd_resource type="Theme" load_steps=34 format=3 uid="uid://d2hxle3cv22n4"]
 
 [ext_resource type="Texture2D" uid="uid://ctoug2h6leho7" path="res://UI/themes/UIpack_vector.svg" id="1"]
 [ext_resource type="FontFile" uid="uid://bnkx2i5teit47" path="res://UI/themes/kenvector_future.ttf" id="2"]
