@@ -1,6 +1,5 @@
-[gd_resource type="Theme" load_steps=34 format=3 uid="uid://d2hxle3cv22n4"]
+[gd_resource type="Theme" load_steps=33 format=3 uid="uid://d2hxle3cv22n4"]
 
-[ext_resource type="Texture2D" uid="uid://ctoug2h6leho7" path="res://UI/themes/UIpack_vector.svg" id="1"]
 [ext_resource type="FontFile" uid="uid://bnkx2i5teit47" path="res://UI/themes/kenvector_future.ttf" id="2"]
 
 [sub_resource type="FontFile" id="31"]
@@ -13,37 +12,29 @@ cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="StyleBoxTexture" id="1"]
-texture = ExtResource("1")
 region_rect = Rect2(2110, 1800, 1900, 490)
 
 [sub_resource type="StyleBoxEmpty" id="2"]
 
 [sub_resource type="StyleBoxTexture" id="3"]
-texture = ExtResource("1")
 region_rect = Rect2(10, 1800, 1900, 490)
 
 [sub_resource type="StyleBoxTexture" id="4"]
-texture = ExtResource("1")
 region_rect = Rect2(2110, 1800, 1900, 490)
 
 [sub_resource type="StyleBoxTexture" id="5"]
-texture = ExtResource("1")
 region_rect = Rect2(4210, 1840, 1900, 450)
 
 [sub_resource type="AtlasTexture" id="6"]
-atlas = ExtResource("1")
 region = Rect2(1500, 5440, 360, 360)
 
 [sub_resource type="AtlasTexture" id="7"]
-atlas = ExtResource("1")
 region = Rect2(1510, 4400, 360, 360)
 
 [sub_resource type="AtlasTexture" id="8"]
-atlas = ExtResource("1")
 region = Rect2(10, 4400, 360, 360)
 
 [sub_resource type="AtlasTexture" id="9"]
-atlas = ExtResource("1")
 region = Rect2(0, 5440, 360, 360)
 
 [sub_resource type="StyleBoxEmpty" id="10"]
@@ -54,50 +45,39 @@ region = Rect2(0, 5440, 360, 360)
 
 [sub_resource type="StyleBoxEmpty" id="13"]
 
-[sub_resource type="AtlasTexture" id="14"]
-atlas = ExtResource("1")
-region = Rect2(1500, 6440, 360, 360)
-
 [sub_resource type="AtlasTexture" id="15"]
-atlas = ExtResource("1")
 region = Rect2(1500, 5440, 360, 360)
 
+[sub_resource type="AtlasTexture" id="14"]
+region = Rect2(1500, 6440, 360, 360)
+
 [sub_resource type="AtlasTexture" id="16"]
-atlas = ExtResource("1")
 region = Rect2(8720, 6240, 280, 420)
 
 [sub_resource type="StyleBoxTexture" id="17"]
-texture = ExtResource("1")
 region_rect = Rect2(8400, 3160, 1920, 60)
 
 [sub_resource type="StyleBoxEmpty" id="18"]
 
 [sub_resource type="StyleBoxTexture" id="19"]
-texture = ExtResource("1")
 region_rect = Rect2(6290, 3170, 1940, 490)
 
 [sub_resource type="AtlasTexture" id="20"]
-atlas = ExtResource("1")
 region = Rect2(8140, 5780, 240, 100)
 
 [sub_resource type="StyleBoxTexture" id="21"]
-texture = ExtResource("1")
 region_rect = Rect2(3640, 3100, 1000, 1000)
 
 [sub_resource type="AtlasTexture" id="22"]
-atlas = ExtResource("1")
 region = Rect2(1500, 5440, 360, 360)
 
 [sub_resource type="AtlasTexture" id="23"]
-atlas = ExtResource("1")
 region = Rect2(1510, 4400, 360, 360)
 
 [sub_resource type="AtlasTexture" id="24"]
-atlas = ExtResource("1")
 region = Rect2(10, 4400, 360, 360)
 
 [sub_resource type="AtlasTexture" id="25"]
-atlas = ExtResource("1")
 region = Rect2(0, 5440, 360, 360)
 
 [sub_resource type="StyleBoxTexture" id="26"]
@@ -105,7 +85,6 @@ content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-texture = ExtResource("1")
 region_rect = Rect2(10, 1800, 1900, 490)
 
 [sub_resource type="StyleBoxTexture" id="27"]
@@ -113,7 +92,6 @@ content_margin_left = 10.0
 content_margin_top = 10.0
 content_margin_right = 10.0
 content_margin_bottom = 10.0
-texture = ExtResource("1")
 expand_margin_top = 10.0
 expand_margin_bottom = 10.0
 region_rect = Rect2(3640, 3100, 1000, 1000)
@@ -121,16 +99,13 @@ region_rect = Rect2(3640, 3100, 1000, 1000)
 [sub_resource type="StyleBoxTexture" id="28"]
 content_margin_left = 12.0
 content_margin_top = 10.0
-texture = ExtResource("1")
 axis_stretch_vertical = 1
 region_rect = Rect2(10, 3100, 1000, 1000)
 
 [sub_resource type="AtlasTexture" id="29"]
-atlas = ExtResource("1")
 region = Rect2(10070, 6300, 390, 310)
 
 [sub_resource type="StyleBoxTexture" id="30"]
-texture = ExtResource("1")
 region_rect = Rect2(10510, 3170, 40, 1000)
 
 [resource]
@@ -140,7 +115,7 @@ Button/colors/font_disabled_color = Color(0.901961, 0.901961, 0.901961, 0.2)
 Button/colors/font_hover_color = Color(0.388235, 0.388235, 0.388235, 1)
 Button/colors/font_hover_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
 Button/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
-Button/constants/hseparation = 2
+Button/constants/h_separation = 2
 Button/fonts/font = SubResource("31")
 Button/styles/disabled = SubResource("1")
 Button/styles/focus = SubResource("2")
@@ -152,8 +127,8 @@ CheckBox/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
 CheckBox/colors/font_color_hover = Color(0.34902, 0.34902, 0.34902, 1)
 CheckBox/colors/font_color_hover_pressed = Color(0.34902, 0.34902, 0.34902, 1)
 CheckBox/colors/font_color_pressed = Color(0.388235, 0.388235, 0.388235, 1)
-CheckBox/constants/check_vadjust = 0
-CheckBox/constants/hseparation = 4
+CheckBox/constants/check_v_offset = 0
+CheckBox/constants/h_separation = 4
 CheckBox/fonts/font = SubResource("31")
 CheckBox/icons/checked = SubResource("6")
 CheckBox/icons/radio_checked = SubResource("7")
@@ -170,13 +145,13 @@ CheckButton/colors/font_disabled_color = Color(0.901961, 0.901961, 0.901961, 0.2
 CheckButton/colors/font_hover_color = Color(0.388235, 0.388235, 0.388235, 1)
 CheckButton/colors/font_hover_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
 CheckButton/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
-CheckButton/constants/check_vadjust = 0
-CheckButton/constants/hseparation = 4
+CheckButton/constants/check_v_offset = 0
+CheckButton/constants/h_separation = 4
 CheckButton/fonts/font = SubResource("31")
-CheckButton/icons/off = SubResource("14")
-CheckButton/icons/off_disabled = SubResource("14")
-CheckButton/icons/on = SubResource("15")
-CheckButton/icons/on_disabled = SubResource("15")
+CheckButton/icons/checked = SubResource("15")
+CheckButton/icons/checked_disabled = SubResource("15")
+CheckButton/icons/unchecked = SubResource("14")
+CheckButton/icons/unchecked_disabled = SubResource("14")
 CheckButton/styles/disabled = null
 CheckButton/styles/focus = null
 CheckButton/styles/hover = null
@@ -208,7 +183,7 @@ OptionButton/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
 OptionButton/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
 OptionButton/colors/font_pressed_color = Color(0, 0, 0, 1)
 OptionButton/constants/arrow_margin = 2
-OptionButton/constants/hseparation = 2
+OptionButton/constants/h_separation = 2
 OptionButton/fonts/font = SubResource("31")
 OptionButton/icons/arrow = SubResource("20")
 OptionButton/styles/disabled = null
@@ -221,7 +196,7 @@ PopupMenu/colors/font_accel_color = Color(0.701961, 0.701961, 0.701961, 0.8)
 PopupMenu/colors/font_color = Color(0, 0, 0, 1)
 PopupMenu/colors/font_disabled_color = Color(0.4, 0.4, 0.4, 0.8)
 PopupMenu/colors/font_hover_color = Color(0.388235, 0.388235, 0.388235, 1)
-PopupMenu/constants/hseparation = 4
+PopupMenu/constants/h_separation = 4
 PopupMenu/constants/vseparation = 32
 PopupMenu/fonts/font = SubResource("31")
 PopupMenu/icons/checked = SubResource("22")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://de4dgwad6ya3s"]
 
-[ext_resource type="Theme" uid="uid://cdo5s5i4b7yf8" path="res://UI/themes/kenneyUI-red_new.tres" id="1_wlp3p"]
+[ext_resource type="Theme" uid="uid://d2hxle3cv22n4" path="res://UI/themes/kenneyUI-red_new.tres" id="1_wlp3p"]
 
 [node name="MarginContainer" type="MarginContainer"]
 anchors_preset = 15

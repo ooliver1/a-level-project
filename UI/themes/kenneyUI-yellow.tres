@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=34 format=3 uid="uid://o2pj3doakjbu"]
 
-[ext_resource type="Texture2D" uid="uid://ctoug2h6leho7" path="res://UI/themes/UIpack_vector.svg" id="1"]
+[ext_resource type="Texture2D" uid="uid://ctoug2h6leho7" path="res://UI/UIpack_vector.svg" id="1"]
 [ext_resource type="FontFile" uid="uid://bnkx2i5teit47" path="res://UI/themes/kenvector_future.ttf" id="2"]
 
 [sub_resource type="FontFile" id="31"]
@@ -139,7 +139,7 @@ Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
 Button/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
 Button/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
-Button/constants/hseparation = 2
+Button/constants/h_separation = 2
 Button/fonts/font = SubResource("31")
 Button/styles/disabled = SubResource("1")
 Button/styles/focus = SubResource("2")
@@ -151,8 +151,8 @@ CheckBox/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
 CheckBox/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
 CheckBox/colors/font_hover_pressed_color = Color(0.34902, 0.34902, 0.34902, 1)
 CheckBox/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
-CheckBox/constants/check_vadjust = 0
-CheckBox/constants/hseparation = 4
+CheckBox/constants/check_v_offset = 0
+CheckBox/constants/h_separation = 4
 CheckBox/fonts/font = SubResource("31")
 CheckBox/icons/checked = SubResource("6")
 CheckBox/icons/radio_checked = SubResource("7")
@@ -169,13 +169,13 @@ CheckButton/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
 CheckButton/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
 CheckButton/colors/font_hover_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
 CheckButton/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
-CheckButton/constants/check_vadjust = 0
-CheckButton/constants/hseparation = 4
+CheckButton/constants/check_v_offset = 0
+CheckButton/constants/h_separation = 4
 CheckButton/fonts/font = SubResource("31")
-CheckButton/icons/off = SubResource("14")
-CheckButton/icons/off_disabled = SubResource("14")
-CheckButton/icons/on = SubResource("15")
-CheckButton/icons/on_disabled = SubResource("15")
+CheckButton/icons/unchecked = SubResource("14")
+CheckButton/icons/unchecked_disabled = SubResource("14")
+CheckButton/icons/checked = SubResource("15")
+CheckButton/icons/checked_disabled = SubResource("15")
 CheckButton/styles/disabled = null
 CheckButton/styles/focus = null
 CheckButton/styles/hover = null
@@ -207,7 +207,7 @@ OptionButton/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
 OptionButton/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
 OptionButton/colors/font_pressed_color = Color(0, 0, 0, 1)
 OptionButton/constants/arrow_margin = 2
-OptionButton/constants/hseparation = 2
+OptionButton/constants/h_separation = 2
 OptionButton/fonts/font = SubResource("31")
 OptionButton/icons/arrow = SubResource("20")
 OptionButton/styles/disabled = null
@@ -220,7 +220,7 @@ PopupMenu/colors/font_accel_color = Color(0.701961, 0.701961, 0.701961, 0.8)
 PopupMenu/colors/font_color = Color(0, 0, 0, 1)
 PopupMenu/colors/font_disabled_color = Color(0.4, 0.4, 0.4, 0.8)
 PopupMenu/colors/font_hover_color = Color(0.388235, 0.388235, 0.388235, 1)
-PopupMenu/constants/hseparation = 4
+PopupMenu/constants/h_separation = 4
 PopupMenu/constants/vseparation = 32
 PopupMenu/fonts/font = SubResource("31")
 PopupMenu/icons/checked = SubResource("22")
