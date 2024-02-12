@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=34 format=3 uid="uid://u66orakjshcx"]
+[gd_resource type="Theme" load_steps=34 format=3 uid="uid://dj43rp781sewv"]
 
-[ext_resource type="FontFile" uid="uid://bnkx2i5teit47" path="res://UI/themes/kenvector_future.ttf" id="2"]
+[ext_resource type="Texture2D" uid="uid://bes8c1bsrdsnp" path="res://UI/themes/UIpack_vector.svg" id="1"]
+[ext_resource type="FontFile" uid="uid://c0q32k04e1h2o" path="res://UI/themes/kenvector_future.ttf" id="2"]
 
 [sub_resource type="FontFile" id="23"]
 fallbacks = Array[Font]([ExtResource("2")])
@@ -153,9 +154,9 @@ region_rect = Rect2(1051, 317, 4, 100)
 [resource]
 default_font = SubResource("23")
 Button/colors/font_color = Color(0, 0, 0, 1)
-Button/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
-Button/colors/font_color_hover = Color(0.34902, 0.34902, 0.34902, 1)
-Button/colors/font_color_pressed = Color(0.388235, 0.388235, 0.388235, 1)
+Button/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
+Button/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
+Button/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
 Button/constants/h_separation = 2
 Button/fonts/font = SubResource("23")
 Button/styles/disabled = SubResource("1")
@@ -164,10 +165,10 @@ Button/styles/hover = SubResource("3")
 Button/styles/normal = SubResource("4")
 Button/styles/pressed = SubResource("5")
 CheckBox/colors/font_color = Color(0, 0, 0, 1)
-CheckBox/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
-CheckBox/colors/font_color_hover = Color(0.34902, 0.34902, 0.34902, 1)
-CheckBox/colors/font_color_hover_pressed = Color(0.34902, 0.34902, 0.34902, 1)
-CheckBox/colors/font_color_pressed = Color(0.388235, 0.388235, 0.388235, 1)
+CheckBox/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
+CheckBox/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
+CheckBox/colors/font_hover_pressed_color = Color(0.34902, 0.34902, 0.34902, 1)
+CheckBox/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
 CheckBox/constants/check_v_offset = 0
 CheckBox/constants/h_separation = 4
 CheckBox/fonts/font = SubResource("23")
@@ -207,7 +208,7 @@ HSlider/styles/grabber_area = SubResource("15")
 HSlider/styles/grabber_area_highlight = SubResource("15")
 HSlider/styles/slider = SubResource("15")
 LineEdit/colors/clear_button_color = Color(0.88, 0.88, 0.88, 1)
-LineEdit/colors/clear_button_pressed_color = Color(1, 1, 1, 1)
+LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
 LineEdit/colors/cursor_color = Color(0.34902, 0.34902, 0.34902, 1)
 LineEdit/colors/font_color = Color(0, 0, 0, 1)
 LineEdit/colors/font_selected_color = Color(0.894118, 0.894118, 0.894118, 1)
@@ -238,7 +239,7 @@ PopupMenu/colors/font_color = Color(0, 0, 0, 1)
 PopupMenu/colors/font_disabled_color = Color(0.4, 0.4, 0.4, 0.8)
 PopupMenu/colors/font_hover_color = Color(0.388235, 0.388235, 0.388235, 1)
 PopupMenu/constants/h_separation = 4
-PopupMenu/constants/vseparation = 32
+PopupMenu/constants/v_separation = 32
 PopupMenu/fonts/font = SubResource("23")
 PopupMenu/icons/checked = SubResource("20")
 PopupMenu/icons/radio_checked = SubResource("26")
