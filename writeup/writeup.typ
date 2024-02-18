@@ -350,7 +350,7 @@ The game could also act as a distraction from revision or school work. This is a
   [Full-screen and windowed options], [Screenshot of the application being full-screen and windowed.],
   [Simple to understand controls], [Screenshot of the controls menu and user feedback of the controls.],
   [In-game camera follows the ball], [Screenshot which shows the ball is visible at all times.],
-  [High Contrast Colour Palette], [Screenshot of the game interface and relevant contrast ratios.],
+  [High contrast colour palette], [Screenshot of the game interface and relevant contrast ratios.],
   [Drag and point controls], [Screenshot of the ball being controlled.],
   [Power of shot controlled via dragging the ball], [Screenshot of the ball being controlled.],
   [Items that affect other players], [Screenshot of the items in effect during gameplay.],
@@ -389,3 +389,23 @@ Links to success criteria:
 - Simple graphics
 
 ==== Options Menu
+
+#image("./images/design/options.png", height: 250pt)
+
+This is the menu which is shown after selecting the options button on the main menu or pause menu. This is where the player can change settings such as graphics settings, controls, and audio settings. There are tabs at the top for each category of setting, with clear and concise labels.
+
+Links to success criteria:
+- Full-screen and windowed options
+- Simple to understand controls
+- Keyboard and mouse controls
+- Includes a settings menu
+
+==== Main HUD
+
+#image("./images/design/hud.png", height: 250pt)
+
+This is the heads up display that will display in the main game. It shows the scoreboard of all the players (which can be collapsed as it could get big with many players). It also shows the time left on the hole, and the player's inventory of items.
+
+Links to success criteria:
+- Scoreboard
+- Time limit

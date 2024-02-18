@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://bolb4wd53gifq"]
+
+[node name="MarginContainer" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 96
+text = "crazy golf"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Host" type="VBoxContainer" parent="CenterContainer/Buttons"]
+layout_mode = 2
+
+[node name="HostText" type="Label" parent="CenterContainer/Buttons/Host"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Create your own room for others to join"
+horizontal_alignment = 1
+
+[node name="HostButton" type="Button" parent="CenterContainer/Buttons/Host"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 64
+text = "Host game"
+
+[node name="Join" type="VBoxContainer" parent="CenterContainer/Buttons"]
+layout_mode = 2
+
+[node name="JoinText" type="Label" parent="CenterContainer/Buttons/Join"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "join an existing room with the room code"
+
+[node name="JoinInput" type="LineEdit" parent="CenterContainer/Buttons/Join"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+placeholder_text = "enter code"
+alignment = 1
+max_length = 4

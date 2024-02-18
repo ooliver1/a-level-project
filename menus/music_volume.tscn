@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://h4653jm4uivs"]
+
+[ext_resource type="PackedScene" uid="uid://lnljl55r0g3t" path="res://menus/volume_slider.tscn" id="1_oikmy"]
+
+[node name="MusicVolume" instance=ExtResource("1_oikmy")]
+
+[node name="Title" parent="HBoxContainer" index="0"]
+text = "Music Volume"

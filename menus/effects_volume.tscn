@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c157fqosmr0h6"]
+
+[ext_resource type="PackedScene" uid="uid://lnljl55r0g3t" path="res://menus/volume_slider.tscn" id="1_dyq6e"]
+
+[node name="EffectsVolume" instance=ExtResource("1_dyq6e")]
+
+[node name="Title" parent="HBoxContainer" index="0"]
+text = "Effects Volume"

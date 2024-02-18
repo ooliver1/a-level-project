@@ -1,0 +1,83 @@
+[gd_scene load_steps=2 format=3 uid="uid://dobscl2s4de2b"]
+
+[ext_resource type="StyleBox" uid="uid://5kg87vmdrnqu" path="res://UI/themes/panel_stylebox.tres" id="1_qhu1b"]
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="Scoreboard" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="Button" type="Button" parent="MarginContainer/Scoreboard"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+toggle_mode = true
+text = "scoreboard"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Scoreboard"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_qhu1b")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Scoreboard/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Scoreboard/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "toggleable
+scoreboard
+here"
+
+[node name="Time" type="PanelContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer/Time"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "01:30"
+
+[node name="Items" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Item1" type="PanelContainer" parent="MarginContainer/Items"]
+clip_contents = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Item2" type="PanelContainer" parent="MarginContainer/Items"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Item3" type="PanelContainer" parent="MarginContainer/Items"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2

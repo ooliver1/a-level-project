@@ -1,33 +1,53 @@
-[gd_scene format=3 uid="uid://de4dgwad6ya3s"]
+[gd_scene load_steps=4 format=3 uid="uid://de4dgwad6ya3s"]
 
-[node name="MarginContainer" type="MarginContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[ext_resource type="PackedScene" uid="uid://dj6uyoqxcna3u" path="res://menus/master_volume.tscn" id="1_yw1ww"]
+[ext_resource type="PackedScene" uid="uid://h4653jm4uivs" path="res://menus/music_volume.tscn" id="2_muhxj"]
+[ext_resource type="PackedScene" uid="uid://c157fqosmr0h6" path="res://menus/effects_volume.tscn" id="3_a434v"]
+
+[node name="TabContainer" type="TabContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -211.0
+offset_right = 400.0
+offset_bottom = 211.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 60
-theme_override_constants/margin_top = 60
-theme_override_constants/margin_right = 60
-theme_override_constants/margin_bottom = 60
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
 
-[node name="Title" type="Label" parent="."]
+[node name="Audio" type="MarginContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 96
-text = "crazy golf"
-horizontal_alignment = 1
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Audio"]
 layout_mode = 2
-use_top_left = true
+theme_override_constants/separation = 16
+alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="MasterVolume" parent="Audio/VBoxContainer" instance=ExtResource("1_yw1ww")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="MusicVolume" parent="Audio/VBoxContainer" instance=ExtResource("2_muhxj")]
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="."]
+[node name="EffectsVolume" parent="Audio/VBoxContainer" instance=ExtResource("3_a434v")]
+layout_mode = 2
+
+[node name="Video" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="Controls" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="Credits" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 2
