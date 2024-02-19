@@ -341,6 +341,7 @@ The game could also act as a distraction from revision or school work. This is a
 
 ==== Measurable Success Criteria for the Proposed Solution
 
+// TODO: could do with more criteria
 // What I will actually do to solve the stakeholder requirements ("buttons with clear text")
 #table(
   columns: (1fr, 1fr),
@@ -410,7 +411,11 @@ Links to success criteria:
 - Scoreboard
 - Time limit
 
-Hi,
+=== Stakeholder Input
+
+I sent the following message to my stakeholders for feedback on the user interface designs.
+
+"Hi,
 
 Attached are some screenshots of the designed layout of the menus for the game. These demonstrate the layout and roughly what they will look like in the game. They are the main menu, the options menu, and the main HUD in the game. The buttons are large to easily understand and read, with clear labels. The options menu has tabs at the top to easily navigate between different settings. The HUD is simple with everything at the top, with a collapsible scoreboard for if it gets in the way.
 
@@ -418,4 +423,14 @@ I would love to hear your feedback on these or any other comments you have.
 
 Thanks,
 
-Oliver
+Oliver"
+
+==== Responses
+
+===== Enoki
+
+IMO the buttons look a bit weird on the corners due to the rounding of the inner sprite, and the font doesn't differentiate between H and K. I personally prefer the slider to be a bit higher, but that is not necessary. Besides that there isn't much I'd comment on.
+
+===== Gwen
+
+The scoreboard could have the label "toggle scoreboard" to demonstrate it is toggleable, but that is the only thing I could find after some deliberation. It looks really good and you don't have to implement that change but that's my bit of feedback.
