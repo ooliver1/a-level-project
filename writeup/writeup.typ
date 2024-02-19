@@ -409,3 +409,13 @@ This is the heads up display that will display in the main game. It shows the sc
 Links to success criteria:
 - Scoreboard
 - Time limit
+
+Hi,
+
+Attached are some screenshots of the designed layout of the menus for the game. These demonstrate the layout and roughly what they will look like in the game. They are the main menu, the options menu, and the main HUD in the game. The buttons are large to easily understand and read, with clear labels. The options menu has tabs at the top to easily navigate between different settings. The HUD is simple with everything at the top, with a collapsible scoreboard for if it gets in the way.
+
+I would love to hear your feedback on these or any other comments you have.
+
+Thanks,
+
+Oliver

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dobscl2s4de2b"]
+[gd_scene load_steps=3 format=3 uid="uid://dobscl2s4de2b"]
 
 [ext_resource type="StyleBox" uid="uid://5kg87vmdrnqu" path="res://UI/themes/panel_stylebox.tres" id="1_qhu1b"]
+[ext_resource type="FontFile" uid="uid://b401ej0a6r6j4" path="res://UI/themes/Kenney Future Narrow.ttf" id="2_qujhy"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -46,9 +47,9 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/Scoreboard/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "toggleable
-scoreboard
-here"
+theme_override_fonts/font = ExtResource("2_qujhy")
+text = "[name1]                   [strokes]
+[name2]                  [strokes]"
 
 [node name="Time" type="PanelContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(0, 80)
