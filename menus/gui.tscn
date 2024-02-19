@@ -48,8 +48,8 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_qujhy")
-text = "[name1]                   [strokes]
-[name2]                  [strokes]"
+text = "[name1]                                   [5]
+[name2]                                  [3]"
 
 [node name="Time" type="PanelContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(0, 80)
