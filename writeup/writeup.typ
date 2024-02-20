@@ -434,3 +434,32 @@ IMO the buttons look a bit weird on the corners due to the rounding of the inner
 ===== Gwen
 
 The scoreboard could have the label "toggle scoreboard" to demonstrate it is toggleable, but that is the only thing I could find after some deliberation. It looks really good and you don't have to implement that change but that's my bit of feedback.
+
+===== Alex
+
+- The individual slider markers are a bit hard to see for me, they need a bit more contrast / need to be more bright
+- Scoreboard content text seems a bit small to parse at a glance, especially because it is collapsible I would make the text bigger
+- Nitpick: Why is it "MUSIC VOLUME" but not "MASTER VOLUME"
+
+I like the big buttons and large text and the very central timer 
+
+===== Milan
+
+The overall placement of HUD elements looks fine to me, though it would be nice to have some clear indication of how to access settings while in-game, perhaps through a "pause" menu.
+
+I feel like a button to quit the game is missing from the main menu. While it isn't strictly necessary, it can be convenient for certain users, for example those playing with a gamepad. ( #link("https://www.youtube.com/shorts/kgxAeQyJz-s")[controller support is cool!!!] [video referring to accessibility advantages of controller support] )
+
+For the options menu, I like the layout with navigable menus at the top and the actual options laid out underneath. I think the sliders specifically would be improved a little if the actual slider bar was visible too, instead of only the ticks.
+
+The overall styling seems fine, if a bit plain, which is to be expected for a draft version. As long as this is updated when the overall style of the game is decided upon, I think the UI should work well. Lastly, I think the font could do with some modification, as the V looks a lot like a U. In context this isn't an issue (e.g. it's obviously "Video" and not "Uideo"), but I do personally find it a bit awkward to read.
+
+==== Analysis
+
+The feedback I received was generally positive, with some minor changes suggested. The following changes will be made to the designs based on the feedback:
+
+- The inner corner of the buttons will be made more square to make the buttons look less weird.
+- The font will be modified to differentiate between H and K, U and V.
+- The slider markers will be made more bright to be easier to see.
+- The scoreboard content text will be made bigger.
+- The settings will be accessible through a pause menu with a physical button in the corner (as well as the escape button).
+- A button to quit the game will be added to the main menu.

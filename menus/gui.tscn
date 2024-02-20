@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dobscl2s4de2b"]
+[gd_scene load_steps=4 format=3 uid="uid://dobscl2s4de2b"]
 
 [ext_resource type="StyleBox" uid="uid://5kg87vmdrnqu" path="res://UI/themes/panel_stylebox.tres" id="1_qhu1b"]
 [ext_resource type="FontFile" uid="uid://b401ej0a6r6j4" path="res://UI/themes/Kenney Future Narrow.ttf" id="2_qujhy"]
+[ext_resource type="Texture2D" uid="uid://dttpej4jd3jxw" path="res://UI/themes/pause.png" id="3_awlm7"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -48,6 +49,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_qujhy")
+theme_override_font_sizes/font_size = 24
 text = "[name1]                                   [5]
 [name2]                                  [3]"
 
@@ -63,22 +65,37 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
 text = "01:30"
 
-[node name="Items" type="HBoxContainer" parent="MarginContainer"]
-custom_minimum_size = Vector2(260, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+theme_override_constants/separation = 40
+
+[node name="Items" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="Item1" type="PanelContainer" parent="MarginContainer/Items"]
+[node name="Item1" type="PanelContainer" parent="MarginContainer/HBoxContainer/Items"]
 clip_contents = true
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 
-[node name="Item2" type="PanelContainer" parent="MarginContainer/Items"]
+[node name="Item2" type="PanelContainer" parent="MarginContainer/HBoxContainer/Items"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 
-[node name="Item3" type="PanelContainer" parent="MarginContainer/Items"]
+[node name="Item3" type="PanelContainer" parent="MarginContainer/HBoxContainer/Items"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+
+[node name="Pause" type="Button" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_type_variation = &"PauseButton"
+theme_override_font_sizes/font_size = 46
+icon = ExtResource("3_awlm7")
