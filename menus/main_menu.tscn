@@ -6,10 +6,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 60
-theme_override_constants/margin_top = 60
-theme_override_constants/margin_right = 60
-theme_override_constants/margin_bottom = 60
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 2
@@ -38,3 +38,11 @@ text = "Play"
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Options"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_type_variation = &"OrangeButton"
+theme_override_font_sizes/font_size = 48
+text = "Quit"
