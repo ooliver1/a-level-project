@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://4a6qdtabj2bm"]
+[gd_scene load_steps=3 format=3 uid="uid://4a6qdtabj2bm"]
 
-[node name="MarginContainer" type="MarginContainer"]
+[ext_resource type="Script" path="res://menus/main_menu.gd" id="1_huc61"]
+[ext_resource type="PackedScene" uid="uid://de4dgwad6ya3s" path="res://menus/options.tscn" id="2_ynuov"]
+
+[node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -10,6 +13,8 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
+script = ExtResource("1_huc61")
+options_scene = ExtResource("2_ynuov")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 2
@@ -46,3 +51,7 @@ size_flags_vertical = 8
 theme_type_variation = &"OrangeButton"
 theme_override_font_sizes/font_size = 48
 text = "Quit"
+
+[connection signal="pressed" from="CenterContainer/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Buttons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

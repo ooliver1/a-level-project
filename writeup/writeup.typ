@@ -5,6 +5,7 @@
 #show heading.where(level: 4): set text(16pt)
 #set page(numbering: "1")
 #set text(14pt)
+#set raw(syntaxes: "./GDScript.sublime-syntax.yaml")
 
 #page[
 #set align(center)
@@ -463,3 +464,17 @@ The feedback I received was generally positive, with some minor changes suggeste
 - The scoreboard content text will be made bigger.
 - The settings will be accessible through a pause menu with a physical button in the corner (as well as the escape button).
 - A button to quit the game will be added to the main menu.
+
+==== Improvements
+
+#image("./images/design/menu-improved.png", height: 240pt)
+
+There is now a button to quit the game in the main menu.
+
+#image("./images/design/options-improved.png", height: 240pt)
+
+The sliders are now more visible, and the font has been changed to differentiate between H and K, U and V.
+
+#image("./images/design/hud-improved.png", height: 240pt)
+
+The scoreboard content text is now bigger, and there is a physical button to access the pause menu.
