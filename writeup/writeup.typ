@@ -20,7 +20,7 @@ Nottingham College
   Programming Project
 ]
 
-= \<title>
+= Crazy Golf
 
 #linebreak()
 #text(16pt, fill: xcolor.royal-purple)[
