@@ -478,3 +478,41 @@ The sliders are now more visible, and the font has been changed to differentiate
 #image("./images/design/hud-improved.png", height: 240pt)
 
 The scoreboard content text is now bigger, and there is a physical button to access the pause menu.
+
+== Development
+
+The first stage of development is about creating the user interfaces. This includes linking the buttons to the different interfaces, and adding the relevant settings to the options menu.
+
+=== Stage 1: Setup & Menus
+
+==== Main Menu
+
+In the main menu, the buttons are added via Godot's 2D editor, and each button is linked to a central script via signals. These signals are responded to below. Clicking the quit button sends a request to the `SceneTree` to quit.
+
+The `play_scene` and `options_scene` are exported properties, so they can be set in the editor. This reduces coupling of the scenes and means the path of those scenes can change without issue. These `PackedScene`s are used to change the current scene to the play or options scene.
+
+```gdscript
+# main_menu.gd
+extends MarginContainer
+
+# Take in scenes as an exported property, to reduce coupling.
+@export var play_scene: PackedScene
+@export var options_scene: PackedScene
+
+
+func _on_quit_button_pressed():
+	# `get_tree()` gets the `SceneTree` which manages the game loop.
+	get_tree().quit()
+
+
+func _on_options_button_pressed():
+	get_tree().change_scene_to_packed(options_scene)
+
+
+func _on_play_button_pressed():
+	get_tree().change_scene_to_packed(play_scene)
+```
+
+The `play_scene` looks like this:
+
+#image("./images/development/play.png", height: 240pt)
