@@ -2,7 +2,7 @@
 
 [ext_resource type="StyleBox" uid="uid://5kg87vmdrnqu" path="res://UI/themes/panel_stylebox.tres" id="1_qhu1b"]
 [ext_resource type="FontFile" uid="uid://b401ej0a6r6j4" path="res://UI/themes/Kenney Future Narrow.ttf" id="2_qujhy"]
-[ext_resource type="Texture2D" uid="uid://dttpej4jd3jxw" path="res://UI/themes/pause.png" id="3_awlm7"]
+[ext_resource type="Texture2D" uid="uid://cmabcv885a60x" path="res://UI/themes/pause.png" id="3_awlm7"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -97,5 +97,4 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_type_variation = &"OrangeButton"
-theme_override_font_sizes/font_size = 46
 icon = ExtResource("3_awlm7")
