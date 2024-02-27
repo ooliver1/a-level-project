@@ -33,12 +33,15 @@ alignment = 1
 
 [node name="MasterVolume" parent="Audio/VBoxContainer" instance=ExtResource("1_yw1ww")]
 layout_mode = 2
+script = null
 
 [node name="MusicVolume" parent="Audio/VBoxContainer" instance=ExtResource("2_muhxj")]
 layout_mode = 2
+script = null
 
 [node name="EffectsVolume" parent="Audio/VBoxContainer" instance=ExtResource("3_a434v")]
 layout_mode = 2
+script = null
 
 [node name="Video" type="VBoxContainer" parent="."]
 visible = false
