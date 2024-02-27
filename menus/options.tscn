@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://de4dgwad6ya3s"]
+[gd_scene load_steps=5 format=3 uid="uid://de4dgwad6ya3s"]
 
 [ext_resource type="PackedScene" uid="uid://dj6uyoqxcna3u" path="res://menus/sliders/master_volume.tscn" id="1_yw1ww"]
 [ext_resource type="PackedScene" uid="uid://h4653jm4uivs" path="res://menus/sliders/music_volume.tscn" id="2_muhxj"]
 [ext_resource type="PackedScene" uid="uid://c157fqosmr0h6" path="res://menus/sliders/effects_volume.tscn" id="3_a434v"]
+[ext_resource type="AudioStream" uid="uid://b1we0jg57la60" path="res://menus/MUSIC TEST AUDIO SYSTEM - AUDIOPHILE MUSIC COLLECTION 2018  - Audiophile Music - NbR Music [7aEUakKMLBs].mp3" id="4_gykr8"]
 
 [node name="TabContainer" type="TabContainer"]
 anchors_preset = 8
@@ -33,15 +34,12 @@ alignment = 1
 
 [node name="MasterVolume" parent="Audio/VBoxContainer" instance=ExtResource("1_yw1ww")]
 layout_mode = 2
-script = null
 
 [node name="MusicVolume" parent="Audio/VBoxContainer" instance=ExtResource("2_muhxj")]
 layout_mode = 2
-script = null
 
 [node name="EffectsVolume" parent="Audio/VBoxContainer" instance=ExtResource("3_a434v")]
 layout_mode = 2
-script = null
 
 [node name="Video" type="VBoxContainer" parent="."]
 visible = false
@@ -54,3 +52,9 @@ layout_mode = 2
 [node name="Credits" type="VBoxContainer" parent="."]
 visible = false
 layout_mode = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_gykr8")
+volume_db = -80.0
+autoplay = true
+bus = &"BGM"
