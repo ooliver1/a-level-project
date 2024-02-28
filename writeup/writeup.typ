@@ -519,3 +519,7 @@ The `play_scene` looks like this:
 
 // TODO: mention tested with audioplayer for below
 
+==== Options Menu
+
+The options menu is also designed with the GOdot 2D editor. The tabs are nodes underneath a `TabContainer` which handles switching the tabs. I added an exit button on the top right to go back to the previous scene - which can be either the main menu or pause menu. As the scene to switch back to depends on the previous scene, this is handled via a global script.
+

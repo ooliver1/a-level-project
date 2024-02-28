@@ -72,10 +72,10 @@ layout_mode = 2
 
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 370.0
+offset_left = 362.0
 offset_top = -195.0
 offset_right = 420.0
-offset_bottom = -145.0
+offset_bottom = -137.0
 theme_type_variation = &"OrangeButton"
 icon = ExtResource("4_5sq21")
 
