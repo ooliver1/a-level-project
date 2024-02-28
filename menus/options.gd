@@ -1,6 +1,7 @@
 extends Control
 
-@onready var global: Global = $/root/Global
+@onready var global: Global = $"/root/Global"
+
 
 func _on_close_button_pressed():
 	# global.previous_scene could be either options or pause, this is set

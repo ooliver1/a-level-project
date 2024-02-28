@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://de4dgwad6ya3s"]
+[gd_scene load_steps=8 format=3 uid="uid://de4dgwad6ya3s"]
 
 [ext_resource type="Script" path="res://menus/options.gd" id="1_yd1t2"]
 [ext_resource type="PackedScene" uid="uid://dj6uyoqxcna3u" path="res://menus/sliders/master_volume.tscn" id="1_yw1ww"]
 [ext_resource type="PackedScene" uid="uid://h4653jm4uivs" path="res://menus/sliders/music_volume.tscn" id="2_muhxj"]
 [ext_resource type="PackedScene" uid="uid://c157fqosmr0h6" path="res://menus/sliders/effects_volume.tscn" id="3_a434v"]
 [ext_resource type="Texture2D" uid="uid://btp6awxonqs31" path="res://UI/themes/close.png" id="4_5sq21"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_038ma"]
+action = &"Escape"
+
+[sub_resource type="Shortcut" id="Shortcut_8jqu3"]
+events = [SubResource("InputEventAction_038ma")]
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -72,11 +78,12 @@ layout_mode = 2
 
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 362.0
-offset_top = -195.0
+offset_left = 351.0
+offset_top = -197.0
 offset_right = 420.0
-offset_bottom = -137.0
+offset_bottom = -128.0
 theme_type_variation = &"OrangeButton"
+shortcut = SubResource("Shortcut_8jqu3")
 icon = ExtResource("4_5sq21")
 
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

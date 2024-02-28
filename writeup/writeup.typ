@@ -521,5 +521,87 @@ The `play_scene` looks like this:
 
 ==== Options Menu
 
-The options menu is also designed with the GOdot 2D editor. The tabs are nodes underneath a `TabContainer` which handles switching the tabs. I added an exit button on the top right to go back to the previous scene - which can be either the main menu or pause menu. As the scene to switch back to depends on the previous scene, this is handled via a global script.
+The options menu is also designed with the Godot 2D editor. The tabs are nodes underneath a `TabContainer` which handles switching the tabs. I added an exit button on the top right to go back to the previous scene - which can be either the main menu or pause menu. As the scene to switch back to depends on the previous scene, this is handled via a global script.
 
+The tabs have also been extended downwards when selected so it is clearer as to if they are selected.
+
+#image("./images/development/options-music.png", height: 240pt)
+
+The following script is a global autoload 'singleton' script which holds the previous scene. This is used to determine which scene to switch back to when the exit button is pressed.
+
+```gdscript
+# global.gd
+extends Control
+
+@onready var global: Global = $"/root/Global"
+
+
+func _on_close_button_pressed():
+	# global.previous_scene could be either options or pause, this is set
+	# before switching to options.
+	get_tree().change_scene_to_file(global.previous_scene)
+```
+
+This is used in `main_menu.gd` (and soon to be used in `pause_menu.gd` too) to set the previous scene before switching to the options scene. This is so the options scene knows which scene to switch back to when the exit button is pressed.
+
+```gdscript
+# main_menu.gd
+@onready var global: Global = $"/root/Global"
+
+# [...]
+
+func _on_options_button_pressed():
+	var tree := get_tree()
+	global.previous_scene = tree.current_scene.scene_file_path
+	tree.change_scene_to_packed(options_scene)
+```
+
+In the options menu, the close button retrieves the previous scene from the global script and switches back to it.
+
+```gdscript
+extends Control
+
+@onready var global: Global = $"/root/Global"
+
+
+func _on_close_button_pressed():
+	# global.previous_scene could be either options or pause, this is set
+	# before switching to options.
+	get_tree().change_scene_to_file(global.previous_scene)
+```
+
+===== Audio Settings
+
+Each volume slider is a child of a parent volume slider scene, which contains the slider, the label which contains the volume, and the script to handle the volume.
+
+`audio_bus_name` is different per slider, so it is set per slider in the editor via an exported property. `audio_bus_index` is a unique number relating to this audio bus, used in the `AudioServer` API.
+
+`_ready` is ran whenever the script is loaded. It retrieves the current bus volume from the `AudioServer` and sets the slider and label to that value. The `value_changed` signal is emitted whenever the slider is moved, and the `set_bus_volume_db` function is called to set the volume of the bus.
+
+Both of these require converting to/from decibels, as the `AudioServer` API uses decibels for volume and that is a logarithmic scale.
+
+```gdscript
+extends VBoxContainer
+
+@export var audio_bus_name: StringName
+# The index of the audio bus in all buses.
+@onready var audio_bus_index := AudioServer.get_bus_index(audio_bus_name)
+@onready var value_node: Label = %Value
+@onready var slider: HSlider = %Slider
+
+
+func _ready():
+	# Retrieve existing volume and set that on the slider and label.
+	var db := AudioServer.get_bus_volume_db(audio_bus_index)
+	var percentage := db_to_linear(db)
+	var value := roundi(percentage * 100)
+	value_node.text = str(value) + "%"
+	slider.value = value
+
+func _on_slider_value_changed(value: float):
+	# Godot uses decibels, which is logorithmic. This function converts a number
+	# from 0-1 into decibels (-80 to 24dB)
+	var db := linear_to_db(value / 100)
+	AudioServer.set_bus_volume_db(audio_bus_index, db)
+	value_node.text = str(value) + "%"
+```

@@ -4,6 +4,15 @@ extends VBoxContainer
 # The index of the audio bus in all buses.
 @onready var audio_bus_index := AudioServer.get_bus_index(audio_bus_name)
 @onready var value_node: Label = %Value
+@onready var slider = %Slider
+
+
+func _ready():
+	var db := AudioServer.get_bus_volume_db(audio_bus_index)
+	var percentage := db_to_linear(db)
+	var value := roundi(percentage * 100)
+	value_node.text = str(value) + "%"
+	slider.value = value
 
 func _on_slider_value_changed(value: float):
 	# Godot uses decihels, which is logorithmic. This function converts a number
