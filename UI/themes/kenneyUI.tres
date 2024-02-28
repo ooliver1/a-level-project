@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=54 format=3 uid="uid://dj43rp781sewv"]
+[gd_resource type="Theme" load_steps=55 format=3 uid="uid://dj43rp781sewv"]
 
 [ext_resource type="Texture2D" uid="uid://bes8c1bsrdsnp" path="res://UI/themes/UIpack_vector.svg" id="1"]
 [ext_resource type="FontFile" uid="uid://c4cogoomwyg7o" path="res://UI/themes/Kenney Future.ttf" id="2_v6aca"]
@@ -35,8 +35,8 @@ region_rect = Rect2(1, 0, 190, 49)
 
 [sub_resource type="StyleBoxTexture" id="4"]
 texture = ExtResource("1")
-texture_margin_left = 9.0
-texture_margin_top = 13.0
+texture_margin_left = 13.0
+texture_margin_top = 9.0
 texture_margin_right = 10.0
 texture_margin_bottom = 14.0
 region_rect = Rect2(211, 0, 190, 49)
@@ -85,7 +85,7 @@ region = Rect2(250, 644, 36, 36)
 atlas = ExtResource("1")
 region = Rect2(872, 444, 28, 39)
 
-[sub_resource type="Image" id="Image_tbgot"]
+[sub_resource type="Image" id="Image_t8qip"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 9, 255, 255, 255, 49, 255, 255, 255, 77, 255, 255, 255, 90, 255, 255, 255, 90, 255, 255, 255, 77, 255, 255, 255, 49, 255, 255, 255, 9, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 32, 255, 255, 255, 90, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 90, 255, 255, 255, 31, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 32, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 31, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 9, 255, 255, 255, 90, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 89, 255, 255, 255, 8, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 49, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 48, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 77, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 77, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 90, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 90, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 90, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 89, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 77, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 76, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 49, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 48, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 9, 255, 255, 255, 90, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 89, 255, 255, 255, 8, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 31, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 30, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 31, 255, 255, 255, 89, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 94, 255, 255, 255, 89, 255, 255, 255, 30, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 8, 255, 255, 255, 48, 255, 255, 255, 77, 255, 255, 255, 90, 255, 255, 255, 89, 255, 255, 255, 76, 255, 255, 255, 48, 255, 255, 255, 8, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -95,7 +95,7 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_1kqhm"]
-image = SubResource("Image_tbgot")
+image = SubResource("Image_t8qip")
 
 [sub_resource type="Gradient" id="Gradient_wl88o"]
 colors = PackedColorArray(0, 0, 0, 1, 0.534361, 0.534361, 0.534361, 1)
@@ -150,8 +150,8 @@ region_rect = Rect2(1, 180, 190, 49)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h40uu"]
 texture = ExtResource("1")
-texture_margin_left = 9.0
-texture_margin_top = 13.0
+texture_margin_left = 13.0
+texture_margin_top = 9.0
 texture_margin_right = 10.0
 texture_margin_bottom = 14.0
 region_rect = Rect2(211, 180, 190, 49)
@@ -202,6 +202,27 @@ texture_margin_right = 13.0
 texture_margin_bottom = 11.0
 region_rect = Rect2(1, 310, 100, 100)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8oota"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mooyb"]
 texture = ExtResource("1")
 texture_margin_left = 13.0
@@ -214,7 +235,7 @@ region_rect = Rect2(1, 0, 190, 49)
 resource_local_to_scene = false
 resource_name = ""
 content_margin_left = 19.0
-content_margin_top = 9.0
+content_margin_top = 17.0
 content_margin_right = 15.0
 content_margin_bottom = 14.0
 script = ExtResource("4_j5gtx")
@@ -222,7 +243,7 @@ style_box = SubResource("StyleBoxTexture_mooyb")
 padding_left = 5
 padding_top = 0
 padding_right = 5
-padding_bottom = 0
+padding_bottom = -8
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rsxkl"]
 texture = ExtResource("1")
@@ -236,7 +257,7 @@ region_rect = Rect2(421, 4, 190, 45)
 resource_local_to_scene = false
 resource_name = ""
 content_margin_left = 19.0
-content_margin_top = 9.0
+content_margin_top = 17.0
 content_margin_right = 15.0
 content_margin_bottom = 14.0
 script = ExtResource("4_j5gtx")
@@ -244,7 +265,7 @@ style_box = SubResource("StyleBoxTexture_rsxkl")
 padding_left = 5
 padding_top = 0
 padding_right = 5
-padding_bottom = 0
+padding_bottom = -8
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gnxte"]
 texture = ExtResource("1")
@@ -258,7 +279,7 @@ region_rect = Rect2(211, 0, 190, 49)
 resource_local_to_scene = false
 resource_name = ""
 content_margin_left = 19.0
-content_margin_top = 9.0
+content_margin_top = 17.0
 content_margin_right = 15.0
 content_margin_bottom = 14.0
 script = ExtResource("4_j5gtx")
@@ -266,7 +287,7 @@ style_box = SubResource("StyleBoxTexture_gnxte")
 padding_left = 5
 padding_top = 0
 padding_right = 5
-padding_bottom = 0
+padding_bottom = -8
 
 [sub_resource type="StyleBoxTexture" id="22"]
 content_margin_left = 12.0
@@ -409,6 +430,7 @@ TabContainer/colors/font_selected_color = Color(0, 0, 0, 1)
 TabContainer/colors/font_unselected_color = Color(0, 0, 0, 1)
 TabContainer/fonts/font = ExtResource("2_v6aca")
 TabContainer/styles/panel = SubResource("StyleBoxTexture_kw55n")
+TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_8oota")
 TabContainer/styles/tab_hovered = SubResource("StyleBox_hd5wl")
 TabContainer/styles/tab_selected = SubResource("StyleBox_wvk83")
 TabContainer/styles/tab_unselected = SubResource("StyleBox_c58nj")
