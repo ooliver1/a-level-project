@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bes8c1bsrdsnp" path="res://UI/themes/UIpack_vector.svg" id="1_aisf0"]
 
 [resource]
+content_margin_bottom = 10.0
 texture = ExtResource("1_aisf0")
 texture_margin_left = 12.0
 texture_margin_top = 13.0

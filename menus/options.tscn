@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://de4dgwad6ya3s"]
+[gd_scene load_steps=11 format=3 uid="uid://de4dgwad6ya3s"]
 
 [ext_resource type="Script" path="res://menus/options.gd" id="1_yd1t2"]
 [ext_resource type="PackedScene" uid="uid://dj6uyoqxcna3u" path="res://menus/sliders/master_volume.tscn" id="1_yw1ww"]
 [ext_resource type="PackedScene" uid="uid://h4653jm4uivs" path="res://menus/sliders/music_volume.tscn" id="2_muhxj"]
 [ext_resource type="PackedScene" uid="uid://c157fqosmr0h6" path="res://menus/sliders/effects_volume.tscn" id="3_a434v"]
 [ext_resource type="Texture2D" uid="uid://btp6awxonqs31" path="res://UI/themes/close.png" id="4_5sq21"]
+[ext_resource type="PackedScene" uid="uid://b7vic1l30obov" path="res://menus/option_button_transparent.tscn" id="5_ov2xc"]
+[ext_resource type="Script" path="res://menus/OptionButton.gd" id="5_xbqm7"]
+[ext_resource type="Script" path="res://menus/video.gd" id="5_yol6c"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_038ma"]
 action = &"Escape"
@@ -42,8 +45,10 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 24
+current_tab = 1
 
 [node name="Audio" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -64,9 +69,75 @@ layout_mode = 2
 [node name="EffectsVolume" parent="TabContainer/Audio/VBoxContainer" instance=ExtResource("3_a434v")]
 layout_mode = 2
 
-[node name="Video" type="VBoxContainer" parent="TabContainer"]
-visible = false
+[node name="Video" type="MarginContainer" parent="TabContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+script = ExtResource("5_yol6c")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Video"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="DisplayModeItem" type="HBoxContainer" parent="TabContainer/Video/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Video/VBoxContainer/DisplayModeItem"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Display Mode"
+
+[node name="DisplayMode" parent="TabContainer/Video/VBoxContainer/DisplayModeItem" instance=ExtResource("5_ov2xc")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Fullscreen Borderless"
+popup/item_2/id = 2
+
+[node name="AntiAliasingItem" type="HBoxContainer" parent="TabContainer/Video/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Video/VBoxContainer/AntiAliasingItem"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Anti-aliasing"
+
+[node name="AntiAliasing" parent="TabContainer/Video/VBoxContainer/AntiAliasingItem" instance=ExtResource("5_ov2xc")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+item_count = 4
+popup/item_0/text = "Disabled"
+popup/item_0/id = 0
+popup/item_1/text = "2x MSAA"
+popup/item_1/id = 1
+popup/item_2/text = "4x MSAA"
+popup/item_2/id = 2
+popup/item_3/text = "8x MSAA"
+popup/item_3/id = 3
+
+[node name="VSyncItem" type="HBoxContainer" parent="TabContainer/Video/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Video/VBoxContainer/VSyncItem"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "VSync"
+
+[node name="VSync" type="CheckBox" parent="TabContainer/Video/VBoxContainer/VSyncItem"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
 
 [node name="Controls" type="VBoxContainer" parent="TabContainer"]
 visible = false
@@ -75,6 +146,20 @@ layout_mode = 2
 [node name="Credits" type="VBoxContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="TabContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+item_count = 3
+popup/item_0/text = "WIndowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Windowed Borderless"
+popup/item_2/id = 2
+script = ExtResource("5_xbqm7")
 
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 0
@@ -86,4 +171,7 @@ theme_type_variation = &"OrangeButton"
 shortcut = SubResource("Shortcut_8jqu3")
 icon = ExtResource("4_5sq21")
 
+[connection signal="item_selected" from="TabContainer/Video/VBoxContainer/DisplayModeItem/DisplayMode" to="TabContainer/Video" method="_on_display_mode_item_selected"]
+[connection signal="item_selected" from="TabContainer/Video/VBoxContainer/AntiAliasingItem/AntiAliasing" to="TabContainer/Video" method="_on_anti_aliasing_item_selected"]
+[connection signal="toggled" from="TabContainer/Video/VBoxContainer/VSyncItem/VSync" to="TabContainer/Video" method="_on_vsync_toggled"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

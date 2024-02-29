@@ -23,7 +23,7 @@ class_name MarginStyleBox extends StyleBox
 		emit_changed()
 
 
-func _draw(to_canvas_item: RID, rect: Rect2):
+func _draw(to_canvas_item: RID, rect: Rect2) -> void:
 	var new_rect: Rect2 = rect.grow_individual(
 		-padding_left, -padding_top, -padding_right, -padding_bottom
 	)

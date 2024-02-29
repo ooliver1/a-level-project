@@ -186,12 +186,18 @@ content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
 texture = ExtResource("1")
+texture_margin_left = 8.0
+texture_margin_top = 9.0
+texture_margin_right = 10.0
+texture_margin_bottom = 14.0
 region_rect = Rect2(321, 440, 49, 49)
 
-[sub_resource type="StyleBoxTexture" id="30"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mi0gu"]
 texture = ExtResource("1")
-expand_margin_top = 10.0
-expand_margin_bottom = 10.0
+texture_margin_left = 8.0
+texture_margin_top = 9.0
+texture_margin_right = 10.0
+texture_margin_bottom = 14.0
 region_rect = Rect2(321, 440, 49, 49)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kw55n"]
@@ -402,7 +408,6 @@ OrangeButton/styles/hover = SubResource("StyleBoxTexture_1elad")
 OrangeButton/styles/normal = SubResource("StyleBoxTexture_h40uu")
 OrangeButton/styles/pressed = SubResource("StyleBoxTexture_3fmcw")
 Panel/styles/panel = ExtResource("3_7owyv")
-PanelContainer/styles/panel = ExtResource("3_7owyv")
 PopupMenu/colors/font_accel_color = Color(0.701961, 0.701961, 0.701961, 0.8)
 PopupMenu/colors/font_color = Color(0, 0, 0, 1)
 PopupMenu/colors/font_disabled_color = Color(0.4, 0.4, 0.4, 0.8)
@@ -418,7 +423,7 @@ PopupMenu/icons/unchecked = SubResource("28")
 PopupMenu/styles/hover = SubResource("29")
 PopupMenu/styles/labeled_separator_left = null
 PopupMenu/styles/labeled_separator_right = null
-PopupMenu/styles/panel = SubResource("30")
+PopupMenu/styles/panel = SubResource("StyleBoxTexture_mi0gu")
 PopupMenu/styles/panel_disabled = null
 PopupMenu/styles/separator = null
 TabContainer/colors/font_hovered_color = Color(0, 0, 0, 1)
