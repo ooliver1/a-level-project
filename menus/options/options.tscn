@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://de4dgwad6ya3s"]
 
-[ext_resource type="Script" path="res://menus/options.gd" id="1_yd1t2"]
-[ext_resource type="PackedScene" uid="uid://dj6uyoqxcna3u" path="res://menus/sliders/master_volume.tscn" id="1_yw1ww"]
-[ext_resource type="PackedScene" uid="uid://h4653jm4uivs" path="res://menus/sliders/music_volume.tscn" id="2_muhxj"]
-[ext_resource type="PackedScene" uid="uid://c157fqosmr0h6" path="res://menus/sliders/effects_volume.tscn" id="3_a434v"]
-[ext_resource type="Texture2D" uid="uid://btp6awxonqs31" path="res://UI/themes/close.png" id="4_5sq21"]
-[ext_resource type="PackedScene" uid="uid://b7vic1l30obov" path="res://menus/option_button_transparent.tscn" id="5_ov2xc"]
-[ext_resource type="Script" path="res://menus/OptionButton.gd" id="5_xbqm7"]
-[ext_resource type="Script" path="res://menus/video.gd" id="5_yol6c"]
+[ext_resource type="Script" path="res://menus/options/options.gd" id="1_yd1t2"]
+[ext_resource type="PackedScene" uid="uid://dj6uyoqxcna3u" path="res://menus/options/sliders/master_volume.tscn" id="2_7j8rt"]
+[ext_resource type="PackedScene" uid="uid://h4653jm4uivs" path="res://menus/options/sliders/music_volume.tscn" id="3_w0ycf"]
+[ext_resource type="PackedScene" uid="uid://c157fqosmr0h6" path="res://menus/options/sliders/effects_volume.tscn" id="4_ipdrt"]
+[ext_resource type="Script" path="res://menus/options/video.gd" id="5_e4lvw"]
+[ext_resource type="PackedScene" uid="uid://b7vic1l30obov" path="res://menus/options/option_button_transparent.tscn" id="6_gbrxk"]
+[ext_resource type="Script" path="res://menus/options/OptionButton.gd" id="7_whxfy"]
+[ext_resource type="Texture2D" uid="uid://btp6awxonqs31" path="res://UI/icons/close.png" id="8_15aqt"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_038ma"]
 action = &"Escape"
@@ -60,13 +60,13 @@ layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="MasterVolume" parent="TabContainer/Audio/VBoxContainer" instance=ExtResource("1_yw1ww")]
+[node name="MasterVolume" parent="TabContainer/Audio/VBoxContainer" instance=ExtResource("2_7j8rt")]
 layout_mode = 2
 
-[node name="MusicVolume" parent="TabContainer/Audio/VBoxContainer" instance=ExtResource("2_muhxj")]
+[node name="MusicVolume" parent="TabContainer/Audio/VBoxContainer" instance=ExtResource("3_w0ycf")]
 layout_mode = 2
 
-[node name="EffectsVolume" parent="TabContainer/Audio/VBoxContainer" instance=ExtResource("3_a434v")]
+[node name="EffectsVolume" parent="TabContainer/Audio/VBoxContainer" instance=ExtResource("4_ipdrt")]
 layout_mode = 2
 
 [node name="Video" type="MarginContainer" parent="TabContainer"]
@@ -75,7 +75,7 @@ theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
-script = ExtResource("5_yol6c")
+script = ExtResource("5_e4lvw")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Video"]
 layout_mode = 2
@@ -90,7 +90,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "Display Mode"
 
-[node name="DisplayMode" parent="TabContainer/Video/VBoxContainer/DisplayModeItem" instance=ExtResource("5_ov2xc")]
+[node name="DisplayMode" parent="TabContainer/Video/VBoxContainer/DisplayModeItem" instance=ExtResource("6_gbrxk")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
@@ -111,7 +111,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "Anti-aliasing"
 
-[node name="AntiAliasing" parent="TabContainer/Video/VBoxContainer/AntiAliasingItem" instance=ExtResource("5_ov2xc")]
+[node name="AntiAliasing" parent="TabContainer/Video/VBoxContainer/AntiAliasingItem" instance=ExtResource("6_gbrxk")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
@@ -159,7 +159,7 @@ popup/item_1/text = "Fullscreen"
 popup/item_1/id = 1
 popup/item_2/text = "Windowed Borderless"
 popup/item_2/id = 2
-script = ExtResource("5_xbqm7")
+script = ExtResource("7_whxfy")
 
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 0
@@ -169,7 +169,7 @@ offset_right = 420.0
 offset_bottom = -128.0
 theme_type_variation = &"OrangeButton"
 shortcut = SubResource("Shortcut_8jqu3")
-icon = ExtResource("4_5sq21")
+icon = ExtResource("8_15aqt")
 
 [connection signal="item_selected" from="TabContainer/Video/VBoxContainer/DisplayModeItem/DisplayMode" to="TabContainer/Video" method="_on_display_mode_item_selected"]
 [connection signal="item_selected" from="TabContainer/Video/VBoxContainer/AntiAliasingItem/AntiAliasing" to="TabContainer/Video" method="_on_anti_aliasing_item_selected"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://lnljl55r0g3t"]
 
-[ext_resource type="Script" path="res://menus/sliders/volume_slider.gd" id="1_pxqmd"]
+[ext_resource type="Script" path="res://menus/options/sliders/volume_slider.gd" id="1_pxqmd"]
 
 [node name="Volume" type="VBoxContainer"]
 script = ExtResource("1_pxqmd")

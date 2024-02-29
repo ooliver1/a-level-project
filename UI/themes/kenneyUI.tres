@@ -1,8 +1,8 @@
 [gd_resource type="Theme" load_steps=55 format=3 uid="uid://dj43rp781sewv"]
 
 [ext_resource type="Texture2D" uid="uid://bes8c1bsrdsnp" path="res://UI/themes/UIpack_vector.svg" id="1"]
-[ext_resource type="FontFile" uid="uid://c4cogoomwyg7o" path="res://UI/themes/Kenney Future.ttf" id="2_v6aca"]
-[ext_resource type="StyleBox" uid="uid://5kg87vmdrnqu" path="res://UI/themes/panel_stylebox.tres" id="3_7owyv"]
+[ext_resource type="FontFile" uid="uid://c4cogoomwyg7o" path="res://UI/fonts/Kenney Future.ttf" id="2_6savl"]
+[ext_resource type="StyleBox" uid="uid://5kg87vmdrnqu" path="res://UI/fonts/panel_stylebox.tres" id="3_7owyv"]
 [ext_resource type="Script" path="res://UI/themes/margin_stylebox.gd" id="4_j5gtx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c4w23"]
@@ -312,7 +312,7 @@ texture = ExtResource("1")
 region_rect = Rect2(1051, 317, 4, 100)
 
 [resource]
-default_font = ExtResource("2_v6aca")
+default_font = ExtResource("2_6savl")
 BlueHSlider/base_type = &"HSlider"
 BlueHSlider/icons/grabber = SubResource("AtlasTexture_c4w23")
 BlueHSlider/icons/grabber_highlight = SubResource("AtlasTexture_atu38")
@@ -322,7 +322,7 @@ Button/colors/font_focus_color = Color(0.34902, 0.34902, 0.34902, 1)
 Button/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
 Button/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
 Button/constants/h_separation = 2
-Button/fonts/font = ExtResource("2_v6aca")
+Button/fonts/font = ExtResource("2_6savl")
 Button/styles/disabled = SubResource("1")
 Button/styles/focus = SubResource("2")
 Button/styles/hover = SubResource("3")
@@ -335,7 +335,7 @@ CheckBox/colors/font_hover_pressed_color = Color(0.34902, 0.34902, 0.34902, 1)
 CheckBox/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
 CheckBox/constants/check_v_offset = 0
 CheckBox/constants/h_separation = 4
-CheckBox/fonts/font = ExtResource("2_v6aca")
+CheckBox/fonts/font = ExtResource("2_6savl")
 CheckBox/icons/checked = SubResource("6")
 CheckBox/icons/radio_checked = SubResource("7")
 CheckBox/icons/radio_unchecked = SubResource("8")
@@ -353,7 +353,7 @@ CheckButton/colors/font_hover_pressed_color = Color(0.388235, 0.388235, 0.388235
 CheckButton/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
 CheckButton/constants/check_v_offset = 0
 CheckButton/constants/h_separation = 4
-CheckButton/fonts/font = ExtResource("2_v6aca")
+CheckButton/fonts/font = ExtResource("2_6savl")
 CheckButton/icons/checked = SubResource("32")
 CheckButton/icons/checked_disabled = SubResource("32")
 CheckButton/icons/unchecked = SubResource("31")
@@ -373,7 +373,7 @@ HSlider/icons/tick = SubResource("AtlasTexture_t0klb")
 HSlider/styles/grabber_area = SubResource("15")
 HSlider/styles/grabber_area_highlight = SubResource("15")
 HSlider/styles/slider = SubResource("15")
-Label/fonts/font = ExtResource("2_v6aca")
+Label/fonts/font = ExtResource("2_6savl")
 LineEdit/colors/caret_color = Color(0.34902, 0.34902, 0.34902, 1)
 LineEdit/colors/clear_button_color = Color(0.88, 0.88, 0.88, 1)
 LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
@@ -383,7 +383,7 @@ LineEdit/colors/font_selected_color = Color(0.894118, 0.894118, 0.894118, 1)
 LineEdit/colors/font_uneditable_color = Color(0.88, 0.88, 0.88, 0.5)
 LineEdit/colors/selection_color = Color(0.34902, 0.34902, 0.34902, 1)
 LineEdit/constants/minimum_spaces = 12
-LineEdit/fonts/font = ExtResource("2_v6aca")
+LineEdit/fonts/font = ExtResource("2_6savl")
 LineEdit/icons/clear = null
 LineEdit/styles/focus = SubResource("16")
 LineEdit/styles/normal = SubResource("17")
@@ -394,7 +394,7 @@ OptionButton/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
 OptionButton/colors/font_pressed_color = Color(0, 0, 0, 1)
 OptionButton/constants/arrow_margin = 2
 OptionButton/constants/h_separation = 2
-OptionButton/fonts/font = ExtResource("2_v6aca")
+OptionButton/fonts/font = ExtResource("2_6savl")
 OptionButton/icons/arrow = SubResource("18")
 OptionButton/styles/disabled = null
 OptionButton/styles/focus = null
@@ -414,7 +414,7 @@ PopupMenu/colors/font_disabled_color = Color(0.4, 0.4, 0.4, 0.8)
 PopupMenu/colors/font_hover_color = Color(0.388235, 0.388235, 0.388235, 1)
 PopupMenu/constants/h_separation = 4
 PopupMenu/constants/v_separation = 32
-PopupMenu/fonts/font = ExtResource("2_v6aca")
+PopupMenu/fonts/font = ExtResource("2_6savl")
 PopupMenu/icons/checked = SubResource("20")
 PopupMenu/icons/radio_checked = SubResource("26")
 PopupMenu/icons/radio_unchecked = SubResource("27")
@@ -429,7 +429,7 @@ PopupMenu/styles/separator = null
 TabContainer/colors/font_hovered_color = Color(0, 0, 0, 1)
 TabContainer/colors/font_selected_color = Color(0, 0, 0, 1)
 TabContainer/colors/font_unselected_color = Color(0, 0, 0, 1)
-TabContainer/fonts/font = ExtResource("2_v6aca")
+TabContainer/fonts/font = ExtResource("2_6savl")
 TabContainer/styles/panel = SubResource("StyleBoxTexture_kw55n")
 TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_8oota")
 TabContainer/styles/tab_hovered = SubResource("StyleBox_hd5wl")
@@ -465,7 +465,7 @@ TextEdit/constants/completion_lines = 7
 TextEdit/constants/completion_max_width = 50
 TextEdit/constants/completion_scroll_width = 3
 TextEdit/constants/line_spacing = 4
-TextEdit/fonts/font = ExtResource("2_v6aca")
+TextEdit/fonts/font = ExtResource("2_6savl")
 TextEdit/icons/fold = null
 TextEdit/icons/folded = null
 TextEdit/icons/space = null

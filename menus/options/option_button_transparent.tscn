@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b7vic1l30obov"]
 
-[ext_resource type="Script" path="res://menus/OptionButton.gd" id="1_kv7j6"]
+[ext_resource type="Script" path="res://menus/options/OptionButton.gd" id="1_kv7j6"]
 
 [node name="OptionButton" type="OptionButton"]
 size_flags_horizontal = 10

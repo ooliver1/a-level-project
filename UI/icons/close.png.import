@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://budkpufcc0xix"
-path="res://.godot/imported/svg-icon.png-110a851a2b946196e4c026909bacc43c.ctex"
+uid="uid://btp6awxonqs31"
+path="res://.godot/imported/close.png-b406e6ec811618cdeb130700bbf23286.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/merovi.svgtexture2d/svg-icon.png"
-dest_files=["res://.godot/imported/svg-icon.png-110a851a2b946196e4c026909bacc43c.ctex"]
+source_file="res://UI/icons/close.png"
+dest_files=["res://.godot/imported/close.png-b406e6ec811618cdeb130700bbf23286.ctex"]
 
 [params]
 
