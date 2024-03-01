@@ -45,8 +45,10 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 24
+current_tab = 2
 
 [node name="Audio" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -138,8 +140,23 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="Controls" type="VBoxContainer" parent="TabContainer"]
-visible = false
+[node name="Controls" type="MarginContainer" parent="TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Controls"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/ScrollContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Controls/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Controls/ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
 [node name="Credits" type="VBoxContainer" parent="TabContainer"]

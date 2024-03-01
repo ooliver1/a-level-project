@@ -62,6 +62,7 @@ func _on_display_mode_item_selected(index: int) -> void:
 		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
 		DisplayServer.window_set_position(Vector2i(0, 0))
 
+
 func _on_anti_aliasing_item_selected(index: int) -> void:
 	# 0: Disabled
 	# 1: MSAA 2x
@@ -79,6 +80,7 @@ func _on_anti_aliasing_item_selected(index: int) -> void:
 	elif index == 3:
 		ProjectSettings.set_setting(ANTIALIASING_2D, Viewport.MSAA_8X)
 		ProjectSettings.set_setting(ANTIALIASING_3D, Viewport.MSAA_8X)
+
 
 func _on_vsync_toggled(toggled_on: bool) -> void:
 	if toggled_on:
