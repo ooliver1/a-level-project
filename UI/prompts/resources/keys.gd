@@ -127,3 +127,11 @@ func _get_property_list() -> Array[Dictionary]:
 			}
 		)
 	return properties
+
+
+func get_texture(event: InputEvent) -> Texture2D:
+	if not event is InputEventKey:
+		return
+	var key_event := event as InputEventKey
+	var scancode := key_event.keycode
+	return textures.get(OS.get_keycode_string(scancode), null)

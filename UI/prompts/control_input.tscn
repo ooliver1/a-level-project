@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://b05go0ydg38xf"]
+
+[ext_resource type="Script" path="res://UI/prompts/control_input.gd" id="1_cfuui"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vughb"]
+bg_color = Color(0.172549, 0.243137, 0.313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfxgh"]
+bg_color = Color(0.172549, 0.243137, 0.313726, 1)
+
+[sub_resource type="Theme" id="Theme_syec8"]
+Button/styles/disabled = null
+Button/styles/focus = SubResource("StyleBoxFlat_vughb")
+Button/styles/hover = SubResource("StyleBoxFlat_kfxgh")
+Button/styles/normal = SubResource("StyleBoxFlat_kfxgh")
+Button/styles/pressed = SubResource("StyleBoxFlat_kfxgh")
+
+[node name="Prompt" type="Button"]
+offset_left = 463.0
+offset_top = 286.0
+offset_right = 598.0
+offset_bottom = 354.0
+theme = SubResource("Theme_syec8")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+script = ExtResource("1_cfuui")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
