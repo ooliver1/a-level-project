@@ -22,8 +22,8 @@ Button/styles/pressed = SubResource("StyleBoxFlat_kfxgh")
 [node name="Prompt" type="Button"]
 offset_left = 463.0
 offset_top = 286.0
-offset_right = 598.0
-offset_bottom = 354.0
+offset_right = 527.0
+offset_bottom = 350.0
 theme = SubResource("Theme_syec8")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 script = ExtResource("1_cfuui")
@@ -44,4 +44,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://kw6hi2f4ms5x"]
+
+[ext_resource type="PackedScene" uid="uid://b05go0ydg38xf" path="res://UI/prompts/control_input.tscn" id="1_6r67t"]
+[ext_resource type="Script" path="res://UI/prompts/key_input.gd" id="2_bdwd3"]
+
+[node name="Prompt" instance=ExtResource("1_6r67t")]
+script = ExtResource("2_bdwd3")
