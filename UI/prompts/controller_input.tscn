@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://den035v3lsc3s"]
+
+[ext_resource type="PackedScene" uid="uid://b05go0ydg38xf" path="res://UI/prompts/control_input.tscn" id="1_larla"]
+[ext_resource type="Script" path="res://UI/prompts/controller_input.gd" id="2_j0lwf"]
+
+[node name="ControllerInput" instance=ExtResource("1_larla")]
+custom_minimum_size = Vector2(64, 64)
+script = ExtResource("2_j0lwf")
+action = &""

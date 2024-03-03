@@ -12,9 +12,9 @@ extends Resource
 @export var button_3: Texture2D = null
 ## Back (PS 1/2/3 Select, PS 4/5 Share, Xbox Back, Nintendo -)
 @export var button_4: Texture2D = null
-## Guide (PS PS button, PS4/5 Menu, Xbox home, Nintendo home)
+## Guide (PS PS button, Xbox home, Nintendo home)
 @export var button_5: Texture2D = null
-## Start (PS 1/2/3 Start, Xbox menu, Nintendo +)
+## Start (PS 1/2/3 Start, PS4/5 Options, Xbox menu, Nintendo +)
 @export var button_6: Texture2D = null
 ## Left stick (PS L3, Xbox L/LS, Nintendo left stick)
 @export var button_7: Texture2D = null
@@ -44,6 +44,7 @@ extends Resource
 @export var button_19: Texture2D = null
 ## PS4/5 touchpad
 @export var button_20: Texture2D = null
+
 
 func get_texture(event: InputEvent) -> Texture2D:
 	if not event is InputEventJoypadButton:

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b05go0ydg38xf"]
+[gd_scene load_steps=6 format=3 uid="uid://b05go0ydg38xf"]
 
 [ext_resource type="Script" path="res://UI/prompts/control_input.gd" id="1_cfuui"]
+[ext_resource type="FontFile" uid="uid://b401ej0a6r6j4" path="res://UI/fonts/Kenney Future Narrow.ttf" id="1_mn58y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vughb"]
 bg_color = Color(0.172549, 0.243137, 0.313726, 1)
@@ -25,7 +26,8 @@ offset_top = 286.0
 offset_right = 527.0
 offset_bottom = 350.0
 theme = SubResource("Theme_syec8")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_mn58y")
+theme_override_font_sizes/font_size = 12
 script = ExtResource("1_cfuui")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -40,6 +42,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_mn58y")
+theme_override_font_sizes/font_size = 12
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2

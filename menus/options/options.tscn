@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://de4dgwad6ya3s"]
+[gd_scene load_steps=13 format=3 uid="uid://de4dgwad6ya3s"]
 
 [ext_resource type="Script" path="res://menus/options/options.gd" id="1_yd1t2"]
 [ext_resource type="PackedScene" uid="uid://dj6uyoqxcna3u" path="res://menus/options/sliders/master_volume.tscn" id="2_7j8rt"]
@@ -6,11 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://c157fqosmr0h6" path="res://menus/options/sliders/effects_volume.tscn" id="4_ipdrt"]
 [ext_resource type="Script" path="res://menus/options/video.gd" id="5_e4lvw"]
 [ext_resource type="PackedScene" uid="uid://b7vic1l30obov" path="res://menus/options/option_button_transparent.tscn" id="6_gbrxk"]
-[ext_resource type="Script" path="res://menus/options/OptionButton.gd" id="7_whxfy"]
+[ext_resource type="FontFile" uid="uid://b401ej0a6r6j4" path="res://UI/fonts/Kenney Future Narrow.ttf" id="7_yuibh"]
+[ext_resource type="PackedScene" uid="uid://kw6hi2f4ms5x" path="res://UI/prompts/key_input.tscn" id="8_0lot1"]
 [ext_resource type="Texture2D" uid="uid://btp6awxonqs31" path="res://UI/icons/close.png" id="8_15aqt"]
+[ext_resource type="PackedScene" uid="uid://den035v3lsc3s" path="res://UI/prompts/controller_input.tscn" id="9_2gcid"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_038ma"]
-action = &"Escape"
+action = &"ui_cancel"
 
 [sub_resource type="Shortcut" id="Shortcut_8jqu3"]
 events = [SubResource("InputEventAction_038ma")]
@@ -45,10 +47,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 24
-current_tab = 2
 
 [node name="Audio" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -141,6 +141,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 
 [node name="Controls" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -150,32 +151,109 @@ theme_override_constants/margin_bottom = 50
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Controls"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Controls/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 40
+
+[node name="Control" type="Control" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Controls/ScrollContainer/VBoxContainer"]
+[node name="ControlNames" type="VBoxContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 41
+
+[node name="Item1" type="Label" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/VBoxContainer/ControlNames"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Item 1"
+
+[node name="Item2" type="Label" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/VBoxContainer/ControlNames"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Item 2"
+
+[node name="Item3" type="Label" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/VBoxContainer/ControlNames"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Item 3"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="KeyboardControls" type="VBoxContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Controls/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Title" type="Label" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/KeyboardControls"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_yuibh")
+theme_override_font_sizes/font_size = 16
+text = "Keyboard"
+
+[node name="CenterContainer" type="CenterContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/KeyboardControls"]
+layout_mode = 2
+
+[node name="KeyInput" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/KeyboardControls/CenterContainer" instance=ExtResource("8_0lot1")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer2" type="CenterContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/KeyboardControls"]
+layout_mode = 2
+
+[node name="KeyInput3" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/KeyboardControls/CenterContainer2" instance=ExtResource("8_0lot1")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer3" type="CenterContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/KeyboardControls"]
+layout_mode = 2
+
+[node name="KeyInput2" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/KeyboardControls/CenterContainer3" instance=ExtResource("8_0lot1")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="ControllerControls" type="VBoxContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/ControllerControls"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_yuibh")
+theme_override_font_sizes/font_size = 16
+text = "controller"
+
+[node name="CenterContainer" type="CenterContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/ControllerControls"]
+layout_mode = 2
+
+[node name="ControllerInput" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/ControllerControls/CenterContainer" instance=ExtResource("9_2gcid")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer2" type="CenterContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/ControllerControls"]
+layout_mode = 2
+
+[node name="ControllerInput2" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/ControllerControls/CenterContainer2" instance=ExtResource("9_2gcid")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer3" type="CenterContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/ControllerControls"]
+layout_mode = 2
+
+[node name="ControllerInput3" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/ControllerControls/CenterContainer3" instance=ExtResource("9_2gcid")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 
 [node name="Credits" type="VBoxContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
-
-[node name="OptionButton" type="OptionButton" parent="TabContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 10
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-item_count = 3
-popup/item_0/text = "WIndowed"
-popup/item_0/id = 0
-popup/item_1/text = "Fullscreen"
-popup/item_1/id = 1
-popup/item_2/text = "Windowed Borderless"
-popup/item_2/id = 2
-script = ExtResource("7_whxfy")
 
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 0

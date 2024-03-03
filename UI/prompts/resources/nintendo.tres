@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="ControllerTextures" load_steps=17 format=3 uid="uid://b3hqi343wmbiw"]
+
+[ext_resource type="Script" path="res://UI/prompts/resources/controller.gd" id="1_odwt4"]
+[ext_resource type="Texture2D" uid="uid://5q2xxobngx5b" path="res://UI/prompts/textures/Nintendo Switch/switch_button_b.png" id="1_qgdx0"]
+[ext_resource type="Texture2D" uid="uid://gw8p7e5x2h4v" path="res://UI/prompts/textures/Nintendo Switch/switch_button_a.png" id="2_v2v1m"]
+[ext_resource type="Texture2D" uid="uid://b5ggrje8sf7cl" path="res://UI/prompts/textures/Nintendo Switch/switch_button_r.png" id="3_2a3no"]
+[ext_resource type="Texture2D" uid="uid://dm4y2cht00gtf" path="res://UI/prompts/textures/Nintendo Switch/switch_dpad_up.png" id="4_idl6n"]
+[ext_resource type="Texture2D" uid="uid://c3ivxbpmdq1od" path="res://UI/prompts/textures/Nintendo Switch/switch_dpad_down.png" id="5_hu5qs"]
+[ext_resource type="Texture2D" uid="uid://d3cyu310e5c5o" path="res://UI/prompts/textures/Nintendo Switch/switch_dpad_left.png" id="6_yjc4t"]
+[ext_resource type="Texture2D" uid="uid://choffpdj7sish" path="res://UI/prompts/textures/Nintendo Switch/switch_dpad_right.png" id="7_h02po"]
+[ext_resource type="Texture2D" uid="uid://dojbi02122mkv" path="res://UI/prompts/textures/Nintendo Switch/switch_button_y.png" id="8_abr4e"]
+[ext_resource type="Texture2D" uid="uid://cxs1m8ulg4c35" path="res://UI/prompts/textures/Nintendo Switch/switch_button_x.png" id="9_7d1yw"]
+[ext_resource type="Texture2D" uid="uid://4r4vqergmsxt" path="res://UI/prompts/textures/Nintendo Switch/switch_button_minus.png" id="10_jghin"]
+[ext_resource type="Texture2D" uid="uid://daerpvqt5iu4r" path="res://UI/prompts/textures/Nintendo Switch/switch_button_home.png" id="11_5ogue"]
+[ext_resource type="Texture2D" uid="uid://d38yh0fu3hlti" path="res://UI/prompts/textures/Nintendo Switch/switch_button_plus.png" id="12_yeu5w"]
+[ext_resource type="Texture2D" uid="uid://bx6asuw4v3ud6" path="res://UI/prompts/textures/Nintendo Switch/switch_stick_side_l.png" id="13_ab2ou"]
+[ext_resource type="Texture2D" uid="uid://bt5bsnd2jd2x0" path="res://UI/prompts/textures/Nintendo Switch/switch_stick_side_r.png" id="14_gxmd7"]
+[ext_resource type="Texture2D" uid="uid://dihirrod0q7m7" path="res://UI/prompts/textures/Nintendo Switch/switch_button_l.png" id="15_h4ee2"]
+
+[resource]
+script = ExtResource("1_odwt4")
+button_0 = ExtResource("1_qgdx0")
+button_1 = ExtResource("2_v2v1m")
+button_2 = ExtResource("8_abr4e")
+button_3 = ExtResource("9_7d1yw")
+button_4 = ExtResource("10_jghin")
+button_5 = ExtResource("11_5ogue")
+button_6 = ExtResource("12_yeu5w")
+button_7 = ExtResource("13_ab2ou")
+button_8 = ExtResource("14_gxmd7")
+button_9 = ExtResource("15_h4ee2")
+button_10 = ExtResource("3_2a3no")
+button_11 = ExtResource("4_idl6n")
+button_12 = ExtResource("5_hu5qs")
+button_13 = ExtResource("6_yjc4t")
+button_14 = ExtResource("7_h02po")

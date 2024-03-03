@@ -36,6 +36,7 @@ size_flags_vertical = 6
 alignment = 1
 
 [node name="PlayButton" type="Button" parent="CenterContainer/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 0
 theme_override_font_sizes/font_size = 64

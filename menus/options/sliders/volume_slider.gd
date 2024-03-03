@@ -1,6 +1,7 @@
 extends VBoxContainer
 
 @export var audio_bus_name: StringName
+
 # The index of the audio bus in all buses.
 @onready var audio_bus_index := AudioServer.get_bus_index(audio_bus_name)
 @onready var value_node: Label = %Value
@@ -14,6 +15,7 @@ func _ready() -> void:
 	var value := roundi(percentage * 100)
 	value_node.text = str(value) + "%"
 	slider.value = value
+
 
 func _on_slider_value_changed(value: float) -> void:
 	# Godot uses decibels, which is logorithmic. This function converts a number

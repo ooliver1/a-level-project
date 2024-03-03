@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="ControllerTextures" load_steps=17 format=3 uid="uid://bqugwyapcyoo"]
+
+[ext_resource type="Script" path="res://UI/prompts/resources/controller.gd" id="1_6k4s7"]
+[ext_resource type="Texture2D" uid="uid://dnqngnrkwpcx7" path="res://UI/prompts/textures/Xbox Series/xbox_button_color_a.png" id="1_jw6nx"]
+[ext_resource type="Texture2D" uid="uid://ci3vv02y715go" path="res://UI/prompts/textures/Xbox Series/xbox_button_color_b.png" id="2_8p1fx"]
+[ext_resource type="Texture2D" uid="uid://cre1mkapiv7r1" path="res://UI/prompts/textures/Xbox Series/xbox_button_color_x.png" id="3_65mg3"]
+[ext_resource type="Texture2D" uid="uid://p6olry638c3n" path="res://UI/prompts/textures/Xbox Series/xbox_rb.png" id="3_debs6"]
+[ext_resource type="Texture2D" uid="uid://dev65m17r4jyg" path="res://UI/prompts/textures/Xbox Series/xbox_button_color_y.png" id="4_7xuyp"]
+[ext_resource type="Texture2D" uid="uid://ddsno8c644v5i" path="res://UI/prompts/textures/Xbox Series/xbox_dpad_up.png" id="4_ord7g"]
+[ext_resource type="Texture2D" uid="uid://c8w554ppg5kh3" path="res://UI/prompts/textures/Xbox Series/xbox_dpad_down.png" id="5_crn8f"]
+[ext_resource type="Texture2D" uid="uid://b3hmpuqpwce4h" path="res://UI/prompts/textures/Xbox Series/xbox_button_menu.png" id="5_fwrxi"]
+[ext_resource type="Texture2D" uid="uid://ieomt72p2165" path="res://UI/prompts/textures/Xbox Series/xbox_dpad_left.png" id="6_f1frj"]
+[ext_resource type="Texture2D" uid="uid://btkjo2oty3ij4" path="res://UI/prompts/textures/Xbox Series/xbox_dpad_right.png" id="7_70tj5"]
+[ext_resource type="Texture2D" uid="uid://bver3bk4wr4vd" path="res://UI/prompts/textures/Xbox Series/xbox_button_share.png" id="8_8u1mp"]
+[ext_resource type="Texture2D" uid="uid://c7xjaa1lkmvl4" path="res://UI/prompts/textures/Xbox Series/xbox_button_view.png" id="11_mf06a"]
+[ext_resource type="Texture2D" uid="uid://7ssnfyl8h771" path="res://UI/prompts/textures/Xbox Series/xbox_stick_side_l.png" id="13_sxla0"]
+[ext_resource type="Texture2D" uid="uid://b0pq31r0l2ua" path="res://UI/prompts/textures/Xbox Series/xbox_stick_side_r.png" id="14_xpfpd"]
+[ext_resource type="Texture2D" uid="uid://c3g7v08u21qnt" path="res://UI/prompts/textures/Xbox Series/xbox_lb.png" id="15_1j2yr"]
+
+[resource]
+script = ExtResource("1_6k4s7")
+button_0 = ExtResource("1_jw6nx")
+button_1 = ExtResource("2_8p1fx")
+button_2 = ExtResource("3_65mg3")
+button_3 = ExtResource("4_7xuyp")
+button_4 = ExtResource("11_mf06a")
+button_6 = ExtResource("5_fwrxi")
+button_7 = ExtResource("13_sxla0")
+button_8 = ExtResource("14_xpfpd")
+button_9 = ExtResource("15_1j2yr")
+button_10 = ExtResource("3_debs6")
+button_11 = ExtResource("4_ord7g")
+button_12 = ExtResource("5_crn8f")
+button_13 = ExtResource("6_f1frj")
+button_14 = ExtResource("7_70tj5")
+button_15 = ExtResource("8_8u1mp")

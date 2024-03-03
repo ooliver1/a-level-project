@@ -1,11 +1,11 @@
 extends MarginContainer
 
+const ANTIALIASING_2D = &"rendering/anti_aliasing/quality/msaa_2d"
+const ANTIALIASING_3D = &"rendering/anti_aliasing/quality/msaa_3d"
+
 @onready var display_mode: OptionButton = %DisplayMode
 @onready var anti_aliasing: OptionButton = %AntiAliasing
 @onready var v_sync: CheckBox = %VSync
-
-const ANTIALIASING_2D = &"rendering/anti_aliasing/quality/msaa_2d"
-const ANTIALIASING_3D = &"rendering/anti_aliasing/quality/msaa_3d"
 
 
 func _ready() -> void:

@@ -3,5 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://b05go0ydg38xf" path="res://UI/prompts/control_input.tscn" id="1_6r67t"]
 [ext_resource type="Script" path="res://UI/prompts/key_input.gd" id="2_bdwd3"]
 
-[node name="Prompt" instance=ExtResource("1_6r67t")]
+[node name="KeyInput" instance=ExtResource("1_6r67t")]
+custom_minimum_size = Vector2(64, 64)
 script = ExtResource("2_bdwd3")
+action = &""
+
+[node name="TextureRect" parent="." index="0"]
+custom_minimum_size = Vector2(64, 64)

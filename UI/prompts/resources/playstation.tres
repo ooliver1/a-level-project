@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="ControllerTextures" load_steps=17 format=3 uid="uid://b0iugjxfn7w4g"]
+
+[ext_resource type="Texture2D" uid="uid://7ojdy1k0rfk1" path="res://UI/prompts/textures/PlayStation/playstation_button_color_cross.png" id="1_j04ib"]
+[ext_resource type="Script" path="res://UI/prompts/resources/controller.gd" id="1_j4tr4"]
+[ext_resource type="Texture2D" uid="uid://b2j2un5hiju6" path="res://UI/prompts/textures/PlayStation/playstation_button_color_circle.png" id="2_po3r5"]
+[ext_resource type="Texture2D" uid="uid://iwunty2qvt55" path="res://UI/prompts/textures/PlayStation/playstation_trigger_r1_alternative.png" id="3_5itfx"]
+[ext_resource type="Texture2D" uid="uid://800itu2bjiv3" path="res://UI/prompts/textures/PlayStation/playstation_dpad_up.png" id="4_5w2o3"]
+[ext_resource type="Texture2D" uid="uid://rof5g8nu215q" path="res://UI/prompts/textures/PlayStation/playstation_dpad_down.png" id="5_nffd7"]
+[ext_resource type="Texture2D" uid="uid://c43isr2vhj3uv" path="res://UI/prompts/textures/PlayStation/playstation_dpad_left.png" id="6_7y28p"]
+[ext_resource type="Texture2D" uid="uid://bnpli7to42fyk" path="res://UI/prompts/textures/PlayStation/playstation_dpad_right.png" id="7_t0wc7"]
+[ext_resource type="Texture2D" uid="uid://6xj8eaw86bcd" path="res://UI/prompts/textures/PlayStation/playstation_button_color_square.png" id="8_vm1vv"]
+[ext_resource type="Texture2D" uid="uid://co7f2tpyhy78u" path="res://UI/prompts/textures/PlayStation/playstation_touchpad_touch.png" id="9_d70lq"]
+[ext_resource type="Texture2D" uid="uid://7fcnvckgamne" path="res://UI/prompts/textures/PlayStation/playstation_button_color_triangle.png" id="10_mj626"]
+[ext_resource type="Texture2D" uid="uid://1ck3pfd8p1tn" path="res://UI/prompts/textures/PlayStation/playstation_button_share.png" id="11_fl2r2"]
+[ext_resource type="Texture2D" uid="uid://xjed5vohoyet" path="res://UI/prompts/textures/PlayStation/playstation_button_options.png" id="12_31wtd"]
+[ext_resource type="Texture2D" uid="uid://bmjh6evkk36lm" path="res://UI/prompts/textures/PlayStation/playstation_stick_side_l.png" id="13_ywtm1"]
+[ext_resource type="Texture2D" uid="uid://c20xmqcmtf05v" path="res://UI/prompts/textures/PlayStation/playstation_stick_side_r.png" id="14_kw7y0"]
+[ext_resource type="Texture2D" uid="uid://cn8tr26ynhj4e" path="res://UI/prompts/textures/PlayStation/playstation_trigger_l1_alternative.png" id="15_uiply"]
+
+[resource]
+script = ExtResource("1_j4tr4")
+button_0 = ExtResource("1_j04ib")
+button_1 = ExtResource("2_po3r5")
+button_2 = ExtResource("8_vm1vv")
+button_3 = ExtResource("10_mj626")
+button_4 = ExtResource("11_fl2r2")
+button_6 = ExtResource("12_31wtd")
+button_7 = ExtResource("13_ywtm1")
+button_8 = ExtResource("14_kw7y0")
+button_9 = ExtResource("15_uiply")
+button_10 = ExtResource("3_5itfx")
+button_11 = ExtResource("4_5w2o3")
+button_12 = ExtResource("5_nffd7")
+button_13 = ExtResource("6_7y28p")
+button_14 = ExtResource("7_t0wc7")
+button_20 = ExtResource("9_d70lq")

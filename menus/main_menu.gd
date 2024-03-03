@@ -3,7 +3,13 @@ extends MarginContainer
 # Take in scenes as an exported property, to reduce coupling.
 @export var play_scene: PackedScene
 @export var options_scene: PackedScene
+
+@onready var play_button: Button = %PlayButton
 @onready var global: Global = $"/root/Global"
+
+
+func _ready() -> void:
+	play_button.grab_focus()
 
 
 func _on_quit_button_pressed() -> void:

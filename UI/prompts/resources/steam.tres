@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="ControllerTextures" load_steps=18 format=3 uid="uid://c7k804junrr8w"]
+
+[ext_resource type="Script" path="res://UI/prompts/resources/controller.gd" id="1_oc7iw"]
+[ext_resource type="Texture2D" uid="uid://1jpdqlef8n4s" path="res://UI/prompts/textures/Steam Deck/steamdeck_button_a.png" id="1_w5hdp"]
+[ext_resource type="Texture2D" uid="uid://xr1iravatswk" path="res://UI/prompts/textures/Steam Deck/steamdeck_button_b.png" id="2_7csfr"]
+[ext_resource type="Texture2D" uid="uid://c6me8is2a1n6e" path="res://UI/prompts/textures/Steam Deck/steamdeck_button_r1.png" id="3_0uf2r"]
+[ext_resource type="Texture2D" uid="uid://c3y58sgs5g4hi" path="res://UI/prompts/textures/Steam Deck/steamdeck_dpad_up.png" id="4_xi4u5"]
+[ext_resource type="Texture2D" uid="uid://c6d5md7g27klp" path="res://UI/prompts/textures/Steam Deck/steamdeck_dpad_down.png" id="5_q5x3h"]
+[ext_resource type="Texture2D" uid="uid://b2x42jtjvamdp" path="res://UI/prompts/textures/Steam Deck/steamdeck_dpad_left.png" id="6_1hwfe"]
+[ext_resource type="Texture2D" uid="uid://yejqovegygtw" path="res://UI/prompts/textures/Steam Deck/steamdeck_dpad_right.png" id="7_qvrki"]
+[ext_resource type="Texture2D" uid="uid://dl24yuldm3ftx" path="res://UI/prompts/textures/Steam Deck/steamdeck_button_quickaccess.png" id="8_ec367"]
+[ext_resource type="Texture2D" uid="uid://diky2d64chyq3" path="res://UI/prompts/textures/Steam Deck/steamdeck_button_x.png" id="9_yyej5"]
+[ext_resource type="Texture2D" uid="uid://ba5luwbwwotvl" path="res://UI/prompts/textures/Steam Deck/steamdeck_button_y.png" id="10_2kh0e"]
+[ext_resource type="Texture2D" uid="uid://b1fudvbbmbsp" path="res://UI/prompts/textures/Steam Deck/steamdeck_button_view.png" id="11_dlm3u"]
+[ext_resource type="Texture2D" uid="uid://bw5y1p40r02rn" path="res://UI/prompts/textures/Steam Deck/steamdeck_button_guide.png" id="12_eve3m"]
+[ext_resource type="Texture2D" uid="uid://be6ghbcejy4ie" path="res://UI/prompts/textures/Steam Deck/steamdeck_button_options.png" id="13_7bmx4"]
+[ext_resource type="Texture2D" uid="uid://w4wencry7617" path="res://UI/prompts/textures/Steam Deck/steamdeck_stick_side_l.png" id="14_uckbl"]
+[ext_resource type="Texture2D" uid="uid://beakr5bac7og8" path="res://UI/prompts/textures/Steam Deck/steamdeck_stick_side_r.png" id="15_4b458"]
+[ext_resource type="Texture2D" uid="uid://c8y13pfn8supj" path="res://UI/prompts/textures/Steam Deck/steamdeck_button_l1.png" id="16_rqkik"]
+
+[resource]
+script = ExtResource("1_oc7iw")
+button_0 = ExtResource("1_w5hdp")
+button_1 = ExtResource("2_7csfr")
+button_2 = ExtResource("9_yyej5")
+button_3 = ExtResource("10_2kh0e")
+button_4 = ExtResource("11_dlm3u")
+button_5 = ExtResource("12_eve3m")
+button_6 = ExtResource("13_7bmx4")
+button_7 = ExtResource("14_uckbl")
+button_8 = ExtResource("15_4b458")
+button_9 = ExtResource("16_rqkik")
+button_10 = ExtResource("3_0uf2r")
+button_11 = ExtResource("4_xi4u5")
+button_12 = ExtResource("5_q5x3h")
+button_13 = ExtResource("6_1hwfe")
+button_14 = ExtResource("7_qvrki")
+button_15 = ExtResource("8_ec367")
