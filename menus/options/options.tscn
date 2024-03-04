@@ -47,7 +47,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 24
-current_tab = 1
+current_tab = 2
 
 [node name="Audio" type="MarginContainer" parent="TabContainer"]
 visible = false
@@ -72,6 +72,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Video" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -142,7 +143,6 @@ layout_mode = 2
 size_flags_horizontal = 10
 
 [node name="Controls" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -172,19 +172,19 @@ theme_override_constants/separation = 41
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
-text = "Item 1"
+text = "Use Item 1"
 
 [node name="Item2" type="Label" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/VBoxContainer/ControlNames"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
-text = "Item 2"
+text = "Use Item 2"
 
 [node name="Item3" type="Label" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/VBoxContainer/ControlNames"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
-text = "Item 3"
+text = "Use Item 3"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer"]
 layout_mode = 2
@@ -206,6 +206,7 @@ layout_mode = 2
 [node name="KeyInput" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/KeyboardControls/CenterContainer" instance=ExtResource("8_0lot1")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+action = &"use_item_1"
 
 [node name="CenterContainer2" type="CenterContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/KeyboardControls"]
 layout_mode = 2
@@ -213,6 +214,7 @@ layout_mode = 2
 [node name="KeyInput3" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/KeyboardControls/CenterContainer2" instance=ExtResource("8_0lot1")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+action = &"use_item_2"
 
 [node name="CenterContainer3" type="CenterContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/KeyboardControls"]
 layout_mode = 2
@@ -220,6 +222,7 @@ layout_mode = 2
 [node name="KeyInput2" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/KeyboardControls/CenterContainer3" instance=ExtResource("8_0lot1")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+action = &"use_item_3"
 
 [node name="ControllerControls" type="VBoxContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -237,6 +240,7 @@ layout_mode = 2
 [node name="ControllerInput" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/ControllerControls/CenterContainer" instance=ExtResource("9_2gcid")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+action = &"use_item_1"
 
 [node name="CenterContainer2" type="CenterContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/ControllerControls"]
 layout_mode = 2
@@ -244,6 +248,7 @@ layout_mode = 2
 [node name="ControllerInput2" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/ControllerControls/CenterContainer2" instance=ExtResource("9_2gcid")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+action = &"use_item_2"
 
 [node name="CenterContainer3" type="CenterContainer" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/ControllerControls"]
 layout_mode = 2
@@ -251,6 +256,7 @@ layout_mode = 2
 [node name="ControllerInput3" parent="TabContainer/Controls/ScrollContainer/HBoxContainer/HBoxContainer/ControllerControls/CenterContainer3" instance=ExtResource("9_2gcid")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+action = &"use_item_3"
 
 [node name="Credits" type="VBoxContainer" parent="TabContainer"]
 visible = false

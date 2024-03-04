@@ -134,4 +134,9 @@ func get_texture(event: InputEvent) -> Texture2D:
 		return
 	var key_event := event as InputEventKey
 	var scancode := key_event.keycode
+	# When accessing InputMap, this is 0
+	if scancode == 0:
+		var physical := key_event.physical_keycode
+		scancode = DisplayServer.keyboard_get_keycode_from_physical(physical)
+
 	return textures.get(OS.get_keycode_string(scancode), null)

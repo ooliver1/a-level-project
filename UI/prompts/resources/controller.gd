@@ -49,7 +49,7 @@ extends Resource
 func get_texture(event: InputEvent) -> Texture2D:
 	if not event is InputEventJoypadButton:
 		return null
-	print(event)
+
 	var joypad_event := event as InputEventJoypadButton
 	var button := joypad_event.button_index
 	return get("button_" + str(button))

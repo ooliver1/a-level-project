@@ -13,7 +13,7 @@ var previous_texture: Texture2D = null
 
 func _on_pressed() -> void:
 	# Don't redo the same process if we are already listening, as that will
-	# cann `unlisten` below.
+	# call `unlisten` below.
 	if listening:
 		return
 	# Store the previous texture to revert to later if needed.

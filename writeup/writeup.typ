@@ -6,6 +6,7 @@
 #set page(numbering: "1")
 #set text(14pt)
 #set raw(syntaxes: "./GDScript.sublime-syntax.yaml", tab-size: 4)
+// #show raw.where(block: true): block.with(breakable: false)
 #show raw.where(lang: "gdscript"): set text(8pt)
 
 #page[
@@ -21,7 +22,7 @@ Nottingham College
   Programming Project
 ]
 
-= Crazy Golf
+#heading(outlined: false, level: 1)[Crazy Golf]
 
 #linebreak()
 #text(16pt, fill: xcolor.royal-purple)[
@@ -34,11 +35,9 @@ Nottingham College
 #show outline.entry.where(level: 2): it => {
   strong(it)
 }
-// Hide main title.
-// Hide after 4th level, at least for now since that has the specific "existing solutions", which looks weird and clutters.
-#let sel = range(2, 5).fold(heading.where(level: 2), (s, d) => s.or(heading.where(level: d)))
 
-#outline(target: sel, indent: 1em, title: text(16pt)[Contents])
+
+#outline(indent: 1em, title: text(16pt)[Contents])
 ]
 
 == Analysis
@@ -79,7 +78,7 @@ Similarly, the client should not have to process collisions with obstacles, but 
 
 ==== First Interview
 
-===== Interview Questions
+===== Questions
 
 The clients I have chosen to interview have played arcade-style games before. The aim of my first interview is to gather a general idea of mechanics and play styles that my clients enjoy. I will ask them questions about similar games they have played, and what they liked and disliked about them.
 
@@ -91,6 +90,8 @@ The clients I have chosen to interview have played arcade-style games before. Th
 
 ===== Responses
 
+#[
+#set heading(outlined: false)
 // TODO: Set name headings to be a different colour to differentiate names and questions.
 ====== Milan
 
@@ -147,6 +148,7 @@ The multiplayer aspect of it with different player interacting with each other i
 The meta progression that some games have that give players unfair advantages over others
 ======= 5. What would you like to see in a game like this?
 Players being able to hijack other players' controls
+]
 
 ===== Analysis
 
@@ -158,7 +160,7 @@ A co-operative aspect is something that Milan, Alex and Gwen mentioned in their 
 
 In this second interview, I asked my clients more specific questions about the mechanics of the game. I asked about the controls, the camera, the items and the co-op aspect of the game. This allows me to curate success criteria for my game, and a set of requirements that I can use to make my game.
 
-===== Interview Questions
+===== Questions
 
 + How would you like to control your ball and camera?
 + Should there be items/power-ups, and if so, what should they do?
@@ -168,6 +170,8 @@ In this second interview, I asked my clients more specific questions about the m
 
 ===== Responses
 
+#[
+#set heading(outlined: false)
 ====== Milan
 
 ======= 1. How would you like to control your ball and camera?
@@ -229,6 +233,7 @@ Potentially either have them take turns controlling the ball or have one ball th
 Anything works
 ======= 5. How should you be able to join a multiplayer game (invite code, add via in-game friend, etc.)?
 In game friend is more steps, a code / url is easier, more transient and more accessible
+]
 
 ===== Analysis
 
@@ -246,6 +251,8 @@ Question 5 demonstrates a simple URL/code is good enough to join a multiplayer g
 
 ==== Existing Solutions
 
+#[
+#set heading(outlined: false)
 ===== Putt Party
 #image("./images/analysis/putt-party.png", height: 250pt)
 
@@ -283,6 +290,7 @@ Golf With Your Friends is a 3D multiplayer golf game. It has a bit more complex 
 ====== Parts of Golf With Your Friends I Can Apply
 
 As this is a 3D game, I can take into consideration how the camera follows the ball on this, which was mentioned by Milan and Gwen in their responses. I can also look at how local multiplayer works too to consider adding.
+]
 
 ==== Features of the Proposed Solution
 
@@ -429,6 +437,8 @@ Oliver"
 
 ==== Responses
 
+#[
+#set heading(outlined: false)
 ===== Enoki
 
 IMO the buttons look a bit weird on the corners due to the rounding of the inner sprite, and the font doesn't differentiate between H and K. I personally prefer the slider to be a bit higher, but that is not necessary. Besides that there isn't much I'd comment on.
@@ -454,6 +464,7 @@ I feel like a button to quit the game is missing from the main menu. While it is
 For the options menu, I like the layout with navigable menus at the top and the actual options laid out underneath. I think the sliders specifically would be improved a little if the actual slider bar was visible too, instead of only the ticks.
 
 The overall styling seems fine, if a bit plain, which is to be expected for a draft version. As long as this is updated when the overall style of the game is decided upon, I think the UI should work well. Lastly, I think the font could do with some modification, as the V looks a lot like a U. In context this isn't an issue (e.g. it's obviously "Video" and not "Uideo"), but I do personally find it a bit awkward to read.
+]
 
 ==== Analysis
 
@@ -610,12 +621,6 @@ func _on_slider_value_changed(value: float) -> void:
 
 ===== Video Settings
 
-#image("./images/development/options-video.png", height: 240pt)
-
-// Anti-aliasing is kept the same for 2D and 3D for simplicity, as it is generally only enabled when the user's graphics card can handle it.
-
-// TODO: add sharp question of if windowed fullscreen is required
-
 The video settings I have decided to implement, to keep it simple, are:
 - Window mode (windowed/fullscreen)
 - Anti-aliasing (MSAA)
@@ -686,7 +691,7 @@ The next setting to implement is anti-aliasing. This keeps the 2D MSAA and 3D MS
 
 ```gdscript
 # video.gd
-// Settings paths for anti-aliasing.
+# settings paths for anti-aliasing.
 const ANTIALIASING_2D = &"rendering/anti_aliasing/quality/msaa_2d"
 const ANTIALIASING_3D = &"rendering/anti_aliasing/quality/msaa_3d"
 
@@ -765,6 +770,442 @@ func _on_vsync_toggled(toggled_on: bool) -> void:
 #image("./images/development/options-video-5.png", height: 240pt)
 
 ==== Control Settings
+
+===== Control Inputs
+
+====== Textures
+
+#image("./images/development/options-controls.png", height: 240pt)
+
+The controls menu contains separate controls for both keyboard and controller. This is so the user can set custom settings for both so they can play how they want to.
+
+The textures for these buttons need to be stored in a resource to be used later. The following script provides properties that can be set in the editor with each texture for all the supported keys. It also implements a `get_texture` method to retrieve the corresponding texture for an `InputEvent`.
+
+#block(breakable: true)[
+```gdscript
+# keys.gd
+@tool
+class_name KeyboardTextures
+extends Resource
+
+# All keys that can reasonably be used as custom controls.
+# This means no modifier keys, no mouse buttons, no keys which do not usually
+# pass through to programs such as numlock,
+const _KEYS: Array[Key] = [
+	KEY_0,
+	KEY_1,
+	KEY_2,
+	KEY_3,
+	KEY_4,
+	KEY_5,
+	KEY_6,
+	KEY_7,
+	KEY_8,
+	KEY_9,
+	KEY_A,
+	KEY_B,
+	KEY_C,
+	KEY_D,
+	KEY_E,
+	KEY_F,
+	KEY_G,
+	KEY_H,
+	KEY_I,
+	KEY_J,
+	KEY_K,
+	KEY_L,
+	KEY_M,
+	KEY_N,
+	KEY_O,
+	KEY_P,
+	KEY_Q,
+	KEY_R,
+	KEY_S,
+	KEY_T,
+	KEY_U,
+	KEY_V,
+	KEY_W,
+	KEY_X,
+	KEY_Y,
+	KEY_Z,
+	KEY_APOSTROPHE,
+	KEY_LEFT,
+	KEY_RIGHT,
+	KEY_UP,
+	KEY_DOWN,
+	KEY_ASTERISK,
+	KEY_BACKSPACE,
+	KEY_BRACKETLEFT,
+	KEY_BRACKETRIGHT,
+	KEY_GREATER,
+	KEY_LESS,
+	KEY_CAPSLOCK,
+	KEY_ASCIICIRCUM,
+	KEY_COLON,
+	KEY_COMMA,
+	KEY_DELETE,
+	KEY_END,
+	KEY_ENTER,
+	KEY_ESCAPE,
+	KEY_EXCLAM,
+	KEY_F1,
+	KEY_F2,
+	KEY_F3,
+	KEY_F4,
+	KEY_F5,
+	KEY_F6,
+	KEY_F7,
+	KEY_F8,
+	KEY_F9,
+	KEY_F10,
+	KEY_F11,
+	KEY_F12,
+	KEY_HOME,
+	KEY_INSERT,
+	KEY_MINUS,
+	KEY_PAGEDOWN,
+	KEY_PAGEUP,
+	KEY_PERIOD,
+	KEY_PLUS,
+	KEY_PRINT,
+	KEY_QUESTION,
+	KEY_QUOTEDBL,
+	KEY_SEMICOLON,
+	KEY_SLASH,
+	KEY_BACKSLASH,
+	KEY_SPACE,
+	KEY_ASCIITILDE,
+	KEY_TAB,
+]
+
+var textures: Dictionary = {}
+
+
+func _init() -> void:
+	for k in _KEYS:
+		textures[OS.get_keycode_string(k)] = null
+
+
+# Make this Resource act like all of its properties are contained in `textures`.
+func _get(property: StringName) -> Variant:
+	if property in textures.keys():
+		return textures[property]
+	return null
+
+
+func _set(property: StringName, value: Variant) -> bool:
+	if property in textures.keys():
+		textures[property] = value
+		return true
+	return false
+
+
+# Fake the properties we have as all the supported keys.
+func _get_property_list() -> Array[Dictionary]:
+	var properties: Array[Dictionary] = []
+	for k in _KEYS:
+		properties.append(
+			{
+				name = OS.get_keycode_string(k),
+				type = TYPE_OBJECT,
+				hint = PROPERTY_HINT_RESOURCE_TYPE,
+				hint_string = "Texture2D"
+			}
+		)
+	return properties
+
+
+func get_texture(event: InputEvent) -> Texture2D:
+	if not event is InputEventKey:
+		return
+	var key_event := event as InputEventKey
+	var scancode := key_event.keycode
+	return textures.get(OS.get_keycode_string(scancode), null)
+```
+]
+
+#image("./images/development/options-controls-keys-res.png", height: 240pt)
+
+This allows me to insert the textures into a new resource file and use them in the controls menu.
+
+And similar with the controller textures, but with the controller buttons instead of keyboard keys. There are much less controller buttons so the properties do not need to be created dynamically, and allows me to add docstrings for what each button corresponds to.
+
+```gdscript
+# controller.gd
+@tool
+class_name ControllerTextures
+extends Resource
+
+## Bottom action (PS X, Xbox/Steam A, Nintendo B)
+@export var button_0: Texture2D = null
+## Right action (PS O, Xbox/Steam B, Nintendo A)
+@export var button_1: Texture2D = null
+## Left action (PS □, Xbox/Steam X, Nintendo Y)
+@export var button_2: Texture2D = null
+## Top action (PS △, Xbox/Steam Y, Nintendo X)
+@export var button_3: Texture2D = null
+## Back (PS 1/2/3 Select, PS 4/5 Share, Xbox Back, Nintendo -)
+@export var button_4: Texture2D = null
+## Guide (PS PS button, Xbox home, Nintendo home)
+@export var button_5: Texture2D = null
+## Start (PS 1/2/3 Start, PS4/5 Options, Xbox menu, Nintendo +)
+@export var button_6: Texture2D = null
+## Left stick (PS L3, Xbox L/LS, Nintendo left stick)
+@export var button_7: Texture2D = null
+## Right stick (PS R3, Xbox R/RS, Nintendo right stick)
+@export var button_8: Texture2D = null
+## Left shoulder (PS L1, Xbox LB, Nintendo L)
+@export var button_9: Texture2D = null
+## Right shoulder (PS R1, Xbox RB, Nintendo R)
+@export var button_10: Texture2D = null
+## D-pad up
+@export var button_11: Texture2D = null
+## D-pad down
+@export var button_12: Texture2D = null
+## D-pad left
+@export var button_13: Texture2D = null
+## D-pad right
+@export var button_14: Texture2D = null
+## PS5 Microphone, Xbox Share, Nintendo capture
+@export var button_15: Texture2D = null
+## Paddle 1
+@export var button_16: Texture2D = null
+## Paddle 2
+@export var button_17: Texture2D = null
+## Paddle 3
+@export var button_18: Texture2D = null
+## Paddle 4
+@export var button_19: Texture2D = null
+## PS4/5 touchpad
+@export var button_20: Texture2D = null
+
+
+func get_texture(event: InputEvent) -> Texture2D:
+	if not event is InputEventJoypadButton:
+		return null
+
+	var joypad_event := event as InputEventJoypadButton
+	var button := joypad_event.button_index
+	return get("button_" + str(button))
+```
+
+#image("./images/development/options-controls-controller-res.png", height: 240pt)
+
+And this is similar with controllers, where I have created multiple resource files for different controller platforms.
+
+To ensure only one button can be waiting for input, I have added a property to `global.gd` to share the currently listening prompt.
+
+```gdscript
+# global.gd
+## The control input that is currently listening
+var listening_control: ControlInput
+```
+
+I then created a generic input prompt script which can be used for both keyboard and controller inputs. `get_texture` is left unimplemented as that is the part which differs depending on keyboard or controller inputs.
+
+This uses the `global.gd` script to ensure only one input prompt can be waiting for input at a time. If a new input prompt is selected, the old one is unselected by calling `unlisten()` on it, and then setting the current prompt as the global property.
+
+```gdscript
+# control_input.gd
+class_name ControlInput
+extends Button
+
+# Whether to act upon new `gui_input` events.
+var listening: bool = false
+# The texture to revert to if this input is unselected.
+var previous_texture: Texture2D = null
+
+@onready var texture_rect: TextureRect = %TextureRect
+@onready var label: Label = %Label
+@onready var global: Global = $"/root/Global"
+
+
+func _on_pressed() -> void:
+	# Don't redo the same process if we are already listening, as that will
+	# call `unlisten` below.
+	if listening:
+		return
+	# Store the previous texture to revert to later if needed.
+	previous_texture = texture_rect.texture
+	texture_rect.texture = null
+	label.text = "Waiting for input..."
+
+	listening = true
+	if global.listening_control != null:
+		global.listening_control.unlisten()
+	global.listening_control = self
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if not listening:
+		return
+	var texture := get_texture(event)
+	if texture == null:
+		return
+
+	label.text = ""
+	texture_rect.texture = texture
+
+	listening = false
+	global.listening_control = null
+
+
+func _on_tree_exited() -> void:
+	unlisten()
+
+
+# Called either when this node is not visible (`tree_exited`), or a different
+# control input is selected (see above).
+func unlisten() -> void:
+	listening = false
+	label.text = ""
+	texture_rect.texture = previous_texture
+
+
+# keep `get_texture` abstract, for separate key inputs and controller inputs.
+func get_texture(_event: InputEvent) -> Texture2D:
+	return null
+```
+
+And then the individual implementations for keyboard and controller inputs.
+
+```gdscript
+# key_input.gd
+class_name KeyInput
+extends ControlInput
+
+const textures: KeyboardTextures = preload("./resources/keys.tres")
+
+
+func get_texture(event: InputEvent) -> Texture2D:
+	var texture := textures.get_texture(event)
+	# If it is not null, this is a valid texture, store this event as action`.
+	if texture != null:
+		store_action(event)
+	return texture
+```
+
+```gdscript
+# controller_input.gd
+class_name ControllerInput
+extends ControlInput
+
+const xb_textures: ControllerTextures = preload("./resources/xbox.tres")
+const ps_textures: ControllerTextures = preload("./resources/playstation.tres")
+const ni_textures: ControllerTextures = preload("./resources/nintendo.tres")
+const st_textures: ControllerTextures = preload("./resources/steam.tres")
+
+
+func get_texture(event: InputEvent) -> Texture2D:
+	var device := event.device
+	var joy_name := Input.get_joy_name(device)
+	# The following conditions come from the public SDL controller database
+	# https://github.com/mdqinc/SDL_GameControllerDB/
+	if joy_name.contains("Xbox"):
+		return xb_textures.get_texture(event)
+	elif (
+		joy_name.contains("PlayStation")
+		or joy_name.contains("PS")
+		or joy_name.contains("DualShock")
+	):
+		return ps_textures.get_texture(event)
+	elif joy_name.contains("Nintendo") or joy_name.contains("Switch"):
+		return ni_textures.get_texture(event)
+	elif joy_name.contains("Steam"):
+		return st_textures.get_texture(event)
+	else:
+		return xb_textures.get_texture(event)
+```
+
+#image("./images/development/options-controls-inputs.png", height: 240pt)
+
+// TODO: maybe backfill the design/this when decided
+
+Only item 1, 2 and 3 are implemented as controls right now, as I am not sure what the other controls will be yet. This will be implemented later when I have a better idea of what the controls will be.
+
+These settings do not apply to the game yet. The following code sets them in the global `InputMap` so they can be used in the game. Each control input takes in the `action` which is the name of the action in the `InputMap`.
+
+```gdscript
+# key_input.gd
+@export var action: StringName
+
+
+func _ready() -> void:
+	var current_events := InputMap.action_get_events(action)
+	for existing_event in current_events:
+		if existing_event is InputEventKey:
+			texture_rect.texture = get_texture(existing_event)
+			break
+
+
+func store_action(event: InputEvent) -> void:
+	var current_events := InputMap.action_get_events(action)
+	# Clear any existing key events for this current action and replace it with
+	# the new one.
+
+	for existing_event in current_events:
+		if existing_event is InputEventKey:
+			InputMap.action_erase_event(action, existing_event)
+
+	InputMap.action_add_event(action, event)
+```
+#linebreak()
+```gdscript
+# controller_input.gd
+@export var action: StringName
+
+
+func _ready() -> void:
+	var current_events := InputMap.action_get_events(action)
+	for existing_event in current_events:
+		if existing_event is InputEventJoypadButton:
+			texture_rect.texture = get_texture(existing_event)
+			break
+
+
+func store_action(event: InputEvent) -> void:
+	var current_events := InputMap.action_get_events(action)
+	# Clear any existing key events for this current action and replace it with
+	# the new one.
+	for existing_event in current_events:
+		if existing_event is InputEventJoypadButton:
+			InputMap.action_erase_event(action, existing_event)
+
+	InputMap.action_add_event(action, event)
+```
+
+During testing of the controller inputs, I found that when assigning a D-pad button, the GUI would also accept that input and move the focus to the next button. This is not what I want, as I want the GUI to ignore the input and only use it for the control input. I found that this can be prevented with a simple `Control.accept_event()` when handling an `InputEvent` in a specific `Control`.
+
+```gdscript
+# control_input.gd
+func _on_gui_input(event: InputEvent) -> void:
+	# ...
+	if texture == null:
+		return
+
+	accept_event()
+
+	label.text = ""
+	texture_rect.texture = texture
+
+	# ...
+```
+
+During testing of the keyboard inputs, I found that the existing keys from the `InputMap` are not properly loaded. There seems to be an inconsistency with `InputEvent`s from real input, and those stored in `InputMap`, where `InputEventKey.keycode` is `0`. Thankfully the Godot docs provide another property - `InputEventKey.physical_keycode` - which correlates to a US QUERTY keyboard layout. This can be converted back to a `Key` enum for the current keyboard layout.
+
+```gdscript
+func get_texture(event: InputEvent) -> Texture2D:
+	if not event is InputEventKey:
+		return
+	var key_event := event as InputEventKey
+	var scancode := key_event.keycode
+	# When accessing InputMap, this is 0
+	if scancode == 0:
+		var physical := key_event.physical_keycode
+		scancode = DisplayServer.keyboard_get_keycode_from_physical(physical)
+
+	return textures.get(OS.get_keycode_string(scancode), null)
+```
 
 // TODO: control settings: testing found I need to use grab_focus in scenes
 // and focus did not work for the tab bar (how do I fix?)

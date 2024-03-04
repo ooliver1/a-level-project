@@ -20,9 +20,15 @@ func _ready() -> void:
 func get_texture(event: InputEvent) -> Texture2D:
 	var device := event.device
 	var joy_name := Input.get_joy_name(device)
+	# The following conditions come from the public SDL controller database
+	# https://github.com/mdqinc/SDL_GameControllerDB/
 	if joy_name.contains("Xbox"):
 		return xb_textures.get_texture(event)
-	elif joy_name.contains("PlayStation") or joy_name.contains("PS") or joy_name.contains("DualShock"):
+	elif (
+		joy_name.contains("PlayStation")
+		or joy_name.contains("PS")
+		or joy_name.contains("DualShock")
+	):
 		return ps_textures.get_texture(event)
 	elif joy_name.contains("Nintendo") or joy_name.contains("Switch"):
 		return ni_textures.get_texture(event)
