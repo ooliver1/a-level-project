@@ -1,36 +1,17 @@
 extends MarginContainer
 
-const ANTIALIASING_2D = &"rendering/anti_aliasing/quality/msaa_2d"
-const ANTIALIASING_3D = &"rendering/anti_aliasing/quality/msaa_3d"
-
 @onready var display_mode: OptionButton = %DisplayMode
 @onready var anti_aliasing: OptionButton = %AntiAliasing
 @onready var v_sync: CheckBox = %VSync
+@onready var global: Global = $"/root/Global"
 
 
 func _ready() -> void:
-	# 0: Windowed
-	# 1: Fullscreen
-	# 2: Fullscreen Borderless
-	var mode := DisplayServer.window_get_mode()
-	var borderless := DisplayServer.window_get_flag(DisplayServer.WINDOW_FLAG_BORDERLESS)
-	var id := 0
-	if mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
-		id = 1
-	elif mode == DisplayServer.WINDOW_MODE_WINDOWED and borderless:
-		id = 2
-	display_mode.select(id)
+	var video_mode: int = global.get_window_mode()
+	display_mode.select(video_mode)
 
-	# msaa_2d and msaa_3d are the same here
-	var antialiasing := get_viewport().msaa_2d
-	id = 0
-	if antialiasing == Viewport.MSAA_2X:
-		id = 1
-	elif antialiasing == Viewport.MSAA_4X:
-		id = 2
-	elif antialiasing == Viewport.MSAA_8X:
-		id = 3
-	anti_aliasing.select(id)
+	var antialiasing: int = global.get_antialiasing()
+	anti_aliasing.select(antialiasing)
 
 	var vsync := DisplayServer.window_get_vsync_mode()
 	if vsync == DisplayServer.VSYNC_ENABLED:
@@ -64,22 +45,19 @@ func _on_display_mode_item_selected(index: int) -> void:
 
 
 func _on_anti_aliasing_item_selected(index: int) -> void:
-	# 0: Disabled
-	# 1: MSAA 2x
-	# 2: MSAA 4x
-	# 3: MSAA 8x
+	var viewport := get_viewport()
 	if index == 0:
-		ProjectSettings.set_setting(ANTIALIASING_2D, Viewport.MSAA_DISABLED)
-		ProjectSettings.set_setting(ANTIALIASING_3D, Viewport.MSAA_DISABLED)
+		viewport.msaa_2d = Viewport.MSAA_DISABLED
+		viewport.msaa_3d = Viewport.MSAA_DISABLED
 	elif index == 1:
-		ProjectSettings.set_setting(ANTIALIASING_2D, Viewport.MSAA_2X)
-		ProjectSettings.set_setting(ANTIALIASING_3D, Viewport.MSAA_2X)
+		viewport.msaa_2d = Viewport.MSAA_2X
+		viewport.msaa_3d = Viewport.MSAA_2X
 	elif index == 2:
-		ProjectSettings.set_setting(ANTIALIASING_2D, Viewport.MSAA_4X)
-		ProjectSettings.set_setting(ANTIALIASING_3D, Viewport.MSAA_4X)
+		viewport.msaa_2d = Viewport.MSAA_4X
+		viewport.msaa_3d = Viewport.MSAA_4X
 	elif index == 3:
-		ProjectSettings.set_setting(ANTIALIASING_2D, Viewport.MSAA_8X)
-		ProjectSettings.set_setting(ANTIALIASING_3D, Viewport.MSAA_8X)
+		viewport.msaa_2d = Viewport.MSAA_8X
+		viewport.msaa_3d = Viewport.MSAA_8X
 
 
 func _on_vsync_toggled(toggled_on: bool) -> void:

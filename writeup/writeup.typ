@@ -537,7 +537,7 @@ The options menu is also designed with the Godot 2D editor. The tabs are nodes u
 
 The tabs have also been extended downwards when selected so it is clearer as to if they are selected.
 
-#image("./images/development/options-music.png", height: 240pt)
+#image("./images/development/options/music.png", height: 240pt)
 
 The following script is a global autoload 'singleton' script which holds the previous scene. This is used to determine which scene to switch back to when the exit button is pressed.
 
@@ -661,7 +661,7 @@ func _on_display_mode_item_selected(index: int) -> void:
 		DisplayServer.window_set_position(Vector2i(0, 0))
 ```
 
-#image("./images/development/options-video-1.png", height: 240pt)
+#image("./images/development/options/video-1.png", height: 240pt)
 
 This only shows the dropdown, where selecting each option will change the window mode. The next thing to do is setting the initial value of this dropdwon so it shows the currently selected mode.
 
@@ -683,7 +683,7 @@ func _ready() -> void:
 	display_mode.select(id)
 ```
 
-#image("./images/development/options-video-2.png", height: 240pt)
+#image("./images/development/options/video-2.png", height: 240pt)
 
 ====== Anti-Aliasing
 
@@ -718,7 +718,7 @@ func _on_anti_aliasing_item_selected(index: int) -> void:
 		ProjectSettings.set_setting(ANTIALIASING_3D, Viewport.MSAA_8X)
 ```
 
-#image("./images/development/options-video-3.png", height: 240pt)
+#image("./images/development/options/video-3.png", height: 240pt)
 
 The dropdown also needs to set the initial value of the dropdown to the currently selected anti-aliasing setting. This is done by checking the project settings and setting the dropdown to the correct value.
 
@@ -739,7 +739,7 @@ func _ready() -> void:
 	anti_aliasing.select(id)
 ```
 
-#image("./images/development/options-video-4.png", height: 240pt)
+#image("./images/development/options/video-4.png", height: 240pt)
 
 ====== Vertical Sync
 
@@ -767,7 +767,7 @@ func _on_vsync_toggled(toggled_on: bool) -> void:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 ```
 
-#image("./images/development/options-video-5.png", height: 240pt)
+#image("./images/development/options/video-5.png", height: 240pt)
 
 ==== Control Settings
 
@@ -775,7 +775,7 @@ func _on_vsync_toggled(toggled_on: bool) -> void:
 
 ====== Textures
 
-#image("./images/development/options-controls.png", height: 240pt)
+#image("./images/development/options/controls.png", height: 240pt)
 
 The controls menu contains separate controls for both keyboard and controller. This is so the user can set custom settings for both so they can play how they want to.
 
@@ -924,7 +924,7 @@ func get_texture(event: InputEvent) -> Texture2D:
 ```
 ]
 
-#image("./images/development/options-controls-keys-res.png", height: 240pt)
+#image("./images/development/options/controls-keys-res.png", height: 240pt)
 
 This allows me to insert the textures into a new resource file and use them in the controls menu.
 
@@ -989,11 +989,13 @@ func get_texture(event: InputEvent) -> Texture2D:
 	return get("button_" + str(button))
 ```
 
-#image("./images/development/options-controls-controller-res.png", height: 240pt)
+#image("./images/development/options/controls-controller-res.png", height: 240pt)
 
 And this is similar with controllers, where I have created multiple resource files for different controller platforms.
 
 To ensure only one button can be waiting for input, I have added a property to `global.gd` to share the currently listening prompt.
+
+====== Buttons
 
 ```gdscript
 # global.gd
@@ -1117,7 +1119,7 @@ func get_texture(event: InputEvent) -> Texture2D:
 		return xb_textures.get_texture(event)
 ```
 
-#image("./images/development/options-controls-inputs.png", height: 240pt)
+#image("./images/development/options/controls-inputs.png", height: 240pt)
 
 // TODO: maybe backfill the design/this when decided
 
@@ -1174,6 +1176,10 @@ func store_action(event: InputEvent) -> void:
 	InputMap.action_add_event(action, event)
 ```
 
+===== Ongoing Testing
+
+====== Controller Input Passthrough
+
 During testing of the controller inputs, I found that when assigning a D-pad button, the GUI would also accept that input and move the focus to the next button. This is not what I want, as I want the GUI to ignore the input and only use it for the control input. I found that this can be prevented with a simple `Control.accept_event()` when handling an `InputEvent` in a specific `Control`.
 
 ```gdscript
@@ -1191,6 +1197,8 @@ func _on_gui_input(event: InputEvent) -> void:
 	# ...
 ```
 
+====== Keyboard Input Loading
+
 During testing of the keyboard inputs, I found that the existing keys from the `InputMap` are not properly loaded. There seems to be an inconsistency with `InputEvent`s from real input, and those stored in `InputMap`, where `InputEventKey.keycode` is `0`. Thankfully the Godot docs provide another property - `InputEventKey.physical_keycode` - which correlates to a US QUERTY keyboard layout. This can be converted back to a `Key` enum for the current keyboard layout.
 
 ```gdscript
@@ -1207,10 +1215,128 @@ func get_texture(event: InputEvent) -> Texture2D:
 	return textures.get(OS.get_keycode_string(scancode), null)
 ```
 
-// TODO: control settings: testing found I need to use grab_focus in scenes
-// and focus did not work for the tab bar (how do I fix?)
+====== Controller Input Initial Focus
 
-// another thing is trying to set dpad as controller setting means the focus
-// changes, make focus not change when changing a setting
-// ...
-// to capture focus, had to use `accept_event()` in `control_input.gd`
+I also found that for controller input to work in menus, one `Control` should grab the focus initially so the controller focus knows where to start.
+
+```gdscript
+# main_menu.gd
+func _ready() -> void:
+	play_button.grab_focus()
+```
+```gdscript
+# options.gd
+func _ready() -> void:
+	tab_container.get_tab_bar().grab_focus()
+```
+
+// TODO: focus does not work for going back to the tab bar (how do I fix?)
+
+===== Saving Settings
+
+The settings need to be saved between sessions, so the user does not have to set them every time they play the game. This is done by saving the settings to a file in the user's home directory. This is done in the `global.gd` script, which is autoloaded so `save_settings` can always be accessed.
+
+====== Restructuring
+
+Since the video mode will be retrieved here, I have moved that logic to `global.gd`, which is used in `video.gd` to set the initial value of the dropdown.
+
+```gdscript
+# global.gd
+enum {WINDOW_WINDOWED, WINDOW_FULLSCREEN, WINDOW_BORDERLESS}
+enum {ANTIALIASING_DISABLED, ANTIALIASING_2X, ANTIALIASING_4X, ANTIALIASING_8X}
+
+
+func get_window_mode() -> int:
+	var mode := DisplayServer.window_get_mode()
+	var borderless := DisplayServer.window_get_flag(DisplayServer.WINDOW_FLAG_BORDERLESS)
+	var id := WINDOW_WINDOWED
+	if mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+		id = WINDOW_FULLSCREEN
+	elif mode == DisplayServer.WINDOW_MODE_WINDOWED and borderless:
+		id = WINDOW_BORDERLESS
+
+	return id
+
+
+func get_antialiasing() -> int:
+	# msaa_2d and msaa_3d are the same here
+	var antialiasing := get_viewport().msaa_2d
+	var id = ANTIALIASING_DISABLED
+	if antialiasing == Viewport.MSAA_2X:
+		id = ANTIALIASING_2X
+	elif antialiasing == Viewport.MSAA_4X:
+		id = ANTIALIASING_4X
+	elif antialiasing == Viewport.MSAA_8X:
+		id = ANTIALIASING_8X
+
+	return id
+```
+#linebreak()
+```gdscript
+# video.gd
+func _ready() -> void:
+	var id: int = global.get_window_mode()
+	display_mode.select(id)
+
+	var antialiasing: int = global.get_antialiasing()
+	anti_aliasing.select(id)
+
+	# ...
+```
+
+====== File Saving
+
+The settings are saved using a `ConfigFile`. This is a key-value store which maps to an "ini" (non-standard) file format. This is saved in the user's home directory.
+
+```gdscript
+# global.gd
+## Config file for holding modified settings.
+var settings := ConfigFile.new()
+
+
+func save_settings() -> void:
+	var vsync := DisplayServer.window_get_vsync_mode()
+	var video_mode := get_window_mode()
+	var video_antialiasing := get_antialiasing()
+	var video_vsync_enabled := vsync == DisplayServer.VSYNC_ENABLED
+
+	settings.set_value("video", "mode", video_mode)
+	settings.set_value("video", "antialiasing", video_antialiasing)
+	settings.set_value("video", "vsync", video_vsync_enabled)
+
+	settings.save("user://settings.ini")
+```
+
+This is then called in `options.gd` when the options are being exited.
+
+```gdscript
+# options.gd
+func _on_tree_exiting() -> void:
+	global.save_settings()
+```
+
+#image("./images/development/options/saved.png", height: 120pt)
+
+====== Ongoing Testing
+
+======= Anti-Aliasing Loading
+
+During testing of saving video settings, I found that antialiasing was always disabled. I found out that `ProjectSettings` is not needed for this, and it can be set directly as `Viewport.msaa_2d` and `Viewport.msaa_3d` in `video.gd`.
+
+```gdscript
+# video.gd
+func _on_anti_aliasing_item_selected(index: int) -> void:
+	var viewport := get_viewport()
+	if index == 0:
+		viewport.msaa_2d = Viewport.MSAA_DISABLED
+		viewport.msaa_3d = Viewport.MSAA_DISABLED
+	elif index == 1:
+		viewport.msaa_2d = Viewport.MSAA_2X
+		viewport.msaa_3d = Viewport.MSAA_2X
+	elif index == 2:
+		viewport.msaa_2d = Viewport.MSAA_4X
+		viewport.msaa_3d = Viewport.MSAA_4X
+	elif index == 3:
+		viewport.msaa_2d = Viewport.MSAA_8X
+		viewport.msaa_3d = Viewport.MSAA_8X
+```
