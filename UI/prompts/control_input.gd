@@ -34,6 +34,8 @@ func _on_gui_input(event: InputEvent) -> void:
 	if texture == null:
 		return
 
+	accept_event()
+
 	label.text = ""
 	texture_rect.texture = texture
 
@@ -54,5 +56,5 @@ func unlisten() -> void:
 
 
 # keep `get_texture` abstract, for separate key inputs and controller inputs.
-func get_texture(event: InputEvent) -> Texture2D:
+func get_texture(_event: InputEvent) -> Texture2D:
 	return null

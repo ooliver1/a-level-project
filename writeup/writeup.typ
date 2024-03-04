@@ -5,7 +5,8 @@
 #show heading.where(level: 4): set text(16pt)
 #set page(numbering: "1")
 #set text(14pt)
-#set raw(syntaxes: "./GDScript.sublime-syntax.yaml")
+#set raw(syntaxes: "./GDScript.sublime-syntax.yaml", tab-size: 4)
+#show raw.where(lang: "gdscript"): set text(8pt)
 
 #page[
 #set align(center)
@@ -598,6 +599,7 @@ func _ready() -> void:
 	value_node.text = str(value) + "%"
 	slider.value = value
 
+
 func _on_slider_value_changed(value: float) -> void:
 	# Godot uses decibels, which is logorithmic. This function converts a number
 	# from 0-1 into decibels (-80 to 24dB)
@@ -610,53 +612,24 @@ func _on_slider_value_changed(value: float) -> void:
 
 #image("./images/development/options-video.png", height: 240pt)
 
-Video settings is relatively simple on the outside, but the script is a bit more complex.
+// Anti-aliasing is kept the same for 2D and 3D for simplicity, as it is generally only enabled when the user's graphics card can handle it.
 
-In `_ready_`, the current window mode, anti-aliasing settings and vsync setting is loaded. This is so the settings are set to the current settings when the options menu is opened.
+// TODO: add sharp question of if windowed fullscreen is required
 
-Anti-aliasing is kept the same for 2D and 3D for simplicity, as it is generally only enabled when the user's graphics card can handle it.
+The video settings I have decided to implement, to keep it simple, are:
+- Window mode (windowed/fullscreen)
+- Anti-aliasing (MSAA)
+- Vertical-sync (VSync)
 
+====== Window Mode
+
+The first setting to implement is the window mode - whether the window is windowed or fullscreen. For this I asked one of my stakeholders which I know uses multiple (virtual) monitors on Windows 10 *and* Linux. I asked if they would like a borderless windowed fullscreen option, and they said they would like it. This is because it is more consistent across multiple monitors and is generally better for alt+tabbing especially in Windows.
 
 ```gdscript
+# video.gd
 extends MarginContainer
 
-const ANTIALIASING_2D = &"rendering/anti_aliasing/quality/msaa_2d"
-const ANTIALIASING_3D = &"rendering/anti_aliasing/quality/msaa_3d"
-
 @onready var display_mode: OptionButton = %DisplayMode
-@onready var anti_aliasing: OptionButton = %AntiAliasing
-@onready var v_sync: CheckBox = %VSync
-
-
-func _ready() -> void:
-	# 0: Windowed
-	# 1: Fullscreen
-	# 2: Fullscreen Borderless
-	var mode := DisplayServer.window_get_mode()
-	var borderless := DisplayServer.window_get_flag(DisplayServer.WINDOW_FLAG_BORDERLESS)
-	var id := 0
-	if mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
-		id = 1
-	elif mode == DisplayServer.WINDOW_MODE_WINDOWED and borderless:
-		id = 2
-	display_mode.select(id)
-
-	# msaa_2d and msaa_3d are the same here
-	var antialiasing := get_viewport().msaa_2d
-	id = 0
-	if antialiasing == Viewport.MSAA_2X:
-		id = 1
-	elif antialiasing == Viewport.MSAA_4X:
-		id = 2
-	elif antialiasing == Viewport.MSAA_8X:
-		id = 3
-	anti_aliasing.select(id)
-
-	var vsync := DisplayServer.window_get_vsync_mode()
-	if vsync == DisplayServer.VSYNC_ENABLED:
-		v_sync.set_pressed_no_signal(true)
-	else:
-		v_sync.set_pressed_no_signal(false)
 
 
 func _on_display_mode_item_selected(index: int) -> void:
@@ -681,7 +654,45 @@ func _on_display_mode_item_selected(index: int) -> void:
 		DisplayServer.window_set_size(DisplayServer.screen_get_size())
 		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
 		DisplayServer.window_set_position(Vector2i(0, 0))
+```
 
+#image("./images/development/options-video-1.png", height: 240pt)
+
+This only shows the dropdown, where selecting each option will change the window mode. The next thing to do is setting the initial value of this dropdwon so it shows the currently selected mode.
+
+This defaults to assuming the window mode is windowed. If it finds that it is fullscreen, then sets it to fullscreen. If it finds that the window is borderless and windowed (maximised), then it sets it to fullscreen borderless.
+
+```gdscript
+# video.gd
+func _ready() -> void:
+	# 0: Windowed
+	# 1: Fullscreen
+	# 2: Fullscreen Borderless
+	var mode := DisplayServer.window_get_mode()
+	var borderless := DisplayServer.window_get_flag(DisplayServer.WINDOW_FLAG_BORDERLESS)
+	var id := 0
+	if mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+		id = 1
+	elif mode == DisplayServer.WINDOW_MODE_MAXIMIZED and borderless:
+		id = 2
+	display_mode.select(id)
+```
+
+#image("./images/development/options-video-2.png", height: 240pt)
+
+====== Anti-Aliasing
+
+The next setting to implement is anti-aliasing. This keeps the 2D MSAA and 3D MSAA settings equal, as users are only going to enable anti-aliasing if their graphics card can handle it. The script is fairly simple, it sets the anti-aliasing quality in the project settings to the selected value.
+
+```gdscript
+# video.gd
+// Settings paths for anti-aliasing.
+const ANTIALIASING_2D = &"rendering/anti_aliasing/quality/msaa_2d"
+const ANTIALIASING_3D = &"rendering/anti_aliasing/quality/msaa_3d"
+
+@onready var anti_aliasing: OptionButton = %AntiAliasing
+
+# ...
 
 func _on_anti_aliasing_item_selected(index: int) -> void:
 	# 0: Disabled
@@ -700,6 +711,48 @@ func _on_anti_aliasing_item_selected(index: int) -> void:
 	elif index == 3:
 		ProjectSettings.set_setting(ANTIALIASING_2D, Viewport.MSAA_8X)
 		ProjectSettings.set_setting(ANTIALIASING_3D, Viewport.MSAA_8X)
+```
+
+#image("./images/development/options-video-3.png", height: 240pt)
+
+The dropdown also needs to set the initial value of the dropdown to the currently selected anti-aliasing setting. This is done by checking the project settings and setting the dropdown to the correct value.
+
+```gdscript
+# video.gd
+func _ready() -> void:
+    # ...
+
+	# msaa_2d and msaa_3d are the same here
+	var antialiasing := get_viewport().msaa_2d
+	id = 0
+	if antialiasing == Viewport.MSAA_2X:
+		id = 1
+	elif antialiasing == Viewport.MSAA_4X:
+		id = 2
+	elif antialiasing == Viewport.MSAA_8X:
+		id = 3
+	anti_aliasing.select(id)
+```
+
+#image("./images/development/options-video-4.png", height: 240pt)
+
+====== Vertical Sync
+
+The final setting to implement is vertical sync. This is a simple setting, as it only has two options - on or off. This is set in the project settings, and the dropdown sets the initial value to the currently selected setting.
+
+```gdscript
+# video.gd
+@onready var v_sync: CheckBox = %VSync
+
+
+func _ready() -> void:
+	# ...
+
+	var vsync := DisplayServer.window_get_vsync_mode()
+	if vsync == DisplayServer.VSYNC_ENABLED:
+		v_sync.set_pressed_no_signal(true)
+	else:
+		v_sync.set_pressed_no_signal(false)
 
 
 func _on_vsync_toggled(toggled_on: bool) -> void:
@@ -709,6 +762,8 @@ func _on_vsync_toggled(toggled_on: bool) -> void:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 ```
 
+#image("./images/development/options-video-5.png", height: 240pt)
+
 ==== Control Settings
 
 // TODO: control settings: testing found I need to use grab_focus in scenes
@@ -716,3 +771,5 @@ func _on_vsync_toggled(toggled_on: bool) -> void:
 
 // another thing is trying to set dpad as controller setting means the focus
 // changes, make focus not change when changing a setting
+// ...
+// to capture focus, had to use `accept_event()` in `control_input.gd`

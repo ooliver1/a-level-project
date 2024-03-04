@@ -47,8 +47,10 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 24
+current_tab = 1
 
 [node name="Audio" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -70,7 +72,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Video" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
