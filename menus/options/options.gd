@@ -12,3 +12,7 @@ func _on_close_button_pressed() -> void:
 	# global.previous_scene could be either options or pause, this is set
 	# before switching to options.
 	get_tree().change_scene_to_file(global.previous_scene)
+
+
+func _on_tree_exiting() -> void:
+	global.save_settings()

@@ -25,7 +25,3 @@ func _on_options_button_pressed() -> void:
 
 func _on_play_button_pressed() -> void:
 	get_tree().change_scene_to_packed(play_scene)
-
-
-func _on_tree_exiting() -> void:
-	global.save_settings()

@@ -9,6 +9,11 @@
 // #show raw.where(block: true): block.with(breakable: false)
 #show raw.where(lang: "gdscript"): set text(8pt)
 
+#let link-heading(label) = locate(loc => {
+  let target = query(label, loc).first()
+  link(label)[#underline(target.body)]
+}) 
+
 #page[
 #set align(center)
 Oliver Wilkes
@@ -351,30 +356,34 @@ The game could also act as a distraction from revision or school work. This is a
 
 ==== Measurable Success Criteria for the Proposed Solution
 
-// TODO: could do with more criteria
 // What I will actually do to solve the stakeholder requirements ("buttons with clear text")
 #table(
   columns: (1fr, 1fr),
   align: top,
   [*Criteria*], [*How to get evidence*],
   [Clear main menu], [Screenshot of the main menu and user feedback.],
-  [Full-screen and windowed options], [Screenshot of the application being full-screen and windowed.],
+  [Full-screen and windowed options], [Screenshot of the application being full-screen and windowed + code to switch between modes.],
   [Simple to understand controls], [Screenshot of the controls menu and user feedback of the controls.],
-  [In-game camera follows the ball], [Screenshot which shows the ball is visible at all times.],
-  [High contrast colour palette], [Screenshot of the game interface and relevant contrast ratios.],
-  [Drag and point controls], [Screenshot of the ball being controlled.],
-  [Power of shot controlled via dragging the ball], [Screenshot of the ball being controlled.],
-  [Items that affect other players], [Screenshot of the items in effect during gameplay.],
-  [Multiplayer functionality], [Screenshot of game with multiple players],
+  [In-game camera follows the ball], [Screenshot which shows the ball is visible at all times + code to support.],
+  [High contrast colour palette], [Screenshot of the game interface with user feedback.],
+  [Drag and point controls], [Screenshot of the ball being controlled + code to support.],
+  [Power of shot controlled via dragging the ball], [Screenshot of the ball being controlled + code to support.],
+  [Items that affect other players], [Screenshot of the items in effect during gameplay + code to support.],
+  [Multiplayer functionality], [Screenshot of game with multiple players + code to support.],
   [Co-operative aspect], [Screenshot and explanation of the co-operative aspect.],
-  [Simple URL/code to join a multiplayer game], [Screenshot of the URL/code being used.],
+  [Simple URL/code to join a multiplayer game], [Screenshot of the URL/code being used + code of code being handled.],
   [Arcade-style ambient music], [The code for the music, and where it came from.],
-  [Keyboard and mouse controls], [Screenshot of the controls menu.],
+  [Keyboard and mouse controls], [Screenshot of the controls menu + code showing custom keyboard controls.],
+  [Support for controllers], [Screenshot of the controls menu supporting controller inputs along with code that support controller inputs.],
   [Includes a settings menu], [Screenshot of the settings menu.],
   [Simple graphics], [Screenshot of the game, and framerate/GPU usage statistics with user feedback.],
-  [Scoreboard], [Screenshot of the scoreboard.],
-  [Time limit], [Screenshot of the time limit.],
-  [Configurable controls], [Screenshot of the controls menu.]
+  [Scoreboard], [Screenshot of the scoreboard + code to support.],
+  [Time limit], [Screenshot of the time limit + code to support.],
+  [Configurable controls], [Screenshot of the controls menu + code to support.],
+  [Quit button in the main menu], [Screenshot of the main menu with the quit button + code to support.],
+  [Pause menu], [Screenshot of the pause menu + code to support.],
+  [Start game button], [Screenshot of the menus with the start game button + code to support.],
+  [Adjustable volume], [Screenshot of the settings menu with the volume sliders + code to support.],
 )
 
 == Design
@@ -1103,20 +1112,23 @@ func get_texture(event: InputEvent) -> Texture2D:
 	var joy_name := Input.get_joy_name(device)
 	# The following conditions come from the public SDL controller database
 	# https://github.com/mdqinc/SDL_GameControllerDB/
+	var texture: Texture2D
 	if joy_name.contains("Xbox"):
-		return xb_textures.get_texture(event)
+		texture = xb_textures.get_texture(event)
 	elif (
 		joy_name.contains("PlayStation")
 		or joy_name.contains("PS")
 		or joy_name.contains("DualShock")
 	):
-		return ps_textures.get_texture(event)
+		texture = ps_textures.get_texture(event)
 	elif joy_name.contains("Nintendo") or joy_name.contains("Switch"):
-		return ni_textures.get_texture(event)
+		texture = ni_textures.get_texture(event)
 	elif joy_name.contains("Steam"):
-		return st_textures.get_texture(event)
+		texture = st_textures.get_texture(event)
 	else:
-		return xb_textures.get_texture(event)
+		texture = xb_textures.get_texture(event)
+
+	return texture
 ```
 
 #image("./images/development/options/controls-inputs.png", height: 240pt)
@@ -1165,6 +1177,15 @@ func _ready() -> void:
 			break
 
 
+func get_texture(event: InputEvent) -> Texture2D:
+	# ...
+
+	if texture != null:
+		store_action(event)
+
+	return texture
+
+
 func store_action(event: InputEvent) -> void:
 	var current_events := InputMap.action_get_events(action)
 	# Clear any existing key events for this current action and replace it with
@@ -1197,7 +1218,7 @@ func _on_gui_input(event: InputEvent) -> void:
 	# ...
 ```
 
-======= Keyboard Input Loading
+======= Keyboard Input Loading <keyboard-input-loading>
 
 During testing of the keyboard inputs, I found that the existing keys from the `InputMap` are not properly loaded. There seems to be an inconsistency with `InputEvent`s from real input, and those stored in `InputMap`, where `InputEventKey.keycode` is `0`. Thankfully the Godot docs provide another property - `InputEventKey.physical_keycode` - which correlates to a US QUERTY keyboard layout. This can be converted back to a `Key` enum for the current keyboard layout.
 
@@ -1215,7 +1236,7 @@ func get_texture(event: InputEvent) -> Texture2D:
 	return textures.get(OS.get_keycode_string(scancode), null)
 ```
 
-======= Controller Input Initial Focus
+======= Controller Input Initial Focus <controller-focus>
 
 I also found that for controller input to work in menus, one `Control` should grab the focus initially so the controller focus knows where to start.
 
@@ -1377,7 +1398,7 @@ func store_event(action: StringName, event: InputEvent) -> void:
 
 ====== Ongoing Testing
 
-======= Anti-Aliasing Loading
+======= Anti-Aliasing Loading <anti-aliasing-loading>
 
 During testing of saving video settings, I found that antialiasing was always disabled. I found out that `ProjectSettings` is not needed for this, and it can be set directly as `Viewport.msaa_2d` and `Viewport.msaa_3d` in `video.gd`.
 
@@ -1422,18 +1443,150 @@ func _ready() -> void:
 
 
 func load_settings() -> void:
-	settings.load(SETTINGS_PATH)
+	var err := settings.load(SETTINGS_PATH)
+	if err == ERR_FILE_CANT_OPEN:
+		return
 
-	var sections := settings.get_sections()
-
-	if sections.has("audio"):
-		var buses := settings.get_section_keys("audio")
-		for bus in buses:
-			var db: int = settings.get_value("audio", bus)
-			var index := int(bus)
-			AudioServer.set_bus_volume_db(index, db)
+	# Audio
+	var buses := settings.get_section_keys("audio")
+	for bus in buses:
+		var db: int = settings.get_value("audio", bus)
+		var index := int(bus)
+		AudioServer.set_bus_volume_db(index, db)
 ```
 
 #image("./images/development/options/loaded-audio.png", height: 240pt)
 
 The options shown above in the screenshots are being loaded as decibels and stored in `AudioServer`.
+
+======= Video Settings
+
+For video settings, I moved the logic of setting window mode and antialiasing out from `video.gd` and into `global.gd` so they can be used by both.
+
+```gdscript
+# global.gd
+func set_window_mode(mode: int) -> void:
+	if mode == 0:
+		# Windowed windows have a border and this sets it to maximised for a
+		# consistent size when switching away from fullscreen.
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+	elif mode == 1:
+		DisplayServer.window_set_position(Vector2i(0, 0))
+		# Exclusive fullscreen has a lower overhead as it usually avoids
+		# the display compositor.
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	elif mode == 2:
+		# Fullscreen borderless is a full screen sized window without a border.
+		# It usually works better with multiple monitor setups when alt+tab/esc
+		# in windows.
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+		DisplayServer.window_set_size(DisplayServer.screen_get_size())
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+		DisplayServer.window_set_position(Vector2i(0, 0))
+
+
+func set_antialiasing(mode: int) -> void:
+	var viewport := get_viewport()
+
+	if mode == 0:
+		viewport.msaa_2d = Viewport.MSAA_DISABLED
+		viewport.msaa_3d = Viewport.MSAA_DISABLED
+	elif mode == 1:
+		viewport.msaa_2d = Viewport.MSAA_2X
+		viewport.msaa_3d = Viewport.MSAA_2X
+	elif mode == 2:
+		viewport.msaa_2d = Viewport.MSAA_4X
+		viewport.msaa_3d = Viewport.MSAA_4X
+	elif mode == 3:
+		viewport.msaa_2d = Viewport.MSAA_8X
+		viewport.msaa_3d = Viewport.MSAA_8X
+
+
+func load_settings() -> void:
+	# ...
+
+	# Video
+	var mode: int = settings.get_value("video", "mode")
+	set_window_mode(mode)
+
+	var antialiasing: int = settings.get_value("video", "antialiasing")
+	set_antialiasing(antialiasing)
+
+	var vsync: bool = settings.get_value("video", "vsync")
+	if vsync:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	else:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+```
+
+======= Control Settings
+
+The control settings are loaded in a similar way to the video settings. The settings are loaded from the file and set in the game in the global singleton `InputMap`. Each setting is either a `*_key` or a `*_control` so they have to be handled differently.
+
+```gdscript
+func load_settings() -> void:
+	# ...
+
+	# Controls
+	var controls := settings.get_section_keys("controls")
+	for stored_control in controls:
+		if stored_control.ends_with("_key"):
+			var control := stored_control.trim_suffix("_key")
+			for existing_event in InputMap.action_get_events(control):
+				if existing_event is InputEventKey:
+					InputMap.action_erase_event(control, existing_event)
+
+			var new_event := InputEventKey.new()
+			new_event.keycode = settings.get_value("controls", stored_control)
+			InputMap.action_add_event(control, new_event)
+
+		elif stored_control.ends_with("_control"):
+			var control := stored_control.trim_suffix("_control")
+			for existing_event in InputMap.action_get_events(control):
+				if existing_event is InputEventJoypadButton:
+					InputMap.action_erase_event(control, existing_event)
+
+			var new_event := InputEventJoypadButton.new()
+			new_event.button_index = settings.get_value("controls", stored_control)
+			InputMap.action_add_event(control, new_event)
+```
+
+==== Review: Setup & Menus
+
+===== Progress Made
+
+The program runs, and the options menu is fully functional. The settings are saved and loaded from a file in the user's home directory. The settings are also applied to the game when it is loaded. Extra key-binds can be added later when necessary.
+
+This means that I now have a program with the main menu and options menu fully functional, providing the base for a game to be built on top of.
+
+===== Testing Done
+
+#show table: set text(12pt)
+
+#table(
+	columns: (1fr, 1.5fr, 1.5fr, 1.5fr, 2fr),
+	align: top,
+	[*Aspect Tested*], [*Input*], [*Expected Output*], [*Actual Output*], [*Comments/Resolution*],
+	[Quit button], [Run game -> press quit], [Game closes], [Game closes], [],
+	[Options exit], [Open options -> press close], [Options close and return to main menu], [Options close and return to main menu], [],
+	[Video settings], [Change window mode], [Window mode changes], [Window mode changes], [The difference between fullscreen and windowed fullscreen was verified using the X11 `xprops` program (via `xwayland`).],
+	[Video settings], [Change video settings -> close game -> reopen options], [Settings are as they were set], [Antialiasing was always "disabled"], [This was resolved in #link-heading(<anti-aliasing-loading>)],
+	[Audio settings], [Modify audio sliders], [Audio played with different buses changes volume], [Audio played with different buses changes volume], [This was tested by adding a new `AudioStreamPlayer` to the UI and changing what audio bus it uses.],
+	[Audio settings], [Change audio settings -> close game -> reopen options], [Settings are as they were set], [Settings are as they were set], [],
+	[Control settings], [Using a controller -> change control settings], [Controller textures change depending on the device used], [Controller textures change depending on the device used], [This was tested by using a PS5 controller and a Nintendo Switch Pro controller.],
+	[Control settings], [Change control settings -> close game -> reopen options], [Settings are as they were set], [Settings were blank, not even the default setting], [This was solved in #link-heading(<keyboard-input-loading>) before file loading was implemented, this was to do with `InputMap` and not storing settings.],
+	[Controller support], [Using a controller -> navigate menus], [Controller navigates menus], [D-pad and left stick have no effect], [This was solved in #link-heading(<controller-focus>), and then was tested using a PS5 controller and a Nintendo Switch Pro controller once solved.],
+)
+
+===== Links to Success Criteria
+
+- Clear main menu
+- Full-screen and windowed options
+- Simple to understand controls
+- Keyboard and mouse controls
+- Support for controllers
+- Includes a settings menu
+- Quit button in the main menu
+- Configurable controls
+- Adjustable volume

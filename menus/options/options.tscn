@@ -272,6 +272,7 @@ theme_type_variation = &"OrangeButton"
 shortcut = SubResource("Shortcut_8jqu3")
 icon = ExtResource("8_15aqt")
 
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="item_selected" from="TabContainer/Video/VBoxContainer/DisplayModeItem/DisplayMode" to="TabContainer/Video" method="_on_display_mode_item_selected"]
 [connection signal="item_selected" from="TabContainer/Video/VBoxContainer/AntiAliasingItem/AntiAliasing" to="TabContainer/Video" method="_on_anti_aliasing_item_selected"]
 [connection signal="toggled" from="TabContainer/Video/VBoxContainer/VSyncItem/VSync" to="TabContainer/Video" method="_on_vsync_toggled"]
