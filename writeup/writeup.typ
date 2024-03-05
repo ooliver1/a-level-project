@@ -1176,9 +1176,9 @@ func store_action(event: InputEvent) -> void:
 	InputMap.action_add_event(action, event)
 ```
 
-===== Ongoing Testing
+====== Ongoing Testing
 
-====== Controller Input Passthrough
+======= Controller Input Passthrough
 
 During testing of the controller inputs, I found that when assigning a D-pad button, the GUI would also accept that input and move the focus to the next button. This is not what I want, as I want the GUI to ignore the input and only use it for the control input. I found that this can be prevented with a simple `Control.accept_event()` when handling an `InputEvent` in a specific `Control`.
 
@@ -1197,7 +1197,7 @@ func _on_gui_input(event: InputEvent) -> void:
 	# ...
 ```
 
-====== Keyboard Input Loading
+======= Keyboard Input Loading
 
 During testing of the keyboard inputs, I found that the existing keys from the `InputMap` are not properly loaded. There seems to be an inconsistency with `InputEvent`s from real input, and those stored in `InputMap`, where `InputEventKey.keycode` is `0`. Thankfully the Godot docs provide another property - `InputEventKey.physical_keycode` - which correlates to a US QUERTY keyboard layout. This can be converted back to a `Key` enum for the current keyboard layout.
 
@@ -1215,7 +1215,7 @@ func get_texture(event: InputEvent) -> Texture2D:
 	return textures.get(OS.get_keycode_string(scancode), null)
 ```
 
-====== Controller Input Initial Focus
+======= Controller Input Initial Focus
 
 I also found that for controller input to work in menus, one `Control` should grab the focus initially so the controller focus knows where to start.
 
@@ -1286,6 +1286,8 @@ func _ready() -> void:
 
 ====== File Saving
 
+======= Video Settings
+
 The settings are saved using a `ConfigFile`. This is a key-value store which maps to an "ini" (non-standard) file format. This is saved in the user's home directory.
 
 ```gdscript
@@ -1315,7 +1317,63 @@ func _on_tree_exiting() -> void:
 	global.save_settings()
 ```
 
-#image("./images/development/options/saved.png", height: 120pt)
+#image("./images/development/options/saved-video.png", height: 120pt)
+
+======= Audio Settings
+
+The audio settings saving is similar to the video settings. The settings are saved as a mapping of bus index to volume in decibels.
+
+```gdscript
+# global.gd
+func save_settings() -> void:
+	var bus_count := AudioServer.bus_count
+	for bus in range(bus_count):
+		var db := AudioServer.get_bus_volume_db(bus)
+		settings.set_value("audio", str(bus), db)
+
+	# ...
+```
+
+#image("./images/development/options/saved-audio.png", height: 120pt)
+
+======= Control Settings
+
+The control settings need to store a key event and a joypad button event for each action. `store_event` is a separate function to reduce the size of `save_settings` as there were too many indents for it to be easily readable.
+
+```gdscript
+# global.gd
+func save_settings() -> void:
+	# ...
+
+	var actions := InputMap.get_actions()
+	for action in actions:
+		# ui_* are default UI traversal controls.
+		if not action.begins_with("ui_"):
+			var events := InputMap.action_get_events(action)
+			for event in events:
+				store_event(action, event)
+
+	# ...
+
+
+func store_event(action: StringName, event: InputEvent) -> void:
+	if event is InputEventKey:
+		# Similar to prompts/resources/keys.gd#get_texture
+		var key_event := event as InputEventKey
+		var keycode := key_event.keycode
+		if keycode == 0:
+			var physical := key_event.physical_keycode
+			keycode = DisplayServer.keyboard_get_keycode_from_physical(physical)
+
+		settings.set_value("controls", action + "_key", keycode)
+	elif event is InputEventJoypadButton:
+		var joypad_event := event as InputEventJoypadButton
+		var button := joypad_event.button_index
+
+		settings.set_value("controls", action + "_control", button)
+```
+
+#image("./images/development/options/saved-controls.png", height: 180pt)
 
 ====== Ongoing Testing
 
@@ -1340,3 +1398,42 @@ func _on_anti_aliasing_item_selected(index: int) -> void:
 		viewport.msaa_2d = Viewport.MSAA_8X
 		viewport.msaa_3d = Viewport.MSAA_8X
 ```
+
+====== File Loading
+
+======= Audio Settings
+
+The settings are now saved to `settings.ini`. They need to be loaded when the game is ran. This can be done in `Global._ready` by loading the settings from the file and setting the values in the game in the global singletons `DisplayServer`, `AudioServer` and `InputMap`.
+
+`SETTINGS_PATH` is moved to a constant as it is used in both `save_settings` and `load_settings`.
+
+```gdscript
+# global.gd
+const SETTINGS_PATH = "user://settings.ini"
+
+# ...
+
+
+func _ready() -> void:
+	load_settings()
+
+
+# ...
+
+
+func load_settings() -> void:
+	settings.load(SETTINGS_PATH)
+
+	var sections := settings.get_sections()
+
+	if sections.has("audio"):
+		var buses := settings.get_section_keys("audio")
+		for bus in buses:
+			var db: int = settings.get_value("audio", bus)
+			var index := int(bus)
+			AudioServer.set_bus_volume_db(index, db)
+```
+
+#image("./images/development/options/loaded-audio.png", height: 240pt)
+
+The options shown above in the screenshots are being loaded as decibels and stored in `AudioServer`.

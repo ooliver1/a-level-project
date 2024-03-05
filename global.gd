@@ -1,5 +1,7 @@
 extends Node
 
+const SETTINGS_PATH = "user://settings.ini"
+
 enum {WINDOW_WINDOWED, WINDOW_FULLSCREEN, WINDOW_BORDERLESS}
 enum {ANTIALIASING_DISABLED, ANTIALIASING_2X, ANTIALIASING_4X, ANTIALIASING_8X}
 
@@ -9,6 +11,10 @@ var previous_scene: String
 var listening_control: ControlInput
 ## Config file for holding modified settings.
 var settings := ConfigFile.new()
+
+
+func _ready() -> void:
+	load_settings()
 
 
 func get_window_mode() -> int:
@@ -38,7 +44,30 @@ func get_antialiasing() -> int:
 	return id
 
 
+func store_event(action: StringName, event: InputEvent) -> void:
+	if event is InputEventKey:
+		# Similar to prompts/resources/keys.gd#get_texture
+		var key_event := event as InputEventKey
+		var keycode := key_event.keycode
+		if keycode == 0:
+			var physical := key_event.physical_keycode
+			keycode = DisplayServer.keyboard_get_keycode_from_physical(physical)
+
+		settings.set_value("controls", action + "_key", keycode)
+	elif event is InputEventJoypadButton:
+		var joypad_event := event as InputEventJoypadButton
+		var button := joypad_event.button_index
+
+		settings.set_value("controls", action + "_control", button)
+
+
+
 func save_settings() -> void:
+	var bus_count := AudioServer.bus_count
+	for bus in range(bus_count):
+		var db := AudioServer.get_bus_volume_db(bus)
+		settings.set_value("audio", str(bus), db)
+
 	var vsync := DisplayServer.window_get_vsync_mode()
 	var video_mode := get_window_mode()
 	var video_antialiasing := get_antialiasing()
@@ -48,4 +77,25 @@ func save_settings() -> void:
 	settings.set_value("video", "antialiasing", video_antialiasing)
 	settings.set_value("video", "vsync", video_vsync_enabled)
 
-	settings.save("user://settings.ini")
+	var actions := InputMap.get_actions()
+	for action in actions:
+		# ui_* are default UI traversal controls.
+		if not action.begins_with("ui_"):
+			var events := InputMap.action_get_events(action)
+			for event in events:
+				store_event(action, event)
+
+	settings.save(SETTINGS_PATH)
+
+
+func load_settings() -> void:
+	settings.load(SETTINGS_PATH)
+
+	var sections := settings.get_sections()
+
+	if sections.has("audio"):
+		var buses := settings.get_section_keys("audio")
+		for bus in buses:
+			var db: int = settings.get_value("audio", bus)
+			var index := int(bus)
+			AudioServer.set_bus_volume_db(index, db)
