@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjs7r0f2he2fh"]
+
+[ext_resource type="PackedScene" uid="uid://bbr5e2cigpy4o" path="res://courses/models/Models/end.glb" id="1_br05r"]
+[ext_resource type="PackedScene" uid="uid://biawpqjd2wba7" path="res://courses/models/Models/ball-blue.glb" id="2_tslyf"]
+
+[node name="Course1" type="Node3D"]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="EndPlatform" parent="World" instance=ExtResource("1_br05r")]
+
+[node name="ball-blue2" parent="." instance=ExtResource("2_tslyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.156256, 0, 0.844425)

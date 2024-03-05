@@ -149,14 +149,17 @@ func load_settings() -> void:
 			for existing_event in InputMap.action_get_events(control):
 				if existing_event is InputEventKey:
 					InputMap.action_erase_event(control, existing_event)
+
 			var new_event := InputEventKey.new()
 			new_event.keycode = settings.get_value("controls", stored_control)
 			InputMap.action_add_event(control, new_event)
+
 		elif stored_control.ends_with("_control"):
 			var control := stored_control.trim_suffix("_control")
 			for existing_event in InputMap.action_get_events(control):
 				if existing_event is InputEventJoypadButton:
 					InputMap.action_erase_event(control, existing_event)
+
 			var new_event := InputEventJoypadButton.new()
 			new_event.button_index = settings.get_value("controls", stored_control)
 			InputMap.action_add_event(control, new_event)
