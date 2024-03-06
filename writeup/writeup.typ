@@ -552,7 +552,6 @@ The following script is a global autoload 'singleton' script which holds the pre
 
 ```gdscript
 # global.gd
-class_name GlobalScript
 extends Node
 
 ## The scene before switching, used for back/close menu buttons.
@@ -563,13 +562,9 @@ This is used in `main_menu.gd` (and soon to be used in `pause_menu.gd` too) to s
 
 ```gdscript
 # main_menu.gd
-@onready var global: GlobalScript = $"/root/Global"
-
-# [...]
-
 func _on_options_button_pressed() -> void:
 	var tree := get_tree()
-	global.previous_scene = tree.current_scene.scene_file_path
+	Global.previous_scene = tree.current_scene.scene_file_path
 	tree.change_scene_to_packed(options_scene)
 ```
 
@@ -578,13 +573,11 @@ In the options menu, the close button retrieves the previous scene from the glob
 ```gdscript
 extends Control
 
-@onready var global: GlobalScript = $"/root/Global"
-
 
 func _on_close_button_pressed() -> void:
-	# global.previous_scene could be either options or pause, this is set
+	# Global.previous_scene could be either options or pause, this is set
 	# before switching to options.
-	get_tree().change_scene_to_file(global.previous_scene)
+	get_tree().change_scene_to_file(Global.previous_scene)
 ```
 
 ===== Audio Settings
@@ -1024,7 +1017,6 @@ var previous_texture: Texture2D = null
 
 @onready var texture_rect: TextureRect = %TextureRect
 @onready var label: Label = %Label
-@onready var global: GlobalScript = $"/root/Global"
 
 
 func _on_pressed() -> void:
@@ -1038,9 +1030,9 @@ func _on_pressed() -> void:
 	label.text = "Waiting for input..."
 
 	listening = true
-	if global.listening_control != null:
-		global.listening_control.unlisten()
-	global.listening_control = self
+	if Global.listening_control != null:
+		Global.listening_control.unlisten()
+	Global.listening_control = self
 
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -1054,7 +1046,7 @@ func _on_gui_input(event: InputEvent) -> void:
 	texture_rect.texture = texture
 
 	listening = false
-	global.listening_control = null
+	Global.listening_control = null
 
 
 func _on_tree_exited() -> void:
@@ -1294,10 +1286,10 @@ func get_antialiasing() -> int:
 ```gdscript
 # video.gd
 func _ready() -> void:
-	var id: int = global.get_window_mode()
+	var id: int = Global.get_window_mode()
 	display_mode.select(id)
 
-	var antialiasing: int = global.get_antialiasing()
+	var antialiasing: int = Global.get_antialiasing()
 	anti_aliasing.select(id)
 
 	# ...
@@ -1333,7 +1325,7 @@ This is then called in `options.gd` when the options are being exited.
 ```gdscript
 # options.gd
 func _on_tree_exiting() -> void:
-	global.save_settings()
+	Global.save_settings()
 ```
 
 #image("./images/development/options/saved-video.png", height: 120pt)
@@ -1585,3 +1577,6 @@ This means that I now have a program with the main menu and options menu fully f
 - Quit button in the main menu
 - Configurable controls
 - Adjustable volume
+
+// TODO: move video stuff from `Global` into a new autoload `VideoSettings` (since `Video` clashes?)
+// and maybe settings to a `Settings` autoload too?

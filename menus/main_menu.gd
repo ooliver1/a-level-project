@@ -5,7 +5,6 @@ extends MarginContainer
 @export var options_scene: PackedScene
 
 @onready var play_button: Button = %PlayButton
-@onready var global: GlobalScript = $"/root/Global"
 
 
 func _ready() -> void:
@@ -19,7 +18,7 @@ func _on_quit_button_pressed() -> void:
 
 func _on_options_button_pressed() -> void:
 	var tree := get_tree()
-	global.previous_scene = tree.current_scene.scene_file_path
+	Global.previous_scene = tree.current_scene.scene_file_path
 	tree.change_scene_to_packed(options_scene)
 
 

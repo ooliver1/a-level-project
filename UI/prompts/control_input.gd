@@ -8,7 +8,6 @@ var previous_texture: Texture2D = null
 
 @onready var texture_rect: TextureRect = %TextureRect
 @onready var label: Label = %Label
-@onready var global: GlobalScript = $"/root/Global"
 
 
 func _on_pressed() -> void:
@@ -22,9 +21,9 @@ func _on_pressed() -> void:
 	label.text = "Waiting for input..."
 
 	listening = true
-	if global.listening_control != null:
-		global.listening_control.unlisten()
-	global.listening_control = self
+	if Global.listening_control != null:
+		Global.listening_control.unlisten()
+	Global.listening_control = self
 
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -40,7 +39,7 @@ func _on_gui_input(event: InputEvent) -> void:
 	texture_rect.texture = texture
 
 	listening = false
-	global.listening_control = null
+	Global.listening_control = null
 
 
 func _on_tree_exited() -> void:

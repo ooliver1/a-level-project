@@ -1,4 +1,3 @@
-class_name GlobalScript
 extends Node
 
 const SETTINGS_PATH = "user://settings.ini"

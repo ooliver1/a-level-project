@@ -3,14 +3,13 @@ extends MarginContainer
 @onready var display_mode: OptionButton = %DisplayMode
 @onready var anti_aliasing: OptionButton = %AntiAliasing
 @onready var v_sync: CheckBox = %VSync
-@onready var global: GlobalScript = $"/root/Global"
 
 
 func _ready() -> void:
-	var video_mode: int = global.get_window_mode()
+	var video_mode: int = Global.get_window_mode()
 	display_mode.select(video_mode)
 
-	var antialiasing: int = global.get_antialiasing()
+	var antialiasing: int = Global.get_antialiasing()
 	anti_aliasing.select(antialiasing)
 
 	var vsync := DisplayServer.window_get_vsync_mode()
@@ -21,11 +20,11 @@ func _ready() -> void:
 
 
 func _on_display_mode_item_selected(index: int) -> void:
-	global.set_window_mode(index)
+	Global.set_window_mode(index)
 
 
 func _on_anti_aliasing_item_selected(index: int) -> void:
-	global.set_antialiasing(index)
+	Global.set_antialiasing(index)
 
 
 func _on_vsync_toggled(toggled_on: bool) -> void:
