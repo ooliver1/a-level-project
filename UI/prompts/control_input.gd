@@ -8,7 +8,7 @@ var previous_texture: Texture2D = null
 
 @onready var texture_rect: TextureRect = %TextureRect
 @onready var label: Label = %Label
-@onready var global: Global = $"/root/Global"
+@onready var global: GlobalScript = $"/root/Global"
 
 
 func _on_pressed() -> void:

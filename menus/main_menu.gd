@@ -5,7 +5,7 @@ extends MarginContainer
 @export var options_scene: PackedScene
 
 @onready var play_button: Button = %PlayButton
-@onready var global: Global = $"/root/Global"
+@onready var global: GlobalScript = $"/root/Global"
 
 
 func _ready() -> void:

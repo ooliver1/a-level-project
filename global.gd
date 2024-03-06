@@ -1,3 +1,4 @@
+class_name GlobalScript
 extends Node
 
 const SETTINGS_PATH = "user://settings.ini"
@@ -12,8 +13,10 @@ var listening_control: ControlInput
 ## Config file for holding modified settings.
 var settings := ConfigFile.new()
 
+
 func _ready() -> void:
 	load_settings()
+
 
 func get_window_mode() -> int:
 	var mode := DisplayServer.window_get_mode()
@@ -25,6 +28,7 @@ func get_window_mode() -> int:
 		id = WINDOW_BORDERLESS
 
 	return id
+
 
 func get_antialiasing() -> int:
 	# msaa_2d and msaa_3d are the same here
@@ -38,6 +42,7 @@ func get_antialiasing() -> int:
 		id = ANTIALIASING_8X
 
 	return id
+
 
 func store_event(action: StringName, event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -54,6 +59,7 @@ func store_event(action: StringName, event: InputEvent) -> void:
 		var button := joypad_event.button_index
 
 		settings.set_value("controls", action + "_control", button)
+
 
 func set_window_mode(mode: int) -> void:
 	if mode == 0:
@@ -75,6 +81,7 @@ func set_window_mode(mode: int) -> void:
 		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
 		DisplayServer.window_set_position(Vector2i(0, 0))
 
+
 func set_antialiasing(mode: int) -> void:
 	var viewport := get_viewport()
 
@@ -90,6 +97,7 @@ func set_antialiasing(mode: int) -> void:
 	elif mode == 3:
 		viewport.msaa_2d = Viewport.MSAA_8X
 		viewport.msaa_3d = Viewport.MSAA_8X
+
 
 func save_settings() -> void:
 	var bus_count := AudioServer.bus_count
@@ -115,6 +123,7 @@ func save_settings() -> void:
 				store_event(action, event)
 
 	settings.save(SETTINGS_PATH)
+
 
 func load_settings() -> void:
 	var err := settings.load(SETTINGS_PATH)

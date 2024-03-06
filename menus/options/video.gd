@@ -3,7 +3,7 @@ extends MarginContainer
 @onready var display_mode: OptionButton = %DisplayMode
 @onready var anti_aliasing: OptionButton = %AntiAliasing
 @onready var v_sync: CheckBox = %VSync
-@onready var global: Global = $"/root/Global"
+@onready var global: GlobalScript = $"/root/Global"
 
 
 func _ready() -> void:

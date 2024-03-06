@@ -1,6 +1,6 @@
 extends Control
 
-@onready var global: Global = $"/root/Global"
+@onready var global: GlobalScript = $"/root/Global"
 @onready var tab_container: TabContainer = $TabContainer
 
 

@@ -552,22 +552,18 @@ The following script is a global autoload 'singleton' script which holds the pre
 
 ```gdscript
 # global.gd
-extends Control
+class_name GlobalScript
+extends Node
 
-@onready var global: Global = $"/root/Global"
-
-
-func _on_close_button_pressed() -> void:
-	# global.previous_scene could be either options or pause, this is set
-	# before switching to options.
-	get_tree().change_scene_to_file(global.previous_scene)
+## The scene before switching, used for back/close menu buttons.
+var previous_scene: String
 ```
 
 This is used in `main_menu.gd` (and soon to be used in `pause_menu.gd` too) to set the previous scene before switching to the options scene. This is so the options scene knows which scene to switch back to when the exit button is pressed.
 
 ```gdscript
 # main_menu.gd
-@onready var global: Global = $"/root/Global"
+@onready var global: GlobalScript = $"/root/Global"
 
 # [...]
 
@@ -582,7 +578,7 @@ In the options menu, the close button retrieves the previous scene from the glob
 ```gdscript
 extends Control
 
-@onready var global: Global = $"/root/Global"
+@onready var global: GlobalScript = $"/root/Global"
 
 
 func _on_close_button_pressed() -> void:
@@ -1004,13 +1000,13 @@ And this is similar with controllers, where I have created multiple resource fil
 
 To ensure only one button can be waiting for input, I have added a property to `global.gd` to share the currently listening prompt.
 
-====== Buttons
-
 ```gdscript
 # global.gd
-## The control input that is currently listening
+## The control input that is currently listening.
 var listening_control: ControlInput
 ```
+
+====== Buttons
 
 I then created a generic input prompt script which can be used for both keyboard and controller inputs. `get_texture` is left unimplemented as that is the part which differs depending on keyboard or controller inputs.
 
@@ -1028,7 +1024,7 @@ var previous_texture: Texture2D = null
 
 @onready var texture_rect: TextureRect = %TextureRect
 @onready var label: Label = %Label
-@onready var global: Global = $"/root/Global"
+@onready var global: GlobalScript = $"/root/Global"
 
 
 func _on_pressed() -> void:
@@ -1266,6 +1262,8 @@ Since the video mode will be retrieved here, I have moved that logic to `global.
 enum {WINDOW_WINDOWED, WINDOW_FULLSCREEN, WINDOW_BORDERLESS}
 enum {ANTIALIASING_DISABLED, ANTIALIASING_2X, ANTIALIASING_4X, ANTIALIASING_8X}
 
+# ...
+
 
 func get_window_mode() -> int:
 	var mode := DisplayServer.window_get_mode()
@@ -1437,9 +1435,6 @@ const SETTINGS_PATH = "user://settings.ini"
 
 func _ready() -> void:
 	load_settings()
-
-
-# ...
 
 
 func load_settings() -> void:
