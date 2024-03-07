@@ -1580,3 +1580,19 @@ This means that I now have a program with the main menu and options menu fully f
 
 // TODO: move video stuff from `Global` into a new autoload `VideoSettings` (since `Video` clashes?)
 // and maybe settings to a `Settings` autoload too?
+
+// TODO: no description of stages here as that should be in the design section.
+
+=== Stage 2: Course Creation & Initial Physics
+
+==== Ball Placement
+
+Firstly, I wanted to test to make sure my models of the course and ball work okay with Godot.
+
+I created a scene with a `Camera3D`, and programatically added a ball just above a `Start` platform.
+
+#image("./images/development/course/test.png", height: 240pt)
+
+This worked, the ball went down the slope and off the edge (as there is no ground). This is a good start, this means that my `RigidBody3D` ball and `StaticBody3D` platforms have the correct collision meshes/boxes.
+
+#image("./images/development/course/test-success.png", height: 240pt)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cjs7r0f2he2fh"]
 
 [ext_resource type="PackedScene" uid="uid://cwbukec50b5hp" path="res://courses/scenes/start.tscn" id="1_k3ga3"]
-[ext_resource type="Script" path="res://courses/World.gd" id="1_r5s7p"]
+[ext_resource type="Script" path="res://courses/world.gd" id="1_r5s7p"]
 
 [sub_resource type="Environment" id="Environment_42lcv"]
 ambient_light_color = Color(1, 1, 1, 1)
