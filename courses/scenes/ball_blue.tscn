@@ -1,6 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8q65gyl61cuj"]
+[gd_scene load_steps=7 format=3 uid="uid://b8q65gyl61cuj"]
 
 [ext_resource type="Texture2D" uid="uid://d2ym4f2kqc7eh" path="res://courses/models/Textures/colormap.png" id="1_2lbue"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4d80b"]
+rough = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgm8t"]
 resource_name = "colormap"
@@ -45,9 +48,12 @@ shadow_mesh = SubResource("ArrayMesh_c1rtr")
 [sub_resource type="SphereShape3D" id="SphereShape3D_r56bd"]
 radius = 0.035
 
-[node name="RigidBody3D" type="RigidBody3D"]
+[node name="BallBlue" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_4d80b")
+linear_damp = 0.5
+angular_damp = 0.5
 
-[node name="BallBlue" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_xqpag")
 skeleton = NodePath("")
 

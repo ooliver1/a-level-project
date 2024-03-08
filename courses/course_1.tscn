@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjs7r0f2he2fh"]
+[gd_scene load_steps=6 format=3 uid="uid://cjs7r0f2he2fh"]
 
 [ext_resource type="PackedScene" uid="uid://cwbukec50b5hp" path="res://courses/scenes/start.tscn" id="1_k3ga3"]
 [ext_resource type="Script" path="res://courses/world.gd" id="1_r5s7p"]
+[ext_resource type="PackedScene" uid="uid://cuqgk74ln6q63" path="res://courses/scenes/straight.tscn" id="3_2w6uc"]
+[ext_resource type="PackedScene" uid="uid://bss6tq3nnyp7c" path="res://courses/scenes/hole_square.tscn" id="4_g06r1"]
 
 [sub_resource type="Environment" id="Environment_42lcv"]
 ambient_light_color = Color(1, 1, 1, 1)
@@ -14,12 +16,25 @@ environment = SubResource("Environment_42lcv")
 [node name="View" type="Node3D" parent="."]
 
 [node name="Camera" type="Camera3D" parent="View"]
-transform = Transform3D(0.417867, 0.301771, -0.856926, 0, 0.943223, 0.332161, 0.908508, -0.138799, 0.394142, -0.510648, 0.263644, 0.118754)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.152789, 1.54996, 0.96535)
 
 [node name="World" type="Node3D" parent="."]
 script = ExtResource("1_r5s7p")
 
 [node name="Start" parent="World" instance=ExtResource("1_k3ga3")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Straight" parent="World" instance=ExtResource("3_2w6uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Straight2" parent="World" instance=ExtResource("3_2w6uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="Straight3" parent="World" instance=ExtResource("3_2w6uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="HoleSquare" parent="World" instance=ExtResource("4_g06r1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
