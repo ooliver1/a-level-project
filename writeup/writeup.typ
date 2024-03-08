@@ -1,4 +1,6 @@
 #import "./palettes/xcolor.typ": xcolor
+#import "@preview/fletcher:0.4.2" as fletcher: node, edge, shapes
+#import "@preview/cetz:0.2.1" as cetz
 #show heading.where(level: 1): set text(24pt)
 #show heading.where(level: 2): set text(20pt)
 #show heading.where(level: 3): set text(18pt)
@@ -499,6 +501,64 @@ The sliders are now more visible, and the font has been changed to differentiate
 #image("./images/design/hud-improved.png", height: 240pt)
 
 The scoreboard content text is now bigger, and there is a physical button to access the pause menu.
+
+=== Assets
+
+==== UI Theme
+
+#image("./images/design/ui-pack.png")
+
+This Godot UI theme is based off of #link("https://www.kenney.nl/assets/ui-pack", [Kenney's UI Pack]). It is a simple and clean UI with large buttons and high contrast colours. This is useful for the game as it is simple to understand and looks playful. It is also free to use and modify, which I will be doing to update it from Godot 3 to Godot 4.2.
+
+https://azagaya.itch.io/kenneys-ui-theme
+
+==== 3D Models
+
+#image("./images/design/3d-models.png")
+
+These 3D models for the golf course are from the same creator as the UI theme base. There are many separate modular sections to choose from, and they are simple and clean. They also are CC0 licensed like the UI pack, so I can use and modify them for free.
+
+https://www.kenney.nl/assets/minigolf-kit
+
+==== Control Inputs
+
+#image("./images/design/control-inputs.png")
+
+I will be using these images as the content of the controls menu. They follow the same theme as the UI pack. There are many different supported setups such as Xbox, PlayStation, and keyboard and mouse.
+
+https://www.kenney.nl/assets/input-prompts
+
+=== Algorithms
+
+==== User Interface
+
+===== Options
+
+The options menu does not take much complex scripting to implement. The most complex element is saving the settings to a file, and loading them when the game starts. Set properties refers to using Godot singletons to set the settings in game, which can also be retrieved later to save to a file.
+
+#fletcher.diagram(
+	node-stroke: 1pt,
+	spacing: (10mm, 10mm), {
+	import fletcher.shapes: *
+	node((0, 0), "Start", shape: shapes.pill)
+	edge("-|>")
+	node((0, 1), "Load settings", shape: shapes.rect)
+	edge("-|>")
+	node((0, 2), "Set slider and dropdown values", shape: shapes.rect)
+	edge("-|>")
+	node((0, 3), "Setting
+	modified?", shape: shapes.diamond)
+	edge((0, 3), "r", "-|>", "Yes")
+	edge((0, 3), "d", "-|>", "No")
+	node((1, 3), "Set properties in game", shape: shapes.rect)
+	edge((1, 3), (1, 3.5), (0, 3.5), (0, 4), "-|>")
+	node((0, 4), "Exited?", shape: shapes.diamond)
+	edge("r", "-|>", "Yes")
+	edge("l,u,r", "-|>", "No")
+	node((1, 4), "Save settings", shape: shapes.rect)
+	edge("-|>")
+	node((1, 5), "End", shape: shapes.pill)
+})
 
 == Development
 
