@@ -8,4 +8,4 @@ func _ready() -> void:
 	add_child(ball)
 	ball.position = Vector3(0, 0.2, 1)
 	await get_tree().create_timer(1).timeout
-	ball.apply_central_impulse(Vector3(0.5, 0, 2.5))
+	ball.apply_central_impulse(Vector3(1.5, 0, 3))
