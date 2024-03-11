@@ -16,7 +16,7 @@ environment = SubResource("Environment_42lcv")
 [node name="View" type="Node3D" parent="."]
 
 [node name="Camera" type="Camera3D" parent="View"]
-transform = Transform3D(0.99352, -0.0144925, -0.112726, -4.89242e-08, 0.991837, -0.127515, 0.113654, 0.126688, 0.98541, -0.271456, 0.461453, 4.76372)
+transform = Transform3D(0.999781, -0.0209424, -3.66595e-08, 3.715e-08, 2.3034e-08, 1, -0.0209424, -0.999781, 2.38069e-08, -0.0654109, 4.4653, 2.84183)
 
 [node name="World" type="Node3D" parent="."]
 script = ExtResource("1_r5s7p")
