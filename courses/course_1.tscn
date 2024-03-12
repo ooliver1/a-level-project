@@ -1,9 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjs7r0f2he2fh"]
+[gd_scene load_steps=29 format=3 uid="uid://cjs7r0f2he2fh"]
 
 [ext_resource type="PackedScene" uid="uid://cwbukec50b5hp" path="res://courses/scenes/start.tscn" id="1_k3ga3"]
 [ext_resource type="Script" path="res://courses/world.gd" id="1_r5s7p"]
 [ext_resource type="PackedScene" uid="uid://cuqgk74ln6q63" path="res://courses/scenes/straight.tscn" id="3_2w6uc"]
 [ext_resource type="PackedScene" uid="uid://bss6tq3nnyp7c" path="res://courses/scenes/hole_square.tscn" id="4_g06r1"]
+[ext_resource type="PackedScene" uid="uid://m64swqdqotej" path="res://courses/scenes/round_corner_a.tscn" id="5_54ily"]
+[ext_resource type="PackedScene" uid="uid://dgoni1paiakac" path="res://courses/scenes/wall_left.tscn" id="6_ak5sp"]
+[ext_resource type="PackedScene" uid="uid://hk6pjhwq503f" path="res://courses/scenes/hill_round.tscn" id="7_3oblx"]
+[ext_resource type="PackedScene" uid="uid://dbbgxua4fgn0m" path="res://courses/scenes/square_corner_a.tscn" id="8_2ctbr"]
+[ext_resource type="PackedScene" uid="uid://cdos3yp1j3hoq" path="res://courses/scenes/round_large_corner.tscn" id="9_hih1x"]
+[ext_resource type="PackedScene" uid="uid://g5tcgyy1tw0" path="res://courses/scenes/hole_round.tscn" id="10_bpc5a"]
+[ext_resource type="PackedScene" uid="uid://dxrr4o228sq3k" path="res://courses/scenes/skew_large_corner.tscn" id="11_ljs54"]
+[ext_resource type="PackedScene" uid="uid://0f84ybme3ioi" path="res://courses/scenes/corner.tscn" id="12_jiect"]
+[ext_resource type="PackedScene" uid="uid://dqeub6c4b60lw" path="res://courses/scenes/walls_to_open.tscn" id="13_07e45"]
+[ext_resource type="PackedScene" uid="uid://ct62qecmnrnbi" path="res://courses/scenes/side.tscn" id="14_617wk"]
+[ext_resource type="PackedScene" uid="uid://dmwdsh1xwkho0" path="res://courses/scenes/obstacle_diamond.tscn" id="15_f5pxb"]
+[ext_resource type="PackedScene" uid="uid://131dg7ccwnog" path="res://courses/scenes/narrow_square.tscn" id="16_831wa"]
+[ext_resource type="PackedScene" uid="uid://cnvfw44qk6gm2" path="res://courses/scenes/hill_corner.tscn" id="17_l77y8"]
+[ext_resource type="PackedScene" uid="uid://b5x2stb7i6qbc" path="res://courses/scenes/skew_corner.tscn" id="18_bq5br"]
+[ext_resource type="PackedScene" uid="uid://dx1ipbsjtr28a" path="res://courses/scenes/ramp_d.tscn" id="19_t2203"]
+[ext_resource type="PackedScene" uid="uid://ccny1qbmvrlcc" path="res://courses/scenes/ramp.tscn" id="19_xvnh8"]
+[ext_resource type="PackedScene" uid="uid://du26gqvhwd3w" path="res://courses/scenes/castle.tscn" id="20_lx2r7"]
+[ext_resource type="PackedScene" uid="uid://bk1fpo8mb7h5w" path="res://courses/scenes/supports.tscn" id="21_p5pe4"]
+[ext_resource type="PackedScene" uid="uid://tolqgnv1gbie" path="res://courses/scenes/gap.tscn" id="22_3j06c"]
+[ext_resource type="PackedScene" uid="uid://bwa4xt4qy0pil" path="res://courses/scenes/end.tscn" id="23_bsjyd"]
+[ext_resource type="PackedScene" uid="uid://ccd7ts2r7idyx" path="res://courses/scenes/skew_large_corner_open.tscn" id="25_nko11"]
+[ext_resource type="PackedScene" uid="uid://boms8mk3l5jo6" path="res://courses/scenes/round_corner_b.tscn" id="26_qe0xa"]
+[ext_resource type="PackedScene" uid="uid://by0wa7ee4cmgr" path="res://courses/scenes/round_corner_c.tscn" id="27_5opuf"]
 
 [sub_resource type="Environment" id="Environment_42lcv"]
 ambient_light_color = Color(1, 1, 1, 1)
@@ -16,25 +39,146 @@ environment = SubResource("Environment_42lcv")
 [node name="View" type="Node3D" parent="."]
 
 [node name="Camera" type="Camera3D" parent="View"]
-transform = Transform3D(0.999781, -0.0209424, -3.66595e-08, 3.715e-08, 2.3034e-08, 1, -0.0209424, -0.999781, 2.38069e-08, -0.0654109, 4.4653, 2.84183)
+transform = Transform3D(0.999781, -0.0209424, -3.66595e-08, 3.715e-08, 2.3034e-08, 1, -0.0209424, -0.999781, 2.38069e-08, -0.0657055, 4.46543, 2.84231)
 
 [node name="World" type="Node3D" parent="."]
 script = ExtResource("1_r5s7p")
 
-[node name="Start" parent="World" instance=ExtResource("1_k3ga3")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+[node name="Hole1" type="Node3D" parent="World"]
 
-[node name="Straight" parent="World" instance=ExtResource("3_2w6uc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+[node name="Start" parent="World/Hole1" instance=ExtResource("1_k3ga3")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.5, 0, 0)
 
-[node name="Straight2" parent="World" instance=ExtResource("3_2w6uc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+[node name="Straight" parent="World/Hole1" instance=ExtResource("3_2w6uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 1)
 
-[node name="Straight3" parent="World" instance=ExtResource("3_2w6uc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+[node name="Straight2" parent="World/Hole1" instance=ExtResource("3_2w6uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 2)
 
-[node name="HoleSquare" parent="World" instance=ExtResource("4_g06r1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+[node name="Straight3" parent="World/Hole1" instance=ExtResource("3_2w6uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 3)
+
+[node name="HoleSquare" parent="World/Hole1" instance=ExtResource("4_g06r1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 4)
+
+[node name="Node3D" type="Node3D" parent="World"]
+
+[node name="Start" parent="World/Node3D" instance=ExtResource("1_k3ga3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, 5.5)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
+
+[node name="RoundCornerA" parent="." instance=ExtResource("5_54ily")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 5.5)
+
+[node name="WallLeft" parent="." instance=ExtResource("6_ak5sp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4.5)
+
+[node name="HillRound" parent="." instance=ExtResource("7_3oblx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3.5)
+
+[node name="SquareCornerA" parent="." instance=ExtResource("8_2ctbr")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2, 0, 2.5)
+
+[node name="RoundLargeCorner" parent="." instance=ExtResource("9_hih1x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 2)
+
+[node name="HoleRound" parent="." instance=ExtResource("10_bpc5a")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4, 0, 0.5)
+
+[node name="Start" parent="." instance=ExtResource("1_k3ga3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+
+[node name="SkewLargeCorner" parent="." instance=ExtResource("11_ljs54")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3, 0, -1.5)
+
+[node name="Corner" parent="." instance=ExtResource("12_jiect")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.5, 0, -1)
+
+[node name="Corner3" parent="." instance=ExtResource("12_jiect")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, -1)
+
+[node name="Corner4" parent="." instance=ExtResource("12_jiect")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.5, 0, -3)
+
+[node name="Corner2" parent="." instance=ExtResource("12_jiect")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.5, 0, -3)
+
+[node name="WallsToOpen" parent="." instance=ExtResource("13_07e45")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.5, 0, -2)
+
+[node name="WallsToOpen2" parent="." instance=ExtResource("13_07e45")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.5, 0, -2)
+
+[node name="Side" parent="." instance=ExtResource("14_617wk")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.5, 0, -1)
+
+[node name="Side2" parent="." instance=ExtResource("14_617wk")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 0, -3)
+
+[node name="ObstacleDiamond" parent="." instance=ExtResource("15_f5pxb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -2)
+
+[node name="NarrowSquare" parent="." instance=ExtResource("16_831wa")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.5, 0, -2)
+
+[node name="HillCorner" parent="." instance=ExtResource("17_l77y8")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.5, 0, -2)
+
+[node name="Straight" parent="." instance=ExtResource("3_2w6uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, -1)
+
+[node name="SkewCorner" parent="." instance=ExtResource("18_bq5br")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 0)
+
+[node name="HoleSquare" parent="." instance=ExtResource("4_g06r1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, 0, 0)
+
+[node name="Start2" parent="." instance=ExtResource("1_k3ga3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.5, 0, 1)
+
+[node name="Ramp" parent="." instance=ExtResource("19_xvnh8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 2)
+
+[node name="Ramp2" parent="." instance=ExtResource("19_xvnh8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0.5, 3)
+
+[node name="Castle" parent="." instance=ExtResource("20_lx2r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1, 4)
+
+[node name="Supports" parent="." instance=ExtResource("21_p5pe4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 4)
+
+[node name="SkewCorner2" parent="." instance=ExtResource("18_bq5br")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1, 5)
+
+[node name="Gap" parent="." instance=ExtResource("22_3j06c")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 1, 5)
+
+[node name="End" parent="." instance=ExtResource("23_bsjyd")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.5, 1, 5)
+
+[node name="Supports2" parent="." instance=ExtResource("21_p5pe4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 5)
+
+[node name="RampD" parent="." instance=ExtResource("19_t2203")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 5)
+
+[node name="Corner5" parent="." instance=ExtResource("12_jiect")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.5, 0, 4)
+
+[node name="Side3" parent="." instance=ExtResource("14_617wk")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.5, 0, 4)
+
+[node name="SkewLargeCornerOpen" parent="." instance=ExtResource("25_nko11")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, 2.5)
+
+[node name="RoundCornerB" parent="." instance=ExtResource("26_qe0xa")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 0, 4)
+
+[node name="HoleSquare2" parent="." instance=ExtResource("4_g06r1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 0, 3)
+
+[node name="RoundCornerC" parent="." instance=ExtResource("27_5opuf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 0, 2)
