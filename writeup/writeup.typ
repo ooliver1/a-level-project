@@ -598,8 +598,6 @@ The `play_scene` looks like this:
 
 #image("./images/development/play.png", height: 240pt)
 
-// TODO: mention tested with audioplayer for below
-
 ==== Options Menu
 
 The options menu is also designed with the Godot 2D editor. The tabs are nodes underneath a `TabContainer` which handles switching the tabs. I added an exit button on the top right to go back to the previous scene - which can be either the main menu or pause menu. As the scene to switch back to depends on the previous scene, this is handled via a global script.
@@ -1673,3 +1671,5 @@ This worked, the ball went down the slope and off the edge (as there is no groun
 ==== First Course Design
 
 The first hole will just be like a practice hole, a simple straight towards an open hole. This also makes it easy for me to test the physics of the ball and the course with only perpendicular surfaces.
+
+#image("./images/development/course/hole-1.png")

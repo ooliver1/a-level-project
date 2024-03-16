@@ -6,6 +6,11 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		var normal := collision.get_normal()
 
+		print(normal)
+		print(collision.get_angle())
+		if normal.y != 0 and normal.y != 1:
+			return
+
 		# Keep the ball on the ground, not fall through.
 		if normal.y != 0:
 			linear_velocity.y = 0
