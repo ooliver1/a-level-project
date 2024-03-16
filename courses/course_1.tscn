@@ -49,6 +49,7 @@ environment = SubResource("Environment_42lcv")
 
 [node name="Camera" type="Camera3D" parent="View"]
 transform = Transform3D(0.118255, -0.325184, 0.938228, 0.0198042, 0.945442, 0.325189, -0.992786, -0.0198743, 0.118243, 3.74922, 0.609299, 3.79863)
+visible = false
 
 [node name="World" type="Node3D" parent="."]
 script = ExtResource("1_r5s7p")
@@ -71,7 +72,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 3)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 4)
 
 [node name="Hole2" type="Node3D" parent="World"]
-visible = false
 
 [node name="Start" parent="World/Hole2" instance=ExtResource("1_k3ga3")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, 5.5)
@@ -95,7 +95,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 2)
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4, 0, 0.5)
 
 [node name="Hole3" type="Node3D" parent="World"]
-visible = false
 
 [node name="Start" parent="World/Hole3" instance=ExtResource("1_k3ga3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
@@ -146,7 +145,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 0)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, 0, 0)
 
 [node name="Hole4" type="Node3D" parent="World"]
-visible = false
 
 [node name="Start2" parent="World/Hole4" instance=ExtResource("1_k3ga3")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.5, 0, 1)
@@ -197,7 +195,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 0
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 0, 2)
 
 [node name="Hole5" type="Node3D" parent="World"]
-visible = false
 
 [node name="Start3" parent="World/Hole5" instance=ExtResource("1_k3ga3")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, 0, 3)
@@ -245,7 +242,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0, 4)
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 10.5, 0, 3)
 
 [node name="Hole6" type="Node3D" parent="World"]
-visible = false
 
 [node name="Start4" parent="World/Hole6" instance=ExtResource("1_k3ga3")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.5, 0, 1.5)
