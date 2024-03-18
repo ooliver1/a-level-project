@@ -1,7 +1,7 @@
 extends RigidBody3D
 
 
-@export var MIN_VELOCITY: float = 0.3
+@export var MIN_VELOCITY: float = 0.03
 
 
 func _physics_process(delta: float) -> void:
