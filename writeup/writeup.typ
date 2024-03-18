@@ -1670,6 +1670,67 @@ This worked, the ball went down the slope and off the edge (as there is no groun
 
 ==== First Course Design
 
+===== Hole 1
+
 The first hole will just be like a practice hole, a simple straight towards an open hole. This also makes it easy for me to test the physics of the ball and the course with only perpendicular surfaces.
 
 #image("./images/development/course/hole-1.png")
+
+====== Wall Collisions
+
+The ball needed to bounce off the horizontal walls of this hole. I overrode the `_physics_process` method of the ball as the default is to `move_and_slide` along the walls. The correction for `linear_velocity.y` to be `0` is because I would find the ball fall through and collide with the intersections of the floor collision mesh.
+
+```gdscript
+# ball.gd
+extends RigidBody3D
+
+
+func _physics_process(delta: float) -> void:
+	var collision := move_and_collide(linear_velocity * delta)
+	if collision:
+		var normal := collision.get_normal()
+
+		# Keep the ball on the ground, not fall through.
+		if normal.y != 0:
+			linear_velocity.y = 0
+
+		# Bounce off walls.
+		if normal.x != 0 or normal.z != 0:
+			var new_velocity := linear_velocity.bounce(normal)
+			linear_velocity.x = new_velocity.x
+			linear_velocity.z = new_velocity.z
+```
+
+====== Stop Rolling
+
+The ball would continue moving, slowing down due to angular and linear velocity dampening but not slowing down enough to stop completely. I added an exported variable to the ball to set the minimum velocity, and if the ball's velocity is below this, it is set to `Vector3.ZERO`.
+
+```gdscript
+@export var MIN_VELOCITY: float = 0.3
+
+
+func _physics_process(delta: float) -> void:
+	# ...
+
+	# Stop the ball rolling forever.
+	if linear_velocity.length() < MIN_VELOCITY:
+		linear_velocity = Vector3.ZERO
+```
+
+===== Hole 2
+
+The second hole will be a bit more complex, with a bend and a hill. This will test the ball's ability to go up and down slopes, and around corners.
+
+#image("./images/development/course/hole-2.png")
+
+====== Slope Collisions
+
+As the ball goes up and down slopes, `move_and_collide` does not work as expected as sometimes it may collide with the slope itself. I found that simply detecting if the collision is not horizontal and ignoring it if so, works well.
+
+```gdscript
+func _physics_process(delta: float) -> void:
+	# ...
+
+		if normal.y != 0 and normal.y != 1:
+			return
+```

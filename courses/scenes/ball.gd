@@ -1,13 +1,14 @@
 extends RigidBody3D
 
 
+@export var MIN_VELOCITY: float = 0.3
+
+
 func _physics_process(delta: float) -> void:
 	var collision := move_and_collide(linear_velocity * delta)
 	if collision:
 		var normal := collision.get_normal()
 
-		print(normal)
-		print(collision.get_angle())
 		if normal.y != 0 and normal.y != 1:
 			return
 
@@ -22,5 +23,5 @@ func _physics_process(delta: float) -> void:
 			linear_velocity.z = new_velocity.z
 
 	# Stop the ball rolling forever.
-	if linear_velocity.length() < 0.03:
+	if linear_velocity.length() < MIN_VELOCITY:
 		linear_velocity = Vector3.ZERO
