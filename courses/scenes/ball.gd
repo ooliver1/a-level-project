@@ -9,11 +9,6 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		var normal := collision.get_normal()
 
-		# Don't fall through the floor.
-		if normal.y == 1:
-			linear_velocity.y = 0
-			return
-
 		# Bounce off walls.
 		if normal.x != 0 or normal.z != 0:
 			linear_velocity = linear_velocity.bounce(normal) * ELASTICITY

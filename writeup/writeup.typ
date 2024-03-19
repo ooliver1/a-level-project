@@ -1796,3 +1796,15 @@ func _physics_process(delta: float) -> void:
 
 	# ...
 ```
+
+====== Continuous Collision Detection
+
+#image("./images/development/course/continuous-cd.png", height: 160pt)
+
+I found the "Continuous CD" setting in the `RigidBody3D` node, which is used to prevent the ball from clipping through collision boxes. It does this by predicting collisions before they happen, which works well for small, fast moving objects. This allowed me to remove the following code:
+
+```gdscript
+if normal.y == 1:
+	linear_velocity.y = 0
+	return
+```
