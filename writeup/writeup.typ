@@ -1754,3 +1754,45 @@ func _physics_process(delta: float) -> void:
 
 	# ...
 ```
+
+===== Hole 3
+
+#image("./images/development/course/hole-3.png")
+
+This hole has nothing different in terms of physics, as the slope is handled fine just like the previous hole's hill.
+
+===== Hole 4
+
+====== Slope Climbing
+
+Hole 3 has nothing extra interesting, but hole 4 has a ramp up to the main part of the hole.
+
+#image("./images/development/course/hole-4.png")
+
+During testing of the ball rolling up the slope, at a high enough velocity the ball would clip through the ground. I found that this is because when it collides with the ground, `normal.y` is not `0` so `linear_velocity.y` would be set to `0` and disallow the ball to climb the slope.
+
+To solve this I only compensate for falling through the floor when `normal.y == 0`, otherwise all components of `linear_velocity` would be bounced on a collision.
+
+```gdscript
+extends RigidBody3D
+
+@export var MIN_VELOCITY: float = 0.03
+@export var ELASTICITY: float = 0.9
+
+
+func _physics_process(delta: float) -> void:
+	var collision := move_and_collide(linear_velocity * delta)
+	if collision:
+		var normal := collision.get_normal()
+
+		# Don't fall through the floor.
+		if normal.y == 1:
+			linear_velocity.y = 0
+			return
+
+		# Bounce off walls.
+		if normal.x != 0 or normal.z != 0:
+			linear_velocity = linear_velocity.bounce(normal) * ELASTICITY
+
+	# ...
+```

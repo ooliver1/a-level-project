@@ -49,6 +49,7 @@ environment = SubResource("Environment_42lcv")
 
 [node name="Camera" type="Camera3D" parent="View"]
 transform = Transform3D(-0.18354, 0, 0.983012, 0, 1, 0, -0.983012, 0, -0.18354, 7.90621, 0.5, 1.41391)
+visible = false
 
 [node name="World" type="Node3D" parent="."]
 script = ExtResource("1_r5s7p")
@@ -194,6 +195,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 0
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 0, 2)
 
 [node name="Hole5" type="Node3D" parent="World"]
+visible = false
 
 [node name="Start3" parent="World/Hole5" instance=ExtResource("1_k3ga3")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, 0, 3)
@@ -241,6 +243,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0, 4)
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 10.5, 0, 3)
 
 [node name="Hole6" type="Node3D" parent="World"]
+visible = false
 
 [node name="Start4" parent="World/Hole6" instance=ExtResource("1_k3ga3")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.5, 0, 1.5)
