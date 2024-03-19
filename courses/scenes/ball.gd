@@ -2,6 +2,7 @@ extends RigidBody3D
 
 
 @export var MIN_VELOCITY: float = 0.03
+@export var ELASTICITY: float = 0.9
 
 
 func _physics_process(delta: float) -> void:
@@ -18,7 +19,7 @@ func _physics_process(delta: float) -> void:
 
 		# Bounce off walls.
 		if normal.x != 0 or normal.z != 0:
-			var new_velocity := linear_velocity.bounce(normal)
+			var new_velocity := linear_velocity.bounce(normal) * ELASTICITY
 			linear_velocity.x = new_velocity.x
 			linear_velocity.z = new_velocity.z
 

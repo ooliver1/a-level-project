@@ -1734,3 +1734,23 @@ func _physics_process(delta: float) -> void:
 		if normal.y != 0 and normal.y != 1:
 			return
 ```
+
+====== Inelastic Collisions
+
+Collisions with a wall should not bounce back with the same velocity, as this is not realistic. I added a `elasticity` property to the ball to control how much it bounces off walls.
+
+```gdscript
+@export var ELASTICITY: float = 0.9
+
+
+func _physics_process(delta: float) -> void:
+	# ...
+
+		# Bounce off walls.
+		if normal.x != 0 or normal.z != 0:
+			var new_velocity := linear_velocity.bounce(normal) * ELASTICITY
+			linear_velocity.x = new_velocity.x
+			linear_velocity.z = new_velocity.z
+
+	# ...
+```

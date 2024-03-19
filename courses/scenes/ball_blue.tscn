@@ -52,9 +52,9 @@ radius = 0.035
 [node name="BallBlue" type="RigidBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_4d80b")
 linear_damp_mode = 1
-linear_damp = 0.7
+linear_damp = 0.3
 angular_damp_mode = 1
-angular_damp = 0.5
+angular_damp = 0.3
 script = ExtResource("1_jp3ek")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
