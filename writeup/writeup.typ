@@ -1,6 +1,5 @@
 #import "./palettes/xcolor.typ": xcolor
 #import "@preview/fletcher:0.4.2" as fletcher: node, edge, shapes
-#import "@preview/cetz:0.2.1" as cetz
 #show heading.where(level: 1): set text(24pt)
 #show heading.where(level: 2): set text(20pt)
 #show heading.where(level: 3): set text(18pt)
@@ -558,6 +557,27 @@ The options menu does not take much complex scripting to implement. The most com
 	node((1, 4), "Save settings", shape: shapes.rect)
 	edge("-|>")
 	node((1, 5), "End", shape: shapes.pill)
+})
+
+==== Physics
+
+===== Collisions
+
+Ball collisions should bounce off the walls. Godot `move_and_collide` moves the ball at the existing velocity and returns collisions if any.
+
+The collision object provides a vector referring to the "normal" of the collision, represented in the following diagram:
+
+#fletcher.diagram(
+	spacing: (40mm, 35mm),
+	node-defocus: 0,
+	node-stroke: 1pt,
+	axes: (ltr, btt),
+	{
+	node((0, 0), "Ball", shape: shapes.circle, fill: xcolor.royal-blue)
+	edge((1, 0), (1, 2), "|-|", "Wall")
+	edge((0, 0), (1, 1), "->")
+	edge((1, 1), (0, 1), "--", "Normal")
+	edge((1, 1), (0, 2), "->")
 })
 
 == Development
