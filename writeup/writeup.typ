@@ -580,6 +580,8 @@ The collision object provides a vector referring to the "normal" of the collisio
 	edge((1, 1), (0, 2), "->")
 })
 
+The colliding vector can be reflected along the normal vector to get the resulting vector. Godot provides `Vector3.bounce(Vector3)` to do this for me.
+
 == Development
 
 The first stage of development is about creating the user interfaces. This includes linking the buttons to the different interfaces, and adding the relevant settings to the options menu.
