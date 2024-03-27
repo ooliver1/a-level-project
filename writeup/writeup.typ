@@ -385,6 +385,8 @@ The game could also act as a distraction from revision or school work. This is a
   [Pause menu], [Screenshot of the pause menu + code to support.],
   [Start game button], [Screenshot of the menus with the start game button + code to support.],
   [Adjustable volume], [Screenshot of the settings menu with the volume sliders + code to support.],
+  [Ball rolls naturally], [Screenshot of the ball rolling + code to support.],
+  [Ball collides with obstacles], [Screenshot of the ball colliding with obstacles + code to support.],
 )
 
 == Design
@@ -1854,3 +1856,6 @@ I now have the course and ball working well together. The ball can roll around t
 
 ==== Links to Success Criteria
 
+- Simple graphics
+- Ball rolls naturally
+- Ball collides with obstacles
