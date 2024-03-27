@@ -690,7 +690,7 @@ func _ready() -> void:
 
 
 func _on_slider_value_changed(value: float) -> void:
-	# Godot uses decibels, which is logorithmic. This function converts a number
+	# Godot uses decibels, which is logarithmic. This function converts a number
 	# from 0-1 into decibels (-80 to 24dB)
 	var db := linear_to_db(value / 100)
 	AudioServer.set_bus_volume_db(audio_bus_index, db)
@@ -726,7 +726,7 @@ func _on_display_mode_item_selected(index: int) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 	elif index == 1:
 		DisplayServer.window_set_position(Vector2i(0, 0))
-		# Exclusive fullscreen has a lower overhead as it usuaully avoids
+		# Exclusive fullscreen has a lower overhead as it usually avoids
 		# the display compositor.
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	elif index == 2:
@@ -741,7 +741,7 @@ func _on_display_mode_item_selected(index: int) -> void:
 
 #image("./images/development/options/video-1.png", height: 240pt)
 
-This only shows the dropdown, where selecting each option will change the window mode. The next thing to do is setting the initial value of this dropdwon so it shows the currently selected mode.
+This only shows the dropdown, where selecting each option will change the window mode. The next thing to do is setting the initial value of this dropdown so it shows the currently selected mode.
 
 This defaults to assuming the window mode is windowed. If it finds that it is fullscreen, then sets it to fullscreen. If it finds that the window is borderless and windowed (maximised), then it sets it to fullscreen borderless.
 
@@ -1786,6 +1786,7 @@ This hole has nothing different in terms of physics, as the slope is handled fin
 ===== Hole 4
 
 ====== Slope Climbing
+<slope-climbing>
 
 Hole 3 has nothing extra interesting, but hole 4 has a ramp up to the main part of the hole.
 
@@ -1820,6 +1821,7 @@ func _physics_process(delta: float) -> void:
 ```
 
 ====== Continuous Collision Detection
+<continuous-cd>
 
 #image("./images/development/course/continuous-cd.png", height: 160pt)
 
@@ -1830,3 +1832,25 @@ if normal.y == 1:
 	linear_velocity.y = 0
 	return
 ```
+
+==== Review: Course Creation & Initial Physics
+
+===== Progress Made
+
+I now have the course and ball working well together. The ball can roll around the course, bounce off walls and slopes, and stop when it reaches a low enough velocity. The course has a few holes to test the ball's physics, and the ball can climb slopes and go around corners.
+
+===== Testing Done
+
+#table(
+	columns: (1fr, 1.5fr, 1.5fr, 1.5fr, 2fr),
+	align: top,
+	[*Aspect Tested*], [*Input*], [*Expected Output*], [*Actual Output*], [*Comments/Resolution*],
+	[Wall collisions], [Ball hits wall], [Ball bounces off wall], [Ball bounces off wall], [],
+	[Roll ball at low velocity], [Ball stops moving], [Ball stops moving], [Ball stops moving], [],
+	[Slope collisions], [Send ball rolling up slope], [Ball goes up slope], [Ball stops and rolls back down when going too fast], [This was solved in #link-heading(<slope-climbing>)],
+	[Ball stays on course], [Send ball rolling around course], [Ball stays on course], [Ball falls through floor or clips through walls], [This was solved in #link-heading(<continuous-cd>)],
+	[Ball loses more velocity when colliding], [Send ball rolling into wall], [Ball loses velocity when colliding], [Ball loses velocity when colliding], [],
+)
+
+==== Links to Success Criteria
+

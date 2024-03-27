@@ -241,7 +241,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0, 4)
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 10.5, 0, 3)
 
 [node name="Hole6" type="Node3D" parent="World"]
-visible = false
 
 [node name="Start4" parent="World/Hole6" instance=ExtResource("1_k3ga3")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.5, 0, 1.5)
