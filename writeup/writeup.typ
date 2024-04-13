@@ -1859,3 +1859,176 @@ I now have the course and ball working well together. The ball can roll around t
 - Simple graphics
 - Ball rolls naturally
 - Ball collides with obstacles
+
+=== Stage 3: Controls & Game Mechanics
+
+==== Point Controls
+
+First off is drafting out the point and drag controls for the ball. This requires finding where the mouse is "in 3D space" relative to the ball. This can be done via drawing an invisible circle around the ball and finding the point where a ray cast from the camera to the mouse intersects the circle.
+
+#image("./images/development/controls/plane.png", height: 240pt)
+
+```gdscript
+# player.gd
+extends Node3D
+
+@onready var ray_cast: RayCast3D = %RayCast
+@onready var camera: Camera3D = %Camera
+
+
+func get_control_position(mouse_position: Vector2) -> Vector3:
+	# Draw a ray cast from the camera, to the mouse position far away.
+	# The ray is configured to only collide with the ball control plane,
+	# so the collision is the mouse position in the same plane as the ball.
+	var origin := camera.project_ray_origin(mouse_position)
+	var direction := camera.project_ray_normal(mouse_position)
+	var ray_length := camera.far
+	var end := direction * ray_length
+	ray_cast.global_position = origin
+	ray_cast.target_position = end
+
+	return ray_cast.get_collision_point()
+
+
+func _input(event: InputEvent) -> void:
+	# Temporary code to test the use of the ray cast.
+	if event is InputEventMouseMotion:
+		var mouse_event := event as InputEventMouseMotion
+		var mouse_position := mouse_event.position
+
+		var mouse_position_3d = get_control_position(mouse_position)
+```
+
+This results in correct detection by the ray, showing as red in this debug mode when colliding, and blue otherwise.
+
+The ray can be seen in the debugging sub-viewport in the top left, and by the centre of the box in the main camera.
+
+#image("./images/development/controls/ray-cast-success.png", height: 240pt)
+#image("./images/development/controls/ray-cast-success-2.png", height: 240pt)
+
+==== Pivot Camera
+
+To be able to properly use these controls, the camera must be able to pivot around the ball. This is done by attaching the camera to a spring arm that can pivot around the ball.
+
+#image("./images/development/controls/pivot.png", height: 240pt)
+
+The pivoting is operated by click and dragging the right mouse button. Joystick controls can be added later.
+
+// TODO: split this up into mouse button and mouse motion, for the development process
+
+```gdscript
+# player.gd
+var mouse_sensitivity: int = 1
+
+# ...
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		var mouse_event := event as InputEventMouseButton
+		# Pivot camera on right click drag.
+		if mouse_event.button_index == MOUSE_BUTTON_RIGHT:
+			if mouse_event.pressed:
+				if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+					Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			else:
+				if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+					Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	elif event is InputEventMouseMotion:
+		var mouse_event := event as InputEventMouseMotion
+		# Rotate camera spring arm when pivot button is down.
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			# Invert mouse movements as the coordinate origin is different.
+			var rotation_y := deg_to_rad(-mouse_event.relative.x * mouse_sensitivity)
+			var rotation_x := deg_to_rad(-mouse_event.relative.y * mouse_sensitivity)
+
+			camera_spring.rotation.x += rotation_x
+			camera_spring.rotation.y += rotation_y
+```
+
+`mouse_sensitivity` should be added to the options menu later.
+
+The camera has no reason to go lower than 45° below horizontal, so that is restricted by clamping the rotation values after they are changed.
+
+```gdscript
+# ...
+
+camera_spring.rotation.x += rotation_x
+# Restrict camera from rotating more than 45° from horizontal downwards.
+camera_spring.rotation.x = clampf(camera_spring.rotation.x, -PI/2, PI/4)
+camera_spring.rotation.y += rotation_y
+```
+
+#image("./images/development/controls/pivot-success.png", height: 240pt)
+
+===== Ongoing Testing
+
+====== Ball Idle Bouncing
+
+I found when the ball is idle, it would bounce up and down slightly. This is because the ball is a `RigidBody3D` and has gravity applied to it, which would try to pull the ball through the ground. I found the easiest way to solve this at least for now is to just set the ball's `linear_velocity.y` to `0` when it is idle.
+
+```gdscript
+# ball.gd
+func _physics_process(delta: float) -> void:
+	# ...
+	if collision:
+		var normal := collision.get_normal()
+
+		# Prevent ball from bouncing off the ground when stationary.
+		if normal == Vector3(0, 1, 0):
+			if linear_velocity.x == 0 and linear_velocity.z == 0:
+				linear_velocity = Vector3.ZERO
+
+		# ...
+```
+
+==== Drag Controls
+
+To continue with the point and drag controls, there needs to be a way to differentiate between when a mouse drag is for pivoting the camera or dragging the arrow. This can be done with an enum like so:
+
+```gdscript
+enum Action { PIVOTING, DRAGGING, NONE }
+
+var action: Action = Action.NONE
+
+# ...
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		var mouse_event := event as InputEventMouseButton
+		# Pivot camera on right click drag.
+		if mouse_event.button_index == MOUSE_BUTTON_RIGHT:
+			if mouse_event.pressed:
+				if action == Action.NONE:
+					Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+					action = Action.PIVOTING
+			else:
+				if action == Action.PIVOTING:
+					Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+					action = Action.NONE
+	elif event is InputEventMouseMotion:
+		var mouse_event := event as InputEventMouseMotion
+		# Rotate camera spring arm when pivot button is down.
+		if action == Action.PIVOTING:
+			# ...
+```
+
+Now this is in place, almost identical button pressed code can be used.
+
+```gdscript
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		# ...
+
+		# Drag ball controls with left click.
+		elif mouse_event.button_index == MOUSE_BUTTON_LEFT:
+			if mouse_event.pressed:
+				# Dragging takes priority over pivoting if for whatever reason
+				# both mouse buttons are pressed.
+				if action != Action.DRAGGING:
+					Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+					action = Action.DRAGGING
+			else:
+				if action == Action.DRAGGING:
+					Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+					action = Action.NONE
+```
