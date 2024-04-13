@@ -72,6 +72,10 @@ use_item_3={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_3="controls"
+
 [physics]
 
 3d/physics_engine="JoltPhysics3D"

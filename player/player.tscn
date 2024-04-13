@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc014c7jj1107"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_46d4o"]
+[ext_resource type="PackedScene" uid="uid://b8q65gyl61cuj" path="res://courses/scenes/ball_blue.tscn" id="1_sd78j"]
+[ext_resource type="PackedScene" uid="uid://xtabguxn2afd" path="res://player/arrow.tscn" id="2_27q2i"]
+[ext_resource type="PackedScene" uid="uid://d07fuhkkblrcr" path="res://player/plane.tscn" id="3_6fiwp"]
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_46d4o")
+
+[node name="Ball" parent="." instance=ExtResource("1_sd78j")]
+
+[node name="RayCast" type="RayCast3D" parent="Ball"]
+unique_name_in_owner = true
+collision_mask = 4
+
+[node name="CameraSpring" type="SpringArm3D" parent="Ball"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, 8.74227e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+spring_length = 2.0
+margin = 0.25
+
+[node name="Camera" type="Camera3D" parent="Ball/CameraSpring"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+current = true
+
+[node name="Plane" parent="Ball" instance=ExtResource("3_6fiwp")]
+
+[node name="Arrow" parent="Ball" instance=ExtResource("2_27q2i")]
+unique_name_in_owner = true

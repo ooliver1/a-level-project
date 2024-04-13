@@ -9,6 +9,11 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		var normal := collision.get_normal()
 
+		# Prevent ball from bouncing off the ground when stationary.
+		if normal == Vector3(0, 1, 0):
+			if linear_velocity.x == 0 and linear_velocity.z == 0:
+				linear_velocity = Vector3.ZERO
+
 		# Bounce off walls.
 		if normal.x != 0 or normal.z != 0:
 			linear_velocity = linear_velocity.bounce(normal) * ELASTICITY
