@@ -2136,3 +2136,34 @@ func _input(event: InputEvent) -> void:
 					Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 					action = Action.NONE
 ```
+
+===== Drag Motion Handling
+
+When the mouse is moved while the left mouse button is down, the control arrow should rotate and scale in the opposite direction and magnitude of the mouse movement to show the direction and power of the ball.
+
+At the current scale, the arrow is at around 0.15 away from the ball, which seems like a good minimum power as the arrow is still easily visible. The maximum scale to get to 0.5 away from the ball is 4.5, so the scale can be clamped between these values.
+
+Not only should the z direction be scaled for length, but the x direction should balance out the shape slightly so the arrow isn't so thin long and thick when short. The following values I found were best for this:
+
+#table(
+  columns: (auto, auto),
+  align: top,
+  [*z scale*], [*x scale*],
+  [1], [0.5],
+  [2], [0.75],
+  [3], [1],
+  [4], [1.25],
+  [5], [1.5],
+)
+
+// TODO: ask if this should go in design or development, as I couldn't do this until now but it seems kinda weird here?
+
+This gives the following mathematical function for the scale:
+
+$S_x = 1 + (S_z - 3) * 0.25$
+
+When $S_z$ is 1, $S_x$ results in $1 + (-2 * 0.25)$ which is correctly $0.5$.
+
+$S_z$ needs to also be calculated from the distance from the ball, ranging from $0.15 -> 1$ to $5 -> 4.5$. This ends up with the following linear function:
+
+$S_z = 0.72 * d + 0.9$

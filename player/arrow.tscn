@@ -1,19 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://xtabguxn2afd"]
+[gd_scene load_steps=4 format=3 uid="uid://xtabguxn2afd"]
+
+[ext_resource type="Script" path="res://player/arrow.gd" id="1_bbmpm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vrq8"]
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qm6i"]
+albedo_color = Color(0, 0, 0, 1)
 
 [node name="Arrow" type="Node3D"]
+script = ExtResource("1_bbmpm")
 
-[node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0498329)
+[node name="Inner" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0498329)
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Node3D"]
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Inner"]
 transform = Transform3D(-0.0353553, 0.0353553, 3.09086e-11, 0, -2.18557e-09, 0.001, 0.0353553, 0.0353553, 3.09086e-11, 0, 0.001, -0.100558)
 polygon = PackedVector2Array(0, 0, 0.1, 1, 1, 0.1)
 material = SubResource("StandardMaterial3D_4vrq8")
 
-[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="Node3D"]
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="Inner"]
 transform = Transform3D(0.02, 0, 0, 0, 0.001, 0, 0, 0, 0.075, -0.01, 0, -0.000558432)
 material = SubResource("StandardMaterial3D_5qm6i")
