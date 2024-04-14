@@ -33,6 +33,11 @@ gdscript/warnings/unsafe_call_argument=1
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[filesystem]
+
+import/blender/enabled=false
+import/fbx/enabled=false
+
 [gui]
 
 theme/custom="res://UI/themes/kenneyUI.tres"

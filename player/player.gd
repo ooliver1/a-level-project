@@ -1,9 +1,11 @@
-extends Node3D
+extends Node
 
 @onready var ray_cast: RayCast3D = %RayCast
 @onready var camera: Camera3D = %Camera
 @onready var arrow: Node3D = %Arrow
 @onready var camera_spring: SpringArm3D = %CameraSpring
+@onready var ball: RigidBody3D = %Ball
+@onready var controls: Node3D = $Controls
 
 enum Action { PIVOTING, DRAGGING, NONE }
 
@@ -22,7 +24,7 @@ func get_control_position(mouse_position: Vector2) -> Vector3:
 	ray_cast.global_position = origin
 	ray_cast.target_position = end
 
-	return ray_cast.get_collision_point()
+	return ray_cast.get_collision_point() - ball.position
 
 
 func _input(event: InputEvent) -> void:
@@ -53,3 +55,14 @@ func _input(event: InputEvent) -> void:
 			# Restrict camera from rotating more than 45° from horizontal downwards.
 			camera_spring.rotation.x = clampf(camera_spring.rotation.x, -PI/2, PI/4)
 			camera_spring.rotation.y += rotation_y
+
+
+func _ready() -> void:
+	ball.position = Vector3(9.25, 2, 7.25)
+	#await get_tree().create_timer(1).timeout
+	#ball.apply_impulse(Vector3(5, 0, 3))
+
+
+func _process(_delta: float) -> void:
+	# Keep controls centred on the ball.
+	controls.position = ball.position

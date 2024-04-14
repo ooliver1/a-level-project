@@ -391,11 +391,16 @@ The game could also act as a distraction from revision or school work. This is a
 
 == Design
 
+// TODO: add design for control system
+// diagram if possible and maybe pseudocode
+
 Key points:
+// TODO: godot docs have that node diagram, but it probably isn't the best that I've corrected stuff along the way? maybe?
 - Interface design
 - Program structure
 - Algorithms - validation
 - Features
+// TODO: hopefully easier after multiplayer
 - Key variables/data structures/classes
 - Testing approach
 
@@ -1910,7 +1915,7 @@ The ray can be seen in the debugging sub-viewport in the top left, and by the ce
 
 To be able to properly use these controls, the camera must be able to pivot around the ball. This is done by attaching the camera to a spring arm that can pivot around the ball.
 
-#image("./images/development/controls/pivot.png", height: 240pt)
+#image("./images/development/controls/pivot.png")
 
 The pivoting is operated by click and dragging the right mouse button. Joystick controls can be added later.
 
@@ -1981,7 +1986,24 @@ func _physics_process(delta: float) -> void:
 		# ...
 ```
 
+====== Camera Rotation
+
+When testing if the camera follows the ball correctly, I found that the camera also rotated with the ball as it was a child of the ball node. I solved this by restructuring the player scene so that the ball and everything else were siblings.
+
+#image("./images/development/controls/camera-rotation.png")
+
+This also meant that the whole of the `Controls` node needed to be repositioned as the `Ball` moved. This was a simple fix by updating the position every tick like so:
+
+```gdscript
+# player.gd
+func _process(_delta: float) -> void:
+	# Keep controls centred on the ball.
+	controls.position = ball.position
+```
+
 ==== Drag Controls
+
+===== Left Click Handling
 
 To continue with the point and drag controls, there needs to be a way to differentiate between when a mouse drag is for pivoting the camera or dragging the arrow. This can be done with an enum like so:
 
@@ -2012,23 +2034,105 @@ func _input(event: InputEvent) -> void:
 			# ...
 ```
 
-Now this is in place, almost identical button pressed code can be used.
+I only want left click to work when the mouse cursor is close enough to the ball, otherwise it should pivot the camera instead.
+
+This means I need to make sure `get_control_position` is relative to the ball's position to be able to get the distance away.
+
+This can be done simply by subtracting the ball's global position vector from the ray cast.
 
 ```gdscript
+func get_control_position(mouse_position: Vector2) -> Vector3:
+    # ...
+
+	return ray_cast.get_collision_point() - ball.position
+```
+
+This correctly results in values close to 0.5 (radius of the plane) on the cardinal directions.
+
+#image("./images/development/controls/plane-relative.png")
+
+Now left click can be handled just like right click, starting with the if condition:
+
+```gdscript
+# player.gd
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
+		var mouse_event := event as InputEventMouseButton
+		# Pivot camera on right click drag.
+		if mouse_event.button_index == MOUSE_BUTTON_RIGHT:
+			# ...
+		# Drag ball controls with left click, but only if close enough, else
+		# pivot camera.
+		elif mouse_event.button_index == MOUSE_BUTTON_LEFT:
+```
+
+When the left mouse button is pressed down, there needs to be a condition deciding whether this is a drag of the controls or a pivot of the camera. This requires the mouse position, to get the distance from the ball.
+
+```gdscript
+if mouse_event.pressed:
+	var mouse_position := get_viewport().get_mouse_position()
+	var control_position := get_control_position(mouse_position)
+```
+
+There should be a maximum distance away from the ball that the mouse can be to drag the controls. This means that the distance between the mouse and the ball needs to be calculated. This can be done by getting the length of the vector like so:
+
+```gdscript
+var ball_distance := control_position.length()
+```
+
+The maximum distance can be set as a constant in the `player,gd` file.
+
+```gdscript
+## Distance from ball to consider a gesture a drag.
+@export var DRAG_THRESHOLD: float = 0.2
+```
+
+Which can then be used to decide what action is happening, and capture the mouse in both cases:
+
+```gdscript
+Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+if ball_distance < DRAG_THRESHOLD:
+	action = Action.DRAGGING
+else:
+	action = Action.PIVOTING
+```
+
+If the left mouse button is released, this is when the ball should be "fired" in the direction and power of the drag, which comes later, so for now I will just cancel the current action.
+
+```gdscript
+if action != Action.NONE:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	action = Action.NONE
+```
+
+This all results in the following code:
+
+```gdscript
+## Distance from ball to consider a gesture a drag.
+@export var DRAG_THRESHOLD: float = 0.2
+
+# ...
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		var mouse_event := event as InputEventMouseButton
+
 		# ...
 
-		# Drag ball controls with left click.
+		# Drag ball controls with left click, but only if close enough, else
+		# pivot camera.
 		elif mouse_event.button_index == MOUSE_BUTTON_LEFT:
 			if mouse_event.pressed:
-				# Dragging takes priority over pivoting if for whatever reason
-				# both mouse buttons are pressed.
-				if action != Action.DRAGGING:
-					Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+				var mouse_position := get_viewport().get_mouse_position()
+				var control_position := get_control_position(mouse_position)
+				var ball_distance := control_position.length()
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+				if ball_distance < DRAG_THRESHOLD:
 					action = Action.DRAGGING
+				else:
+					action = Action.PIVOTING
 			else:
-				if action == Action.DRAGGING:
+				if action != Action.NONE:
 					Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 					action = Action.NONE
 ```

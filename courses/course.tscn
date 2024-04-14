@@ -1,6 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://cjs7r0f2he2fh"]
+[gd_scene load_steps=38 format=3 uid="uid://ci1mc6xrv5c7v"]
 
-[ext_resource type="PackedScene" uid="uid://dc014c7jj1107" path="res://player/player.tscn" id="1_770rd"]
+[ext_resource type="PackedScene" uid="uid://613ehfx628d1" path="res://player/player.tscn" id="1_770rd"]
 [ext_resource type="PackedScene" uid="uid://cwbukec50b5hp" path="res://courses/scenes/start.tscn" id="2_hpgn4"]
 [ext_resource type="PackedScene" uid="uid://cuqgk74ln6q63" path="res://courses/scenes/straight.tscn" id="3_l816e"]
 [ext_resource type="PackedScene" uid="uid://bss6tq3nnyp7c" path="res://courses/scenes/hole_square.tscn" id="4_mjxs0"]
@@ -40,251 +40,250 @@
 [sub_resource type="Environment" id="Environment_42lcv"]
 ambient_light_color = Color(1, 1, 1, 1)
 
-[node name="Course" type="Node3D"]
+[node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_42lcv")
 
 [node name="Player" parent="." instance=ExtResource("1_770rd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.564647, 0.469153, 0.4144)
 
-[node name="World" type="Node3D" parent="."]
+[node name="Course" type="Node3D" parent="."]
 
-[node name="Hole1" type="Node3D" parent="World"]
+[node name="Hole1" type="Node3D" parent="Course"]
 
-[node name="Start" parent="World/Hole1" instance=ExtResource("2_hpgn4")]
+[node name="Start" parent="Course/Hole1" instance=ExtResource("2_hpgn4")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.5, 0, 0)
 
-[node name="Straight" parent="World/Hole1" instance=ExtResource("3_l816e")]
+[node name="Straight" parent="Course/Hole1" instance=ExtResource("3_l816e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 1)
 
-[node name="Straight2" parent="World/Hole1" instance=ExtResource("3_l816e")]
+[node name="Straight2" parent="Course/Hole1" instance=ExtResource("3_l816e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 2)
 
-[node name="Straight3" parent="World/Hole1" instance=ExtResource("3_l816e")]
+[node name="Straight3" parent="Course/Hole1" instance=ExtResource("3_l816e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 3)
 
-[node name="HoleSquare" parent="World/Hole1" instance=ExtResource("4_mjxs0")]
+[node name="HoleSquare" parent="Course/Hole1" instance=ExtResource("4_mjxs0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 4)
 
-[node name="Hole2" type="Node3D" parent="World"]
+[node name="Hole2" type="Node3D" parent="Course"]
 
-[node name="Start" parent="World/Hole2" instance=ExtResource("2_hpgn4")]
+[node name="Start" parent="Course/Hole2" instance=ExtResource("2_hpgn4")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, 5.5)
 
-[node name="RoundCornerA" parent="World/Hole2" instance=ExtResource("5_av378")]
+[node name="RoundCornerA" parent="Course/Hole2" instance=ExtResource("5_av378")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 5.5)
 
-[node name="WallLeft" parent="World/Hole2" instance=ExtResource("6_hpx4r")]
+[node name="WallLeft" parent="Course/Hole2" instance=ExtResource("6_hpx4r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4.5)
 
-[node name="HillRound" parent="World/Hole2" instance=ExtResource("7_hqr07")]
+[node name="HillRound" parent="Course/Hole2" instance=ExtResource("7_hqr07")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3.5)
 
-[node name="SquareCornerA" parent="World/Hole2" instance=ExtResource("8_8brf4")]
+[node name="SquareCornerA" parent="Course/Hole2" instance=ExtResource("8_8brf4")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2, 0, 2.5)
 
-[node name="RoundLargeCorner" parent="World/Hole2" instance=ExtResource("9_o8ikx")]
+[node name="RoundLargeCorner" parent="Course/Hole2" instance=ExtResource("9_o8ikx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 2)
 
-[node name="HoleRound" parent="World/Hole2" instance=ExtResource("10_8cbhv")]
+[node name="HoleRound" parent="Course/Hole2" instance=ExtResource("10_8cbhv")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4, 0, 0.5)
 
-[node name="Hole3" type="Node3D" parent="World"]
+[node name="Hole3" type="Node3D" parent="Course"]
 
-[node name="Start" parent="World/Hole3" instance=ExtResource("2_hpgn4")]
+[node name="Start" parent="Course/Hole3" instance=ExtResource("2_hpgn4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
 
-[node name="SkewLargeCorner" parent="World/Hole3" instance=ExtResource("11_b0lwl")]
+[node name="SkewLargeCorner" parent="Course/Hole3" instance=ExtResource("11_b0lwl")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3, 0, -1.5)
 
-[node name="Corner" parent="World/Hole3" instance=ExtResource("12_2ho6p")]
+[node name="Corner" parent="Course/Hole3" instance=ExtResource("12_2ho6p")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.5, 0, -1)
 
-[node name="Corner3" parent="World/Hole3" instance=ExtResource("12_2ho6p")]
+[node name="Corner3" parent="Course/Hole3" instance=ExtResource("12_2ho6p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, -1)
 
-[node name="Corner4" parent="World/Hole3" instance=ExtResource("12_2ho6p")]
+[node name="Corner4" parent="Course/Hole3" instance=ExtResource("12_2ho6p")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.5, 0, -3)
 
-[node name="Corner2" parent="World/Hole3" instance=ExtResource("12_2ho6p")]
+[node name="Corner2" parent="Course/Hole3" instance=ExtResource("12_2ho6p")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.5, 0, -3)
 
-[node name="WallsToOpen" parent="World/Hole3" instance=ExtResource("13_63t0q")]
+[node name="WallsToOpen" parent="Course/Hole3" instance=ExtResource("13_63t0q")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.5, 0, -2)
 
-[node name="WallsToOpen2" parent="World/Hole3" instance=ExtResource("13_63t0q")]
+[node name="WallsToOpen2" parent="Course/Hole3" instance=ExtResource("13_63t0q")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.5, 0, -2)
 
-[node name="Side" parent="World/Hole3" instance=ExtResource("14_3ih6y")]
+[node name="Side" parent="Course/Hole3" instance=ExtResource("14_3ih6y")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.5, 0, -1)
 
-[node name="Side2" parent="World/Hole3" instance=ExtResource("14_3ih6y")]
+[node name="Side2" parent="Course/Hole3" instance=ExtResource("14_3ih6y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 0, -3)
 
-[node name="ObstacleDiamond" parent="World/Hole3" instance=ExtResource("15_s8ueb")]
+[node name="ObstacleDiamond" parent="Course/Hole3" instance=ExtResource("15_s8ueb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -2)
 
-[node name="NarrowSquare" parent="World/Hole3" instance=ExtResource("16_jgwr0")]
+[node name="NarrowSquare" parent="Course/Hole3" instance=ExtResource("16_jgwr0")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.5, 0, -2)
 
-[node name="HillCorner" parent="World/Hole3" instance=ExtResource("17_0temt")]
+[node name="HillCorner" parent="Course/Hole3" instance=ExtResource("17_0temt")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.5, 0, -2)
 
-[node name="Straight" parent="World/Hole3" instance=ExtResource("3_l816e")]
+[node name="Straight" parent="Course/Hole3" instance=ExtResource("3_l816e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, -1)
 
-[node name="SkewCorner" parent="World/Hole3" instance=ExtResource("18_7x2iq")]
+[node name="SkewCorner" parent="Course/Hole3" instance=ExtResource("18_7x2iq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 0)
 
-[node name="HoleSquare" parent="World/Hole3" instance=ExtResource("4_mjxs0")]
+[node name="HoleSquare" parent="Course/Hole3" instance=ExtResource("4_mjxs0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, 0, 0)
 
-[node name="Hole4" type="Node3D" parent="World"]
+[node name="Hole4" type="Node3D" parent="Course"]
 
-[node name="Start2" parent="World/Hole4" instance=ExtResource("2_hpgn4")]
+[node name="Start2" parent="Course/Hole4" instance=ExtResource("2_hpgn4")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.5, 0, 1)
 
-[node name="Ramp" parent="World/Hole4" instance=ExtResource("19_po6li")]
+[node name="Ramp" parent="Course/Hole4" instance=ExtResource("19_po6li")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 2)
 
-[node name="Ramp2" parent="World/Hole4" instance=ExtResource("19_po6li")]
+[node name="Ramp2" parent="Course/Hole4" instance=ExtResource("19_po6li")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0.5, 3)
 
-[node name="Castle" parent="World/Hole4" instance=ExtResource("20_21lrt")]
+[node name="Castle" parent="Course/Hole4" instance=ExtResource("20_21lrt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1, 4)
 
-[node name="Supports" parent="World/Hole4" instance=ExtResource("21_bso0w")]
+[node name="Supports" parent="Course/Hole4" instance=ExtResource("21_bso0w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 4)
 
-[node name="SkewCorner2" parent="World/Hole4" instance=ExtResource("18_7x2iq")]
+[node name="SkewCorner2" parent="Course/Hole4" instance=ExtResource("18_7x2iq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1, 5)
 
-[node name="Gap" parent="World/Hole4" instance=ExtResource("22_h4ljs")]
+[node name="Gap" parent="Course/Hole4" instance=ExtResource("22_h4ljs")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 1, 5)
 
-[node name="End" parent="World/Hole4" instance=ExtResource("23_pw8rs")]
+[node name="End" parent="Course/Hole4" instance=ExtResource("23_pw8rs")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.5, 1, 5)
 
-[node name="Supports2" parent="World/Hole4" instance=ExtResource("21_bso0w")]
+[node name="Supports2" parent="Course/Hole4" instance=ExtResource("21_bso0w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 5)
 
-[node name="RampD" parent="World/Hole4" instance=ExtResource("24_2h7xn")]
+[node name="RampD" parent="Course/Hole4" instance=ExtResource("24_2h7xn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 5)
 
-[node name="Corner5" parent="World/Hole4" instance=ExtResource("12_2ho6p")]
+[node name="Corner5" parent="Course/Hole4" instance=ExtResource("12_2ho6p")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.5, 0, 4)
 
-[node name="Side3" parent="World/Hole4" instance=ExtResource("14_3ih6y")]
+[node name="Side3" parent="Course/Hole4" instance=ExtResource("14_3ih6y")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.5, 0, 4)
 
-[node name="SkewLargeCornerOpen" parent="World/Hole4" instance=ExtResource("25_k6exu")]
+[node name="SkewLargeCornerOpen" parent="Course/Hole4" instance=ExtResource("25_k6exu")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, 2.5)
 
-[node name="RoundCornerB" parent="World/Hole4" instance=ExtResource("26_pjl3u")]
+[node name="RoundCornerB" parent="Course/Hole4" instance=ExtResource("26_pjl3u")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 0, 4)
 
-[node name="HoleSquare2" parent="World/Hole4" instance=ExtResource("4_mjxs0")]
+[node name="HoleSquare2" parent="Course/Hole4" instance=ExtResource("4_mjxs0")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 0, 3)
 
-[node name="RoundCornerC" parent="World/Hole4" instance=ExtResource("27_2sf6d")]
+[node name="RoundCornerC" parent="Course/Hole4" instance=ExtResource("27_2sf6d")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 0, 2)
 
-[node name="Hole5" type="Node3D" parent="World"]
+[node name="Hole5" type="Node3D" parent="Course"]
 
-[node name="Start3" parent="World/Hole5" instance=ExtResource("2_hpgn4")]
+[node name="Start3" parent="Course/Hole5" instance=ExtResource("2_hpgn4")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, 0, 3)
 
-[node name="TunnelDouble" parent="World/Hole5" instance=ExtResource("28_w3vpp")]
+[node name="TunnelDouble" parent="Course/Hole5" instance=ExtResource("28_w3vpp")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.5, 0, 3)
 
-[node name="SkewCorner3" parent="World/Hole5" instance=ExtResource("18_7x2iq")]
+[node name="SkewCorner3" parent="Course/Hole5" instance=ExtResource("18_7x2iq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.5, 0, 3)
 
-[node name="RampLarge" parent="World/Hole5" instance=ExtResource("29_bcmjv")]
+[node name="RampLarge" parent="Course/Hole5" instance=ExtResource("29_bcmjv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 4.5)
 
-[node name="ObstacleBlock" parent="World/Hole5" instance=ExtResource("30_isgch")]
+[node name="ObstacleBlock" parent="Course/Hole5" instance=ExtResource("30_isgch")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0.5, 6)
 
-[node name="RoundLargeCorner2" parent="World/Hole5" instance=ExtResource("9_o8ikx")]
+[node name="RoundLargeCorner2" parent="Course/Hole5" instance=ExtResource("9_o8ikx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.5, 7.5)
 
-[node name="RoundCornerA2" parent="World/Hole5" instance=ExtResource("5_av378")]
+[node name="RoundCornerA2" parent="Course/Hole5" instance=ExtResource("5_av378")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, 0.5, 8)
 
-[node name="Ramp3" parent="World/Hole5" instance=ExtResource("19_po6li")]
+[node name="Ramp3" parent="Course/Hole5" instance=ExtResource("19_po6li")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 7)
 
-[node name="SplitT" parent="World/Hole5" instance=ExtResource("31_dmt0w")]
+[node name="SplitT" parent="Course/Hole5" instance=ExtResource("31_dmt0w")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, 0, 6)
 
-[node name="SkewCorner4" parent="World/Hole5" instance=ExtResource("18_7x2iq")]
+[node name="SkewCorner4" parent="Course/Hole5" instance=ExtResource("18_7x2iq")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.5, 0, 5)
 
-[node name="SkewCorner5" parent="World/Hole5" instance=ExtResource("18_7x2iq")]
+[node name="SkewCorner5" parent="Course/Hole5" instance=ExtResource("18_7x2iq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.5, 0, 5)
 
-[node name="SplitT2" parent="World/Hole5" instance=ExtResource("31_dmt0w")]
+[node name="SplitT2" parent="Course/Hole5" instance=ExtResource("31_dmt0w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 6)
 
-[node name="RoundLargeCorner3" parent="World/Hole5" instance=ExtResource("9_o8ikx")]
+[node name="RoundLargeCorner3" parent="Course/Hole5" instance=ExtResource("9_o8ikx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 5.5)
 
-[node name="BumpWalls" parent="World/Hole5" instance=ExtResource("32_q6uv7")]
+[node name="BumpWalls" parent="Course/Hole5" instance=ExtResource("32_q6uv7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0, 4)
 
-[node name="HoleRound2" parent="World/Hole5" instance=ExtResource("10_8cbhv")]
+[node name="HoleRound2" parent="Course/Hole5" instance=ExtResource("10_8cbhv")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 10.5, 0, 3)
 
-[node name="Hole6" type="Node3D" parent="World"]
+[node name="Hole6" type="Node3D" parent="Course"]
 
-[node name="Start4" parent="World/Hole6" instance=ExtResource("2_hpgn4")]
+[node name="Start4" parent="Course/Hole6" instance=ExtResource("2_hpgn4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.5, 0, 1.5)
 
-[node name="SquareCornerA2" parent="World/Hole6" instance=ExtResource("8_8brf4")]
+[node name="SquareCornerA2" parent="Course/Hole6" instance=ExtResource("8_8brf4")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.5, 0, 1.5)
 
-[node name="SkewCorner6" parent="World/Hole6" instance=ExtResource("18_7x2iq")]
+[node name="SkewCorner6" parent="Course/Hole6" instance=ExtResource("18_7x2iq")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 8.5, 0, 0.5)
 
-[node name="Ramp4" parent="World/Hole6" instance=ExtResource("19_po6li")]
+[node name="Ramp4" parent="Course/Hole6" instance=ExtResource("19_po6li")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.5, 0, 0.5)
 
-[node name="RoundCornerA3" parent="World/Hole6" instance=ExtResource("5_av378")]
+[node name="RoundCornerA3" parent="Course/Hole6" instance=ExtResource("5_av378")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0.5, 0.5)
 
-[node name="RoundCornerA4" parent="World/Hole6" instance=ExtResource("5_av378")]
+[node name="RoundCornerA4" parent="Course/Hole6" instance=ExtResource("5_av378")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.5, 0.5, -0.5)
 
-[node name="RampLarge2" parent="World/Hole6" instance=ExtResource("29_bcmjv")]
+[node name="RampLarge2" parent="Course/Hole6" instance=ExtResource("29_bcmjv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 0.5, -0.5)
 
-[node name="NarrowSquare2" parent="World/Hole6" instance=ExtResource("16_jgwr0")]
+[node name="NarrowSquare2" parent="Course/Hole6" instance=ExtResource("16_jgwr0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, 1, -0.5)
 
-[node name="Windmill" parent="World/Hole6" instance=ExtResource("33_ta7xd")]
+[node name="Windmill" parent="Course/Hole6" instance=ExtResource("33_ta7xd")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.5, 1, -0.5)
 
-[node name="RoundCornerA5" parent="World/Hole6" instance=ExtResource("5_av378")]
+[node name="RoundCornerA5" parent="Course/Hole6" instance=ExtResource("5_av378")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.5, 1, -0.5)
 
-[node name="BumpDownWall" parent="World/Hole6" instance=ExtResource("34_bd258")]
+[node name="BumpDownWall" parent="Course/Hole6" instance=ExtResource("34_bd258")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1, 0.5)
 
-[node name="Crest" parent="World/Hole6" instance=ExtResource("35_u7xou")]
+[node name="Crest" parent="Course/Hole6" instance=ExtResource("35_u7xou")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1, 1.5)
 
-[node name="HoleSquare3" parent="World/Hole6" instance=ExtResource("4_mjxs0")]
+[node name="HoleSquare3" parent="Course/Hole6" instance=ExtResource("4_mjxs0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1, 2.5)
 
-[node name="Support2" parent="World/Hole6" instance=ExtResource("36_76mn1")]
+[node name="Support2" parent="Course/Hole6" instance=ExtResource("36_76mn1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -0.5)
 
-[node name="Support3" parent="World/Hole6" instance=ExtResource("36_76mn1")]
+[node name="Support3" parent="Course/Hole6" instance=ExtResource("36_76mn1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 0)
 
-[node name="Support4" parent="World/Hole6" instance=ExtResource("36_76mn1")]
+[node name="Support4" parent="Course/Hole6" instance=ExtResource("36_76mn1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 2.5)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
