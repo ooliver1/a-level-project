@@ -42,12 +42,11 @@ func _input(event: InputEvent) -> void:
 				var mouse_position := get_viewport().get_mouse_position()
 				var control_position := get_control_position(mouse_position)
 				var ball_distance := control_position.length()
-				#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 				arrow.move_to(control_position)
 				if ball_distance < DRAG_THRESHOLD:
 					action = Action.DRAGGING
 				else:
-
+					Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 					action = Action.PIVOTING
 			else:
 				if action != Action.NONE:
@@ -65,6 +64,10 @@ func _input(event: InputEvent) -> void:
 			# Restrict camera from rotating more than 45° from horizontal downwards.
 			camera_spring.rotation.x = clampf(camera_spring.rotation.x, -PI/2, PI/4)
 			camera_spring.rotation.y += rotation_y
+		elif action == Action.DRAGGING:
+			var mouse_position := mouse_event.global_position
+			var control_position := get_control_position(mouse_position)
+			arrow.move_to(control_position)
 
 
 func _process(_delta: float) -> void:

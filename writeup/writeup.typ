@@ -2087,13 +2087,13 @@ The maximum distance can be set as a constant in the `player,gd` file.
 @export var DRAG_THRESHOLD: float = 0.2
 ```
 
-Which can then be used to decide what action is happening, and capture the mouse in both cases:
+Which can then be used to decide what action is happening, and capture the mouse only when pivoting:
 
 ```gdscript
-Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 if ball_distance < DRAG_THRESHOLD:
 	action = Action.DRAGGING
 else:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	action = Action.PIVOTING
 ```
 
@@ -2126,10 +2126,10 @@ func _input(event: InputEvent) -> void:
 				var mouse_position := get_viewport().get_mouse_position()
 				var control_position := get_control_position(mouse_position)
 				var ball_distance := control_position.length()
-				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 				if ball_distance < DRAG_THRESHOLD:
 					action = Action.DRAGGING
 				else:
+					Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 					action = Action.PIVOTING
 			else:
 				if action != Action.NONE:
@@ -2164,6 +2164,51 @@ $S_x = 1 + (S_z - 3) * 0.25$
 
 When $S_z$ is 1, $S_x$ results in $1 + (-2 * 0.25)$ which is correctly $0.5$.
 
-$S_z$ needs to also be calculated from the distance from the ball, ranging from $0.15 -> 1$ to $5 -> 4.5$. This ends up with the following linear function:
+$S_z$ needs to also be calculated from the distance from the ball, ranging from $0.15 -> 1$ to $0.55 -> 4.5$. This ends up with the following linear function:
 
-$S_z = 0.72 * d + 0.9$
+$S_z = 10 * d - 0.5$
+
+Both of these equations can be easily implemented:
+
+```gdscript
+## Convert a distance to an approximately appropriate scale.
+func _distance_to_z_scale(distance: float) -> float:
+	distance = clampf(distance, 0.15, 5)
+	return 10 * distance - 0.5
+
+
+## Map a z scale to an appropriate x scale.
+func _z_scale_to_x(z_scale: float) -> float:
+	return 1 + (z_scale - 3) * 0.25
+```
+
+We can then create a function to resize and rotate the arrow based off a 3D position. First here is the structure of the arrow scene:
+
+#image("./images/development/controls/arrow-scene.png")
+
+`$Inner` contains the arrow shapes and is offset. This is the part which should be scaled to retain the same offset from the ball.
+
+This means we need to get the `Inner` node in our script
+
+```gdscript
+# arrow.gd
+class_name Arrow
+extends Node3D
+
+@onready var inner: Node3D = $Inner
+```
+
+The previous functions can then be used to get the x and z scale for the inner node.
+
+```gdscript
+## Rotate and scale the arrow opposite to the given `position`.
+func move_to(mouse_position: Vector3) -> void:
+	var z_scale := _distance_to_z_scale(mouse_position.length())
+	var x_scale := _z_scale_to_x(z_scale)
+```
+
+The angle is needed for the rotation, this can be done by getting the angle between the mouse vector and the vector at angle 0. `Vector3.signed_angle_to` uses the current vector it is called on, and the first parameter to calculate an angle, through the reference of the axis provided in the second parameter. So I use mouse vector, the opposite of the forward vector, and the down axis to get the angle - between -$pi$ and $pi$.
+
+```gdscript
+var angle := mouse_position.signed_angle_to(-Vector3.FORWARD, Vector3.DOWN)
+```
