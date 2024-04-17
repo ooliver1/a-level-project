@@ -1,8 +1,12 @@
 class_name Arrow
 extends Node3D
 
-
 @onready var inner: Node3D = $Inner
+
+
+## Get the power, between 1 and 4.5.
+func get_power() -> float:
+	return inner.scale.z
 
 
 ## Rotate and scale the arrow opposite to the given `position`.

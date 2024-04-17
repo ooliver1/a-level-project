@@ -2231,3 +2231,16 @@ When testing the arrow scaling, I found that the arrow would scale even when the
 #image("./images/development/controls/arrow-scaling.png", height: 240pt)
 
 The arrow now correctly scales to a maximum size (power).
+
+==== Moving The Ball
+
+Now the arrow can be used to control the ball. When the left mouse button is released, the ball should be moved in the direction and power of the arrow.
+
+This means that there should be a way to get the power from the arrow's scale, and the direction from the arrow's rotation. As the scale is stored in the `Inner` node, there needs to be a public function to get this out, to reduce coupling of external code on the arrow's structure:
+
+```gdscript
+# arrow.gd
+## Get the power, between 1 and 4.5.
+func get_power() -> float:
+	return inner.scale.z
+```

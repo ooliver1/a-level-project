@@ -4,6 +4,8 @@ enum Action { PIVOTING, DRAGGING, NONE }
 
 ## Distance from ball to consider a gesture a drag.
 @export var DRAG_THRESHOLD: float = 0.2
+## Distance from ball when letting go to cancel the action.
+@export var CANCEL_DISTANCE: float = 0.1
 
 var action: Action = Action.NONE
 var mouse_sensitivity: int = 1
@@ -49,6 +51,18 @@ func _input(event: InputEvent) -> void:
 					Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 					action = Action.PIVOTING
 			else:
+				if action == Action.DRAGGING:
+					var mouse_position := get_viewport().get_mouse_position()
+					var control_position := get_control_position(mouse_position)
+					var ball_distance := control_position.length()
+					if ball_distance > CANCEL_DISTANCE:
+						var rotation := arrow.rotation.y
+						var power := arrow.get_power()
+						var ahead := Vector3.FORWARD
+						var direction := ahead.rotated(Vector3.UP, rotation)
+						var result := direction * power
+						ball.apply_impulse(result)
+
 				if action != Action.NONE:
 					Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 					action = Action.NONE
