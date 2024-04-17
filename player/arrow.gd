@@ -10,8 +10,7 @@ func move_to(mouse_position: Vector3) -> void:
 	var z_scale := _distance_to_z_scale(mouse_position.length())
 	var x_scale := _z_scale_to_x(z_scale)
 	var angle := mouse_position.signed_angle_to(-Vector3.FORWARD, Vector3.DOWN)
-	print(mouse_position.length())
-	print(z_scale)
+
 	inner.scale.x = x_scale
 	inner.scale.z = z_scale
 	rotation.y = angle
@@ -19,7 +18,7 @@ func move_to(mouse_position: Vector3) -> void:
 
 ## Convert a distance to an approximately appropriate scale.
 func _distance_to_z_scale(distance: float) -> float:
-	distance = clampf(distance, 0.15, 5)
+	distance = clampf(distance, 0.15, 0.5)
 	return 10 * distance - 0.5
 
 

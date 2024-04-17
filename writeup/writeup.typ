@@ -2212,3 +2212,22 @@ The angle is needed for the rotation, this can be done by getting the angle betw
 ```gdscript
 var angle := mouse_position.signed_angle_to(-Vector3.FORWARD, Vector3.DOWN)
 ```
+
+====== Arrow Rotation
+
+When the cursor is dragged out of the circle, the arrow should rotate to point in the direction of the cursor. This means that the `$Plane` needs to be large, with code to detect distance for if the cursor is out of bounds. This is because it feels unnatural for rotation to stop when the cursor is too far away but rotating around the ball. The code currently already handles this by using `clampf` on the scale.
+
+====== Ongoing Testing
+
+======= Arrow Scaling
+
+When testing the arrow scaling, I found that the arrow would scale even when the cursor is "0.5m away" from the ball. This is because `clampf` was passed min $0.15$ and max $5$ instead of a maximum of $0.5$.
+
+```diff
+-distance = clampf(distance, 0.15, 5)
++distance = clampf(distance, 0.15, 0.5)
+```
+
+#image("./images/development/controls/arrow-scaling.png", height: 240pt)
+
+The arrow now correctly scales to a maximum size (power).

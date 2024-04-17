@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://d07fuhkkblrcr"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_qyyea"]
-height = 0.01
+[sub_resource type="BoxShape3D" id="BoxShape3D_gmma2"]
+size = Vector3(100, 0.01, 100)
 
 [node name="Plane" type="StaticBody3D"]
 collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CylinderShape3D_qyyea")
+shape = SubResource("BoxShape3D_gmma2")
