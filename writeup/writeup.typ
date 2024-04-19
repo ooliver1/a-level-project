@@ -2244,3 +2244,19 @@ This means that there should be a way to get the power from the arrow's scale, a
 func get_power() -> float:
 	return inner.scale.z
 ```
+
+===== Ongoing Testing
+
+====== Pivoting and Dragging Multiple Times
+
+When testing the controls, I found that the camera would pivot every first time you interact with the ball using left click. This is because the `RayCast` would not be updated immediately and always be one update behind. This was fine for when dragging, but in the check on if the cursor is close enough to the ball this was not acceptable. This was a simple fix by using `RayCast.force_raycast_update()` to update the ray cast immediately.
+
+```gdscript
+func get_control_position(mouse_position: Vector2) -> Vector3:
+	# ...
+	ray_cast.global_position = origin
+	ray_cast.target_position = end
+
+	ray_cast.force_raycast_update()
+	return ray_cast.get_collision_point() - ball.position
+```

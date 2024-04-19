@@ -100,4 +100,5 @@ func get_control_position(mouse_position: Vector2) -> Vector3:
 	ray_cast.global_position = origin
 	ray_cast.target_position = end
 
+	ray_cast.force_raycast_update()
 	return ray_cast.get_collision_point() - ball.position
