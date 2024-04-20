@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bqqact35mai6h"]
+
+[ext_resource type="Script" path="res://courses/course_info.gd" id="1_vwgxy"]
+
+[resource]
+script = ExtResource("1_vwgxy")
+start_positions = Array[Vector3]([Vector3(0.5, 0.1, 0)])

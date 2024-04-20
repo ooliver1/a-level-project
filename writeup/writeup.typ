@@ -1865,7 +1865,7 @@ I now have the course and ball working well together. The ball can roll around t
 - Ball rolls naturally
 - Ball collides with obstacles
 
-=== Stage 3: Controls & Game Mechanics
+=== Stage 3: Controls & Camera
 
 ==== Point Controls
 
