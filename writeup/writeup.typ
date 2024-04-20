@@ -2156,8 +2156,6 @@ Not only should the z direction be scaled for length, but the x direction should
   [5], [1.5],
 )
 
-// TODO: ask if this should go in design or development, as I couldn't do this until now but it seems kinda weird here?
-
 This gives the following mathematical function for the scale:
 
 $S_x = 1 + (S_z - 3) * 0.25$
@@ -2245,6 +2243,44 @@ func get_power() -> float:
 	return inner.scale.z
 ```
 
+The dragging of the ball should be cancellable by moving the cursor back close to the ball. This can be done by checking the distance from the ball when the left mouse button is released.
+
+```gdscript
+# player.gd
+## Distance from ball when letting go to cancel the action.
+@export var CANCEL_DISTANCE: float = 0.05
+
+# ...
+
+if action == Action.DRAGGING:
+	# ...
+
+	if ball_distance > CANCEL_DISTANCE:
+		pass
+```
+
+The power can be obtained via `arrow.get_power()` and the direction can be obtained via `arrow.rotation.y`. This can then be used to move the ball in the direction and power.
+
+```gdscript
+if ball_distance > CANCEL_DISTANCE:
+	var rotation := arrow.rotation.y
+	var power := arrow.get_power()
+```
+
+`rotation` is in radians, based off the forward vector, so the direction can be calculated by rotating the forward vector by the rotation angle. This can be done by using the `rotated` method on the unit vector.
+
+```gdscript
+var ahead := Vector3.FORWARD
+var direction := ahead.rotated(Vector3.UP, rotation)
+```
+
+Finally, the `direction` vector can be scaled, and `RigidBody3D.apply_impulse` can be used to move the ball in the direction and power.
+
+```gdscript
+var result := direction * power
+ball.apply_impulse(result)
+```
+
 ===== Ongoing Testing
 
 ====== Pivoting and Dragging Multiple Times
@@ -2252,6 +2288,7 @@ func get_power() -> float:
 When testing the controls, I found that the camera would pivot every first time you interact with the ball using left click. This is because the `RayCast` would not be updated immediately and always be one update behind. This was fine for when dragging, but in the check on if the cursor is close enough to the ball this was not acceptable. This was a simple fix by using `RayCast.force_raycast_update()` to update the ray cast immediately.
 
 ```gdscript
+# arrow.gd
 func get_control_position(mouse_position: Vector2) -> Vector3:
 	# ...
 	ray_cast.global_position = origin
@@ -2260,3 +2297,51 @@ func get_control_position(mouse_position: Vector2) -> Vector3:
 	ray_cast.force_raycast_update()
 	return ray_cast.get_collision_point() - ball.position
 ```
+
+====== Camera Clipping Through Walls
+
+When the ball would move so that the camera was behind a wall, the camera spring would adjust length to be in front of the wall. This is intended but would be annoying when it would happen briefly as the ball moved.
+
+One solution would be to disable camera spring collisions so the camera can be behind walls. This can be done by setting the `collision_mask` of the camera spring to ignore `0`. This would make the camera go above an underpass, but the camera can be rotated by the player anyway.
+
+#image("./images/development/controls/camera-collision.png")
+
+Another thing that can be changed is restricting the angle the camera can pivot to, as there is no reason to go below the ground. This can be done by clamping the rotation values in the `player.gd` script.
+
+```gdscript
+# player.gd
+if action == Action.PIVOTING:
+	# ...
+
+	camera_spring.rotation.x += rotation_x
+	# Restrict camera from rotating too far down.
+	camera_spring.rotation.x = clampf(camera_spring.rotation.x, -PI/2, -PI/6)
+```
+
+==== Adjusting Power
+
+The current power range of 1-4.5 is not very useful. A power of 1 still moves the ball far, and 4.5 is not enough to get up some hills. I have adjusted the power with a scale, and an offset for lower values:
+
+```gdscript
+func get_power() -> float:
+	return (inner.scale.z * 2) - 1.75
+```
+
+==== Zooming
+
+The camera should be able to zoom in and out. This can be done by changing the length of the camera spring. The camera spring has a property for this called `spring_length`. The mouse scroll wheel is a button action, with a `factor` as the amount/delta of each scroll - usually `1.0` but can vary depending on the mouse.
+
+```gdscript
+# player.gd
+elif mouse_event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+	camera_spring.spring_length += mouse_event.factor / 20
+	camera_spring.spring_length = clampf(camera_spring.spring_length, 0.25, 5)
+elif mouse_event.button_index == MOUSE_BUTTON_WHEEL_UP:
+	camera_spring.spring_length -= mouse_event.factor / 20
+	camera_spring.spring_length = clampf(camera_spring.spring_length, 0.25, 5)
+```
+
+`InputEventMouseMotion.factor` is scaled to get the distance in metres to change by. This is clamped to a minimum of 0.25 and 5 so the camera is not too close or far.
+
+#image("./images/development/controls/camera-close.png", height: 240pt)
+#image("./images/development/controls/camera-far.png", height: 240pt)

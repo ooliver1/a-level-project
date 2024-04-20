@@ -5,7 +5,7 @@ enum Action { PIVOTING, DRAGGING, NONE }
 ## Distance from ball to consider a gesture a drag.
 @export var DRAG_THRESHOLD: float = 0.2
 ## Distance from ball when letting go to cancel the action.
-@export var CANCEL_DISTANCE: float = 0.1
+@export var CANCEL_DISTANCE: float = 0.05
 
 var action: Action = Action.NONE
 var mouse_sensitivity: int = 1
@@ -55,6 +55,7 @@ func _input(event: InputEvent) -> void:
 					var mouse_position := get_viewport().get_mouse_position()
 					var control_position := get_control_position(mouse_position)
 					var ball_distance := control_position.length()
+
 					if ball_distance > CANCEL_DISTANCE:
 						var rotation := arrow.rotation.y
 						var power := arrow.get_power()
@@ -66,6 +67,12 @@ func _input(event: InputEvent) -> void:
 				if action != Action.NONE:
 					Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 					action = Action.NONE
+		elif mouse_event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			camera_spring.spring_length += mouse_event.factor / 20
+			camera_spring.spring_length = clampf(camera_spring.spring_length, 0.25, 5)
+		elif mouse_event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			camera_spring.spring_length -= mouse_event.factor / 20
+			camera_spring.spring_length = clampf(camera_spring.spring_length, 0.25, 5)
 	elif event is InputEventMouseMotion:
 		var mouse_event := event as InputEventMouseMotion
 		# Rotate camera spring arm when pivot button is down.
@@ -76,7 +83,7 @@ func _input(event: InputEvent) -> void:
 
 			camera_spring.rotation.x += rotation_x
 			# Restrict camera from rotating more than 45° from horizontal downwards.
-			camera_spring.rotation.x = clampf(camera_spring.rotation.x, -PI/2, PI/4)
+			camera_spring.rotation.x = clampf(camera_spring.rotation.x, -PI/2, -PI/6)
 			camera_spring.rotation.y += rotation_y
 		elif action == Action.DRAGGING:
 			var mouse_position := mouse_event.global_position
