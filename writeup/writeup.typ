@@ -574,6 +574,32 @@ The collision object provides a vector referring to the "normal" of the collisio
 
 The colliding vector can be reflected along the normal vector to get the resulting vector. Godot provides `Vector3.bounce(Vector3)` to do this for me.
 
+==== World Node Structure
+
+The world will contain multiple holes, and multiple players. Players are instanced in scripts as there are a dynamic amount of them and they contain different data depending on the player. There are multiple holes but they can be instanced in the editor as they are static.
+
+#fletcher.diagram(
+	spacing: (10mm, 15mm),
+	node-stroke: 1pt,
+	{
+	node((0, 0), "World")
+	node((0, 1), "Player")
+	edge((0, 0), "d", "->", "Instanced in script\nMultiple")
+	node((4, 1), "Course")
+	edge((0, 0), "rrrr,d", "->")
+	node((4, 2), "Hole")
+	edge((4, 1), "d", "->", "Multiple")
+	node((0, 2), "Ball")
+	edge((0, 1), "d", "->")
+	node((1, 2), "Camera")
+	edge((0, 1), "r,d", "->")
+	node((2, 2), "RayCast")
+	edge((0, 1), "rr,d", "->")
+	node((3, 2), "Arrow")
+	edge((0, 1), "rrr,d", "->")
+	}
+)
+
 ==== Controls
 
 The controls consist of the ability to pivot and zoom the camera, and shoot the ball. The camera can pivot around the ball using Godot's `SpringArm` node. The camera can zoom in and out using the scroll wheel by adjusting the length of this arm, and the camera can rotate around the ball by rotating the arm.
