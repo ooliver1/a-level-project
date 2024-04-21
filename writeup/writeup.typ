@@ -315,7 +315,6 @@ The game could also act as a distraction from revision or school work. This is a
 
 ==== Stakeholder Requirements
 
-// where to split design vs functionality?
 ===== Design
 #table(
   columns: (1fr, 1fr),
@@ -636,7 +635,6 @@ The left mouse button should only drag the ball if the distance from the ball is
 )
 
 ===== Left Click Press
-// convert := to just =, * to $*$, = without $, remove "var"
 #pseudocode(
 	[*if* event.button $==$ MOUSE_LEFT *then*], ind,
 	[*if* event.pressed *then*], ind,
