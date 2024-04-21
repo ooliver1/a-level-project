@@ -389,16 +389,6 @@ The game could also act as a distraction from revision or school work. This is a
 
 == Design
 
-// TODO: add design for control system
-// diagram if possible and maybe pseudocode
-
-Key points:
-// TODO: godot docs have that node diagram, but it probably isn't the best that I've corrected stuff along the way? maybe?
-- Program structure
-- Features
-- Key variables/data structures/classes
-- Testing approach
-
 === User Interface
 
 ==== Main Menu
@@ -1348,8 +1338,6 @@ func get_texture(event: InputEvent) -> Texture2D:
 ```
 
 #image("./images/development/options/controls-inputs.png", height: 240pt)
-
-// TODO: maybe backfill the design/this when decided
 
 Only item 1, 2 and 3 are implemented as controls right now, as I am not sure what the other controls will be yet. This will be implemented later when I have a better idea of what the controls will be.
 
