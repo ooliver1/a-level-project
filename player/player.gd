@@ -6,9 +6,10 @@ enum Action { PIVOTING, DRAGGING, NONE }
 @export var DRAG_THRESHOLD: float = 0.2
 ## Distance from ball when letting go to cancel the action.
 @export var CANCEL_DISTANCE: float = 0.05
+## Sensitivity of the mouse movement when pivoting.
+@export var MOUSE_SENSITIVITY: int = 1
 
 var action: Action = Action.NONE
-var mouse_sensitivity: int = 1
 
 @onready var ray_cast: RayCast3D = %RayCast
 @onready var camera: Camera3D = %Camera
@@ -78,8 +79,8 @@ func _input(event: InputEvent) -> void:
 		# Rotate camera spring arm when pivot button is down.
 		if action == Action.PIVOTING:
 			# Invert mouse movements as the coordinate origin is different.
-			var rotation_y := deg_to_rad(-mouse_event.relative.x * mouse_sensitivity)
-			var rotation_x := deg_to_rad(-mouse_event.relative.y * mouse_sensitivity)
+			var rotation_y := deg_to_rad(-mouse_event.relative.x * MOUSE_SENSITIVITY)
+			var rotation_x := deg_to_rad(-mouse_event.relative.y * MOUSE_SENSITIVITY)
 
 			camera_spring.rotation.x += rotation_x
 			# Restrict camera from rotating more than 45° from horizontal downwards.
