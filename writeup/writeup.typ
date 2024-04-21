@@ -98,7 +98,6 @@ The clients I have chosen to interview have played arcade-style games before. Th
 
 #[
 #set heading(outlined: false)
-// TODO: Set name headings to be a different colour to differentiate names and questions.
 ====== Milan
 
 ======= 1. Have you played a multiplayer arcade-style game before?
@@ -350,8 +349,6 @@ The game could also act as a distraction from revision or school work. This is a
   align: top,
   [*Requirement*], [*Explanation*],
   [Keyboard and mouse], [The game should be playable with a keyboard and mouse.],
-  // TODO:
-  [Minimum ...], [The game should be playable on a minimum of ... (pc specs, todo, no realistic target right now).],
   [Windows >=10, macOS >=13.1, Linux x86_64], [These are the operating system versions that the game should be at minimum playable on.]
 )
 
@@ -397,11 +394,8 @@ The game could also act as a distraction from revision or school work. This is a
 
 Key points:
 // TODO: godot docs have that node diagram, but it probably isn't the best that I've corrected stuff along the way? maybe?
-- Interface design
 - Program structure
-- Algorithms - validation
 - Features
-// TODO: hopefully easier after multiplayer
 - Key variables/data structures/classes
 - Testing approach
 
@@ -589,6 +583,152 @@ The collision object provides a vector referring to the "normal" of the collisio
 })
 
 The colliding vector can be reflected along the normal vector to get the resulting vector. Godot provides `Vector3.bounce(Vector3)` to do this for me.
+
+==== Controls
+
+The controls consist of the ability to pivot and zoom the camera, and shoot the ball. The camera can pivot around the ball using Godot's `SpringArm` node. The camera can zoom in and out using the scroll wheel by adjusting the length of this arm, and the camera can rotate around the ball by rotating the arm.
+
+Drag and point controls require figuring out the position of the mouse in 3D space relative to the ball. This can be done using a `RayCast` node, which casts a ray from the camera to the mouse position. The point where the ray intersects the ground is where the ball should go (where the arrow should point).
+
+`get_control_position` would perform the ray cast, returning the position in 3D space relative to the ball.
+`point_towards` would rotate the arrow to point using provided vector, and scale to its size.
+`CANCEL_DISTANCE` is the distance from the ball which a dragging action is cancelled.
+`action` would be a global variable to determine the current action of the player, likely an enum.
+`DRAG_THRESHOLD` is the maximum distance from the ball in which a dragging action can be started.
+`MOUSE_SENSITIVITY` is the sensitivity of the mouse movement, to be configurable by the player.
+
+The mouse button press should be detected first and noted down, and the movement of the mouse should be detected. What action the movement does depends on what button is held down. If the right mouse button is held down, the camera should pivot around the ball. If the left mouse button is held down, the arrow should be rotated and scaled to show the power of the shot.
+
+The left mouse button should only drag the ball if the distance from the ball is less than `DRAG_THRESHOLD`, if not then it should pivot the camera just like right click does.
+
+#import "@preview/lovelace:0.2.0": *
+#show: setup-lovelace
+
+===== Right Click Press
+#pseudocode(
+	[*if* event.button $==$ MOUSE_RIGHT *then*], ind,
+	[*if* event.pressed *then*], ind,
+	[*if* get_mouse_mode() $==$ MOUSE_VISIBLE *then*], ind,
+	[action = PIVOTING], ded,
+	[*else*], ind,
+	[*if* get_mouse_mode() $==$ MOUSE_CAPTURED *then*], ind,
+	[action = NONE], ded,
+	[*endif*], ded, 
+	[*endif*], ded,
+	[*endif*], ded,
+	[*endif*]
+)
+
+===== Left Click Press
+// convert := to just =, * to $*$, = without $, remove "var"
+#pseudocode(
+	[*if* event.button $==$ MOUSE_LEFT *then*], ind,
+	[*if* event.pressed *then*], ind,
+	[#comment[get position of mouse in the viewport, then cast it in 3D space]],
+	[mouse_position = get_mouse_position()],
+	[control_position = get_control_position(mouse_position)],
+	[ball_distance = control_position.length()],
+	[point_towards(control_position)],
+	[*if* ball_distance $<$ DRAG_THRESHOLD *then*], ind,
+	[action = DRAGGING], ded,
+	[*else*], ind,
+	[action = PIVOTING], ded,
+	[*endif* #comment[end of if distance less than DRAG_THRESHOLD]], ded,
+	[*else*], ind,
+	[*if* action $==$ DRAGGING *then*], ind,
+	[control_position = get_control_position(mouse_position)],
+	[ball_distance = control_position.length()],
+	[*if* ball_distance $>$ CANCEL_DISTANCE *then*], ind,
+	[rotation = arrow.rotation_y],
+	[power = arrow.get_power()],
+	[direction = vector_from_angle(rotation) #comment[create unit vector from angle]],
+	[result = direction $*$ power],
+	[ball.apply_impulse(result)], ded,
+	[*endif* #comment[end of if greater than CANCEL_DISTANCE]], ded,
+	[*endif* #comment[end of if action is DRAGGING]],
+	[*if* action $!=$ NONE *then*], ind,
+	[set_mouse_mode(MOUSE_MODE_VISIBLE)],
+	[action = NONE], ded,
+	[*endif* #comment[end of if action is NONE]], ded,
+	[*endif* #comment[end of if button pressed]], ded,
+	[*endif* #comment[end of if left click]]
+)
+
+===== Mouse Wheel
+
+#pseudocode(
+	[*if* event.button $==$ MOUSE_WHEEL_DOWN *then*], ind,
+	[camera_spring.spring_length += 0.05 #comment[zoom out]], ded,
+	[*endif*],
+	[*if* event.button $==$ MOUSE_WHEEL_UP *then*], ind,
+	[camera_spring.spring_length -= 0.05 #comment[zoom in]], ded,
+	[*endif*]
+)
+
+===== Mouse Movement
+
+#pseudocode(
+	[*if* event $==$ MOUSE_MOVEMENT *then*], ind,
+	[*if* action $==$ PIVOTING *then*], ind,
+	[camera_spring.rotation_x += event.x $*$ MOUSE_SENSITIVITY],
+	[camera_spring.rotation_y += event.y $*$ MOUSE_SENSITIVITY], ded,
+	[*endif* #comment[end of if action is PIVOTING]],
+	[*if* action $==$ DRAGGING *then*], ind,
+	[control_position = get_control_position(mouse_position)],
+	[point_towards(control_position)], ded,
+	[*endif* #comment[end of if action is DRAGGING]], ded,
+	[*endif* #comment[end of if event is MOUSE_MOVEMENT]]
+)
+
+=== Inputs and Outputs
+
+These are the inputs and outputs my game will need to handle.
+
+#table(
+	align: top,
+	columns: (1fr, 1fr, 1fr),
+	[*Input*], [*Process*], [*Output*],
+	[Mouse movement], [Move the camera or rotate the arrow depending on if the left or right button is held], [Camera movement or arrow rotation],
+	[Mouse wheel], [Zoom the camera in or out depending on direction of scroll], [Camera zoom],
+	[Left mouse click], [Start dragging the arrow or pivot the camera depending on distance from ball], [Arrow drag or camera pivot],
+	[Right mouse click], [Pivot the camera around the ball], [Camera pivot],
+	[Keyboard input], [Pause the game, change settings or use item], [Pause menu, settings menu, item use],
+	[Right joystick], [Pivot the camera around the ball], [Camera pivot],
+	[Left joystick], [Move the ball, pull stick back for direction and power, release to move], [Ball movement],
+	[Controller button press], [Pause the game, change settings, use items], [Pause menu, settings menu, item use],
+)
+
+=== Key Variables
+
+These are the key variables that will be used in the game.
+
+#table(
+	align: top,
+	columns: (1fr, 1fr, 2fr),
+	[*Variable*], [*Type*], [*Description*],
+	[action], [enum], [The current action of the player, such as dragging the ball or pivoting the camera.],
+	[scores], [array], [An array of the scores of all the players in the game.],
+	[time_left], [int], [The time left on the current hole.],
+	[ball], [RigidBody3D], [The ball that the player is controlling.],
+	[items], [array], [An array of the items the player has in their inventory.],
+	[control_position], [Vector3], [The position of the mouse in 3D space relative to the ball.],
+	[ball_distance], [float], [The distance from the ball to the mouse position.],
+	[hole], [int], [The current hole the player is on.],
+	[arrow], [Node3D], [The arrow that shows the direction and power of the shot.],
+	[camera_spring], [SpringArm], [The spring arm that controls the camera.],
+	[mouse_position], [Vector2], [The position of the mouse in the viewport.],
+	[linear_velocity], [Vector3], [The velocity of the ball.],
+)
+
+=== Testing Approach
+
+Developing a game requires a lot of testing to ensure it works as expected for as many users as possible.
+
+Test logs need to show the aspect tested, inputs, the expected result, actual result, and any extra notes from the result of the test such as fixes.
+
+The main method of testing will be black box testing, where the game is tested without knowledge of the internal workings. This is to ensure the game works as expected from a user's perspective. If something does not work as expected then debugging can be enabled and the internal workings can be checked.
+
+As the development process I am using is iterative, I will be testing the game as it is developed. When adding a new piece of code I will check to make sure it works as I expect, then more thoroughly at the end of each stage for edge cases. This ensures each small part of the game is tested properly before moving on to the next part.
 
 == Development
 
@@ -1327,8 +1467,6 @@ func _ready() -> void:
 	tab_container.get_tab_bar().grab_focus()
 ```
 
-// TODO: focus does not work for going back to the tab bar (how do I fix?)
-
 ===== Saving Settings
 
 The settings need to be saved between sessions, so the user does not have to set them every time they play the game. This is done by saving the settings to a file in the user's home directory. This is done in the `global.gd` script, which is autoloaded so `save_settings` can always be accessed.
@@ -1666,11 +1804,6 @@ This means that I now have a program with the main menu and options menu fully f
 - Configurable controls
 - Adjustable volume
 
-// TODO: move video stuff from `Global` into a new autoload `VideoSettings` (since `Video` clashes?)
-// and maybe settings to a `Settings` autoload too?
-
-// TODO: no description of stages here as that should be in the design section.
-
 === Stage 2: Course Creation & Initial Physics
 
 ==== Ball Placement
@@ -1920,35 +2053,59 @@ To be able to properly use these controls, the camera must be able to pivot arou
 
 The pivoting is operated by click and dragging the right mouse button. Joystick controls can be added later.
 
-// TODO: split this up into mouse button and mouse motion, for the development process
+First, using the `_input` virtual method, the right mouse button can be detected conditionally with `InputEventMouseButton.button_index`.
 
 ```gdscript
-# player.gd
-var mouse_sensitivity: int = 1
-
-# ...
-
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var mouse_event := event as InputEventMouseButton
 		# Pivot camera on right click drag.
 		if mouse_event.button_index == MOUSE_BUTTON_RIGHT:
-			if mouse_event.pressed:
-				if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-					Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			else:
-				if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-					Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	elif event is InputEventMouseMotion:
-		var mouse_event := event as InputEventMouseMotion
-		# Rotate camera spring arm when pivot button is down.
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			# Invert mouse movements as the coordinate origin is different.
-			var rotation_y := deg_to_rad(-mouse_event.relative.x * mouse_sensitivity)
-			var rotation_x := deg_to_rad(-mouse_event.relative.y * mouse_sensitivity)
+			pass
+```
 
-			camera_spring.rotation.x += rotation_x
-			camera_spring.rotation.y += rotation_y
+If the right mouse button is pressed down, the mouse should be captured so it is invisible and in the middle of the screen. This prevents the mouse from going off the screen and allows for continuous pivoting.
+
+```gdscript
+if mouse_event.button_index == MOUSE_BUTTON_RIGHT:
+	if mouse_event.pressed:
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+```
+
+Otherwise if it is released, the mouse should be given back to the user.
+
+```gdscript
+else:
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+```
+
+Since the mouse is captured when the right mouse button is held, this can be detected when the mouse is moved.
+
+```gdscript
+elif event is InputEventMouseMotion:
+	var mouse_event := event as InputEventMouseMotion
+	# Rotate camera spring arm when pivot button is down.
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		pass
+```
+
+This event can then be used to change the camera spring rotation, which is a child of the player node.
+
+```gdscript
+## Sensitivity of the mouse movement when pivoting.
+@export var mouse_sensitivity: int = 1
+
+# ...
+
+if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+	# Invert mouse movements as the coordinate origin is different.
+	var rotation_y := deg_to_rad(-mouse_event.relative.x * mouse_sensitivity)
+	var rotation_x := deg_to_rad(-mouse_event.relative.y * mouse_sensitivity)
+
+	camera_spring.rotation.x += rotation_x
+	camera_spring.rotation.y += rotation_y
 ```
 
 `mouse_sensitivity` should be added to the options menu later.
@@ -2652,9 +2809,10 @@ enum Action { PIVOTING, DRAGGING, NONE }
 @export var DRAG_THRESHOLD: float = 0.2
 ## Distance from ball when letting go to cancel the action.
 @export var CANCEL_DISTANCE: float = 0.05
+## Sensitivity of the mouse movement when pivoting.
+@export var MOUSE_SENSITIVITY: int = 1
 
 var action: Action = Action.NONE
-var mouse_sensitivity: int = 1
 
 @onready var ray_cast: RayCast3D = %RayCast
 @onready var camera: Camera3D = %Camera
@@ -2724,8 +2882,8 @@ func _input(event: InputEvent) -> void:
 		# Rotate camera spring arm when pivot button is down.
 		if action == Action.PIVOTING:
 			# Invert mouse movements as the coordinate origin is different.
-			var rotation_y := deg_to_rad(-mouse_event.relative.x * mouse_sensitivity)
-			var rotation_x := deg_to_rad(-mouse_event.relative.y * mouse_sensitivity)
+			var rotation_y := deg_to_rad(-mouse_event.relative.x * MOUSE_SENSITIVITY)
+			var rotation_x := deg_to_rad(-mouse_event.relative.y * MOUSE_SENSITIVITY)
 
 			camera_spring.rotation.x += rotation_x
 			# Restrict camera from rotating more than 45° from horizontal downwards.
