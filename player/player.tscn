@@ -81,6 +81,7 @@ collision_mask = 4
 [node name="CameraSpring" type="SpringArm3D" parent="Controls"]
 unique_name_in_owner = true
 transform = Transform3D(-1, -4.37114e-08, 7.57103e-08, 0, 0.866025, 0.5, -8.74228e-08, 0.5, -0.866025, 0, 0, 0)
+collision_mask = 0
 spring_length = 1.5
 margin = 0.25
 

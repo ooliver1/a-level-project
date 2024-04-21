@@ -358,18 +358,18 @@ The game could also act as a distraction from revision or school work. This is a
 ==== Measurable Success Criteria for the Proposed Solution
 
 // What I will actually do to solve the stakeholder requirements ("buttons with clear text")
-#table(
+#let success-criteria = table(
   columns: (1fr, 1fr),
   align: top,
   [*Criteria*], [*How to get evidence*],
   [Clear main menu], [Screenshot of the main menu and user feedback.],
   [Full-screen and windowed options], [Screenshot of the application being full-screen and windowed + code to switch between modes.],
   [Simple to understand controls], [Screenshot of the controls menu and user feedback of the controls.],
-  [In-game camera follows the ball], [Screenshot which shows the ball is visible at all times + code to support.],
-  [High contrast colour palette], [Screenshot of the game interface with user feedback.],
+  [In-game camera follows the ball], [Video which shows the ball is followed by the camera + code to support.],
+  [High contrast colour palette], [Screenshot of the game interface.],
   [Drag and point controls], [Screenshot of the ball being controlled + code to support.],
   [Power of shot controlled via dragging the ball], [Screenshot of the ball being controlled + code to support.],
-  [Items that affect other players], [Screenshot of the items in effect during gameplay + code to support.],
+  [Items that affect other players], [Video of the items in effect during gameplay + code to support.],
   [Multiplayer functionality], [Screenshot of game with multiple players + code to support.],
   [Co-operative aspect], [Screenshot and explanation of the co-operative aspect.],
   [Simple URL/code to join a multiplayer game], [Screenshot of the URL/code being used + code of code being handled.],
@@ -377,17 +377,18 @@ The game could also act as a distraction from revision or school work. This is a
   [Keyboard and mouse controls], [Screenshot of the controls menu + code showing custom keyboard controls.],
   [Support for controllers], [Screenshot of the controls menu supporting controller inputs along with code that support controller inputs.],
   [Includes a settings menu], [Screenshot of the settings menu.],
-  [Simple graphics], [Screenshot of the game, and framerate/GPU usage statistics with user feedback.],
+  [Simple graphics], [Screenshot of the game and video usage statistics.],
   [Scoreboard], [Screenshot of the scoreboard + code to support.],
   [Time limit], [Screenshot of the time limit + code to support.],
   [Configurable controls], [Screenshot of the controls menu + code to support.],
   [Quit button in the main menu], [Screenshot of the main menu with the quit button + code to support.],
   [Pause menu], [Screenshot of the pause menu + code to support.],
-  [Start game button], [Screenshot of the menus with the start game button + code to support.],
+  [Start game button], [Screenshot of the menus with the start game button.],
   [Adjustable volume], [Screenshot of the settings menu with the volume sliders + code to support.],
-  [Ball rolls naturally], [Screenshot of the ball rolling + code to support.],
-  [Ball collides with obstacles], [Screenshot of the ball colliding with obstacles + code to support.],
+  [Ball rolls naturally], [Video of the ball rolling.],
+  [Ball collides with obstacles], [Video of the ball colliding with obstacles + code to support.],
 )
+#success-criteria
 
 == Design
 
@@ -2218,6 +2219,7 @@ When the cursor is dragged out of the circle, the arrow should rotate to point i
 ====== Ongoing Testing
 
 ======= Arrow Scaling
+<arrow-scaling>
 
 When testing the arrow scaling, I found that the arrow would scale even when the cursor is "0.5m away" from the ball. This is because `clampf` was passed min $0.15$ and max $5$ instead of a maximum of $0.5$.
 
@@ -2299,6 +2301,7 @@ func get_control_position(mouse_position: Vector2) -> Vector3:
 ```
 
 ====== Camera Clipping Through Walls
+<camera-clipping-through-walls>
 
 When the ball would move so that the camera was behind a wall, the camera spring would adjust length to be in front of the wall. This is intended but would be annoying when it would happen briefly as the ball moved.
 
@@ -2345,3 +2348,1056 @@ elif mouse_event.button_index == MOUSE_BUTTON_WHEEL_UP:
 
 #image("./images/development/controls/camera-close.png", height: 240pt)
 #image("./images/development/controls/camera-far.png", height: 240pt)
+
+==== Review: Controls & Camera
+
+===== Progress Made
+
+The controls for the ball are now fully functional. The ball can be dragged around the course, and the camera can be pivoted around the ball. The camera can also be zoomed in and out, and the ball can be moved in the direction and power of the arrow.
+
+===== Testing Done
+
+#table(
+	columns: (1fr, 1.5fr, 1.5fr, 1.5fr, 2fr),
+	align: top,
+	[*Aspect Tested*], [*Input*], [*Expected Output*], [*Actual Output*], [*Comments/Resolution*],
+	[Camera pivoting], [Right click drag], [Camera pivots around ball], [Camera pivots around ball], [],
+	[Camera pivoting], [Left click drag], [Arrow rotates and scales to a limit], [Arrow rotates and scales too much], [Solved the scaling issue in #link-heading(<arrow-scaling>)],
+	[Camera pivoting], [Left click drag -> right click drag], [Camera pivots around ball], [Camera pivots around ball], [],
+	[Camera pivoting], [Pivot camera down], [Camera stops rotating below ground], [Camera stops rotating below ground], [This was adjusted in #link-heading(<camera-clipping-through-walls>)],
+	[Ball dragging], [Left click drag then move back towards ball], [Dragging motion is cancelled], [Dragging motion is cancelled], [],
+	[Ball dragging], [Left click drag -> release], [Ball moves in direction and power of arrow], [Ball moves in direction and power of arrow], [],
+	[Camera position], [Move ball behind wall], [Camera does not glitch past walls], [Camera goes in front of wall momentarily when moving], [This was solved by disabling camera spring collisions in #link-heading(<camera-clipping-through-walls>)],
+	[Camera zooming], [Scroll wheel down], [Camera zooms out to a limit], [Camera zooms out to a limit], [],
+	[Camera zooming], [Scroll wheel up], [Camera zooms in to a limit], [Camera zooms in to a limit], [],
+)
+
+==== Links to Success Criteria
+
+- Simple to understand controls
+- Drag and point controls
+- Power of shot controlled via dragging the ball
+- Keyboard and mouse controls
+
+== Final Testing
+
+=== User Interface
+
+#table(
+	columns: (1fr, 0.5fr, 2fr),
+	align: top,
+	[*Aspect Tested*], [*Did This Work?*], [*Evidence*],
+	[Main menu with options, play and quit buttons], [Y], [#image("./images/testing/ui/main-menu.png")],
+	[Options menu with video, audio and controls settings], [Y], [#image("./images/testing/ui/options-menu.png")],
+	[Video settings affects graphics], [Y], [#image("./images/testing/ui/video-settings.png")],
+	[Controls settings modify InputMap, for keyboard and controller], [Y], [#image("./images/testing/ui/controls-settings.png")],
+	[Audio settings affect volume], [Y], [#image("./images/testing/ui/audio-settings.png")],
+	[Options menu saves to persistent file], [Y], [#image("./images/testing/ui/options-file.png")],
+)
+
+=== Course Physics
+
+#table(
+	columns: (1fr, 0.5fr, 2fr),
+	align: top,
+	[*Aspect Tested*], [*Did This Work?*], [*Evidence*],
+	[Ball collides with walls], [Y], [https://youtu.be/xqQuCVQF5mY],
+	[Ball stops moving when idle], [Y], [https://youtu.be/xqQuCVQF5mY],
+	[Ball bounces off slopes], [Y], [https://youtu.be/ZUcf8NkPb-w],
+	[Ball can climb slopes], [Y], [https://youtu.be/ZUcf8NkPb-w],
+	[Ball loses velocity when colliding], [Y], [https://youtu.be/xqQuCVQF5mY],
+	[Ball stops moving when velocity is low], [Y], [https://youtu.be/xqQuCVQF5mY],
+)
+
+=== Controls & Camera
+
+#table(
+	columns: (1fr, 0.5fr, 2fr),
+	align: top,
+	[*Aspect Tested*], [*Did This Work?*], [*Evidence*],
+	[Camera pivots around ball], [Y], [https://youtu.be/MyRiPBwlchY],
+	[Arrow rotates and scales to a limit], [Y], [https://youtu.be/MyRiPBwlchY],
+	[Dragging motion is cancelled], [Y], [https://youtu.be/MyRiPBwlchY],
+	[Ball moves in direction and power of arrow], [Y], [https://youtu.be/MyRiPBwlchY],
+	[Camera stops rotating below ground], [Y], [https://youtu.be/MyRiPBwlchY],
+	[Camera does not glitch past walls], [Y], [https://youtu.be/MyRiPBwlchY],
+	[Camera zooms out to a limit], [Y], [https://youtu.be/MyRiPBwlchY],
+	[Camera zooms in to a limit], [Y], [https://youtu.be/MyRiPBwlchY],
+)
+
+== Evaluation
+
+=== Success Criteria
+
+Here is the success criteria table from the analysis section, along with evidence to justify the ones met.
+
+#success-criteria
+
+==== Clear main menu, high contrast colour palette, quit button in the main menu
+
+The main menu is clear, with a high contrast colour palette, and a quit button in the main menu.
+
+#image("./images/evaluation/main-menu.png")
+
+==== Full-screen and windowed options, include a settings menu, adjustable volume, configurable controls
+
+The settings menu includes full-screen and windowed options, adjustable volume, and configurable controls. This saves to a file to persist settings between sessions.
+
+#image("./images/evaluation/options-audio.png")
+#image("./images/evaluation/options-video.png")
+#image("./images/evaluation/options-controls.png")
+
+==== Simple to understand controls, drag and point controls, power of shot controlled via dragging the ball, keyboard and mouse controls
+
+The controls are simple to understand, with drag and point controls, the power of the shot is controlled via dragging the ball, and there are keyboard and mouse controls.
+
+This is shown in the following videos from final testing:
+- https://youtu.be/MyRiPBwlchY
+- https://youtu.be/xqQuCVQF5mY
+
+=== Limitations
+
+The game is quite simple in its current state, with only one set of 6 holes and no background to the course. A 'skybox' could be added around the whole course, and the ability to create a new course easily would be a good addition. The game could also be expanded with more complex holes, such as ones with moving platforms or obstacles.
+
+Multiplayer functionality is missing, which would greatly improve the game. A server would need to be implemented that can facilitate a "lobby" where you can be invited via a code, and then play the course together. This was detailed in the original proposal but was not implemented due to time and complexity constraints. The server would have to synchronise ball positions and player actions, and the game would have to be able to handle multiple players at once. Godot provides many multiplayer nodes to add to the scene tree to implement a higher level version of multiplayer, which reduces the complexity of development. As this game was originally designed for multiplayer, adding features such as a time limit and score counter before multiplayer would be counterproductive as the system would be quite different for multiplayer. This is a scope of development problem as this takes a lot of time to design, implement and thoroughly test.
+
+Audio is also missing, which includes adding background music and sound effects for the ball rolling and colliding with walls. This would greatly improve the game's immersion and make it more enjoyable to play. This would be relatively simple to add, using the `AudioStreamPlayer` node in Godot. It would also provide feedback to the player when selecting buttons in the UI.
+
+Controller support is also lacking. Adding controller support would improve accessibility to the game for more platforms and players. This would not be too difficult to add, as Godot provides controller input events just like keyboard and mouse, it was simply missed in the development process to save time and get further in development.
+
+=== Maintenance
+
+The game in its current state does not seem to have many bugs, the only issues I have found is some visual glitches in the seams between the course tiles.
+
+Stakeholder input would also be required throughout development of multiplayer, which can include integrated testing between stakeholders. This would be to ensure that the game is fun and engaging for all players, and that the game is accessible to all players. This would also include feedback on the course design and the physics of the ball, to ensure that the game is challenging but not frustrating.
+
+== Final Code & Scenes
+
+===== menu/options/sliders/volume_slider.gd
+```gdscript
+extends VBoxContainer
+
+@export var audio_bus_name: StringName
+
+# The index of the audio bus in all buses.
+@onready var audio_bus_index := AudioServer.get_bus_index(audio_bus_name)
+@onready var value_node: Label = %Value
+@onready var slider: HSlider = %Slider
+
+
+func _ready() -> void:
+	# Retrieve existing volume and set that on the slider and label.
+	var db := AudioServer.get_bus_volume_db(audio_bus_index)
+	var percentage := db_to_linear(db)
+	var value := roundi(percentage * 100)
+	value_node.text = str(value) + "%"
+	slider.value = value
+
+
+func _on_slider_value_changed(value: float) -> void:
+	# Godot uses decibels, which is logorithmic. This function converts a number
+	# from 0-1 into decibels (-80 to 24dB)
+	var db := linear_to_db(value / 100)
+	AudioServer.set_bus_volume_db(audio_bus_index, db)
+	value_node.text = str(value) + "%"
+```
+
+===== menu/options/sliders/volume_slider.tscn
+
+#image("./images/final/volume_slider.png")
+#image("./images/final/volume_slider-exported.png")
+
+
+===== menu/options/options.tscn
+
+#image("./images/final/options.png")
+
+===== menu/options/options.gd
+
+```gdscript
+extends Control
+
+@onready var tab_container: TabContainer = $TabContainer
+
+
+func _ready() -> void:
+	tab_container.get_tab_bar().grab_focus()
+
+
+func _on_close_button_pressed() -> void:
+	# global.previous_scene could be either options or pause, this is set
+	# before switching to options.
+	get_tree().change_scene_to_file(Global.previous_scene)
+
+
+func _on_tree_exiting() -> void:
+	Global.save_settings()
+```
+
+===== menu/options/option_button_transparent.gd
+
+```gdscript
+extends OptionButton
+
+
+func _ready() -> void:
+	get_popup().transparent_bg = true
+```
+
+===== menu/gui.tscn
+
+#image("./images/final/gui.png")
+
+===== menu/main_menu.tscn
+
+#image("./images/final/main_menu.png")
+#image("./images/final/main_menu-props.png")
+
+===== menu/main_menu.gd
+
+```gdscript
+extends MarginContainer
+
+# Take in scenes as an exported property, to reduce coupling.
+@export var play_scene: PackedScene
+@export var options_scene: PackedScene
+
+@onready var play_button: Button = %PlayButton
+
+
+func _ready() -> void:
+	play_button.grab_focus()
+
+
+func _on_quit_button_pressed() -> void:
+	# `get_tree()` gets the `SceneTree` which manages the game loop.
+	get_tree().quit()
+
+
+func _on_options_button_pressed() -> void:
+	var tree := get_tree()
+	Global.previous_scene = tree.current_scene.scene_file_path
+	tree.change_scene_to_packed(options_scene)
+
+
+func _on_play_button_pressed() -> void:
+	get_tree().change_scene_to_packed(play_scene)
+```
+
+===== menu/play.tscn
+
+#image("./images/final/play.png")
+
+===== player/arrow.tscn
+
+#image("./images/final/arrow.png")
+
+===== player/arrow.gd
+
+```gdscript
+class_name Arrow
+extends Node3D
+
+@onready var inner: Node3D = $Inner
+
+
+## Get the power.
+func get_power() -> float:
+	return (inner.scale.z * 2) - 1.75
+
+
+## Rotate and scale the arrow opposite to the given `position`.
+func move_to(mouse_position: Vector3) -> void:
+	var z_scale := _distance_to_z_scale(mouse_position.length())
+	var x_scale := _z_scale_to_x(z_scale)
+	var angle := mouse_position.signed_angle_to(-Vector3.FORWARD, Vector3.DOWN)
+
+	inner.scale.x = x_scale
+	inner.scale.z = z_scale
+	rotation.y = angle
+
+
+## Convert a distance to an approximately appropriate scale.
+func _distance_to_z_scale(distance: float) -> float:
+	distance = clampf(distance, 0.15, 0.5)
+	return 10 * distance - 0.5
+
+
+## Map a z scale to an appropriate x scale.
+func _z_scale_to_x(z_scale: float) -> float:
+	return 1 + (z_scale - 3) * 0.25
+```
+
+===== player/plane.tscn
+
+#image("./images/final/plane.png")
+#image("./images/final/plane-props.png")
+
+===== player/player.tscn
+
+#image("./images/final/player.png")
+#image("./images/final/player-props.png")
+#image("./images/final/player-cameraspring.png")
+#image("./images/final/player-ball.png")
+#image("./images/final/player-raycast.png")
+
+===== player/player.gd
+
+```gdscript
+extends Node
+
+enum Action { PIVOTING, DRAGGING, NONE }
+
+## Distance from ball to consider a gesture a drag.
+@export var DRAG_THRESHOLD: float = 0.2
+## Distance from ball when letting go to cancel the action.
+@export var CANCEL_DISTANCE: float = 0.05
+
+var action: Action = Action.NONE
+var mouse_sensitivity: int = 1
+
+@onready var ray_cast: RayCast3D = %RayCast
+@onready var camera: Camera3D = %Camera
+@onready var arrow: Arrow = %Arrow
+@onready var camera_spring: SpringArm3D = %CameraSpring
+@onready var ball: RigidBody3D = %Ball
+@onready var controls: Node3D = $Controls
+
+
+func _ready() -> void:
+	ball.position = Vector3(9.25, 2, 7.25)
+	#await get_tree().create_timer(1).timeout
+	#ball.apply_impulse(Vector3(5, 0, 3))
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		var mouse_event := event as InputEventMouseButton
+		# Pivot camera on right click drag.
+		if mouse_event.button_index == MOUSE_BUTTON_RIGHT:
+			if mouse_event.pressed:
+				if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+					Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+					action = Action.PIVOTING
+			else:
+				if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+					Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+					action = Action.NONE
+		# Drag ball controls with left click, but only if close enough, else
+		# pivot camera.
+		elif mouse_event.button_index == MOUSE_BUTTON_LEFT:
+			if mouse_event.pressed:
+				var mouse_position := get_viewport().get_mouse_position()
+				var control_position := get_control_position(mouse_position)
+				var ball_distance := control_position.length()
+				arrow.move_to(control_position)
+				if ball_distance < DRAG_THRESHOLD:
+					action = Action.DRAGGING
+				else:
+					Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+					action = Action.PIVOTING
+			else:
+				if action == Action.DRAGGING:
+					var mouse_position := get_viewport().get_mouse_position()
+					var control_position := get_control_position(mouse_position)
+					var ball_distance := control_position.length()
+
+					if ball_distance > CANCEL_DISTANCE:
+						var rotation := arrow.rotation.y
+						var power := arrow.get_power()
+						var ahead := Vector3.FORWARD
+						var direction := ahead.rotated(Vector3.UP, rotation)
+						var result := direction * power
+						ball.apply_impulse(result)
+
+				if action != Action.NONE:
+					Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+					action = Action.NONE
+		elif mouse_event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			camera_spring.spring_length += mouse_event.factor / 20
+			camera_spring.spring_length = clampf(camera_spring.spring_length, 0.25, 5)
+		elif mouse_event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			camera_spring.spring_length -= mouse_event.factor / 20
+			camera_spring.spring_length = clampf(camera_spring.spring_length, 0.25, 5)
+	elif event is InputEventMouseMotion:
+		var mouse_event := event as InputEventMouseMotion
+		# Rotate camera spring arm when pivot button is down.
+		if action == Action.PIVOTING:
+			# Invert mouse movements as the coordinate origin is different.
+			var rotation_y := deg_to_rad(-mouse_event.relative.x * mouse_sensitivity)
+			var rotation_x := deg_to_rad(-mouse_event.relative.y * mouse_sensitivity)
+
+			camera_spring.rotation.x += rotation_x
+			# Restrict camera from rotating more than 45° from horizontal downwards.
+			camera_spring.rotation.x = clampf(camera_spring.rotation.x, -PI/2, -PI/6)
+			camera_spring.rotation.y += rotation_y
+		elif action == Action.DRAGGING:
+			var mouse_position := mouse_event.global_position
+			var control_position := get_control_position(mouse_position)
+			arrow.move_to(control_position)
+
+
+func _process(_delta: float) -> void:
+	# Keep controls centred on the ball.
+	controls.position = ball.position
+
+
+func get_control_position(mouse_position: Vector2) -> Vector3:
+	# Draw a ray cast from the camera, to the mouse position far away.
+	# The ray is configured to only collide with the ball control plane,
+	# so the collision is the mouse position in the same plane as the ball.
+	var origin := camera.project_ray_origin(mouse_position)
+	var direction := camera.project_ray_normal(mouse_position)
+	var ray_length := camera.far
+	var end := direction * ray_length
+	ray_cast.global_position = origin
+	ray_cast.target_position = end
+
+	ray_cast.force_raycast_update()
+	return ray_cast.get_collision_point() - ball.position
+```
+
+===== player/ball.gd
+
+```gdscript
+extends RigidBody3D
+
+@export var MIN_VELOCITY: float = 0.03
+@export var ELASTICITY: float = 0.9
+
+
+func _physics_process(delta: float) -> void:
+	var collision := move_and_collide(linear_velocity * delta)
+	if collision:
+		var normal := collision.get_normal()
+
+		# Prevent ball from bouncing off the ground when stationary.
+		if normal == Vector3(0, 1, 0):
+			if linear_velocity.x == 0 and linear_velocity.z == 0:
+				linear_velocity = Vector3.ZERO
+
+		# Bounce off walls.
+		if normal.x != 0 or normal.z != 0:
+			linear_velocity = linear_velocity.bounce(normal) * ELASTICITY
+
+	# Stop the ball rolling forever.
+	if linear_velocity.length() < MIN_VELOCITY:
+		linear_velocity = Vector3.ZERO
+```
+
+===== UI/prompts/resources/controller.gd
+
+```gdscript
+@tool
+class_name ControllerTextures
+extends Resource
+
+## Bottom action (PS X, Xbox/Steam A, Nintendo B)
+@export var button_0: Texture2D = null
+## Right action (PS O, Xbox/Steam B, Nintendo A)
+@export var button_1: Texture2D = null
+## Left action (PS □, Xbox/Steam X, Nintendo Y)
+@export var button_2: Texture2D = null
+## Top action (PS △, Xbox/Steam Y, Nintendo X)
+@export var button_3: Texture2D = null
+## Back (PS 1/2/3 Select, PS 4/5 Share, Xbox Back, Nintendo -)
+@export var button_4: Texture2D = null
+## Guide (PS PS button, Xbox home, Nintendo home)
+@export var button_5: Texture2D = null
+## Start (PS 1/2/3 Start, PS4/5 Options, Xbox menu, Nintendo +)
+@export var button_6: Texture2D = null
+## Left stick (PS L3, Xbox L/LS, Nintendo left stick)
+@export var button_7: Texture2D = null
+## Right stick (PS R3, Xbox R/RS, Nintendo right stick)
+@export var button_8: Texture2D = null
+## Left shoulder (PS L1, Xbox LB, Nintendo L)
+@export var button_9: Texture2D = null
+## Right shoulder (PS R1, Xbox RB, Nintendo R)
+@export var button_10: Texture2D = null
+## D-pad up
+@export var button_11: Texture2D = null
+## D-pad down
+@export var button_12: Texture2D = null
+## D-pad left
+@export var button_13: Texture2D = null
+## D-pad right
+@export var button_14: Texture2D = null
+## PS5 Microphone, Xbox Share, Nintendo capture
+@export var button_15: Texture2D = null
+## Paddle 1
+@export var button_16: Texture2D = null
+## Paddle 2
+@export var button_17: Texture2D = null
+## Paddle 3
+@export var button_18: Texture2D = null
+## Paddle 4
+@export var button_19: Texture2D = null
+## PS4/5 touchpad
+@export var button_20: Texture2D = null
+
+
+func get_texture(event: InputEvent) -> Texture2D:
+	if not event is InputEventJoypadButton:
+		return null
+
+	var joypad_event := event as InputEventJoypadButton
+	var button := joypad_event.button_index
+	return get("button_" + str(button))
+```
+
+===== UI/prompts/resources/keys.gd
+
+```gdscript
+@tool
+class_name KeyboardTextures
+extends Resource
+
+# All keys that can reasonably be used as custom controls.
+# This means no modifier keys, no mouse buttons, no keys which do not usually
+# pass through to programs such as numlock,
+const _KEYS: Array[Key] = [
+	KEY_0,
+	KEY_1,
+	KEY_2,
+	KEY_3,
+	KEY_4,
+	KEY_5,
+	KEY_6,
+	KEY_7,
+	KEY_8,
+	KEY_9,
+	KEY_A,
+	KEY_B,
+	KEY_C,
+	KEY_D,
+	KEY_E,
+	KEY_F,
+	KEY_G,
+	KEY_H,
+	KEY_I,
+	KEY_J,
+	KEY_K,
+	KEY_L,
+	KEY_M,
+	KEY_N,
+	KEY_O,
+	KEY_P,
+	KEY_Q,
+	KEY_R,
+	KEY_S,
+	KEY_T,
+	KEY_U,
+	KEY_V,
+	KEY_W,
+	KEY_X,
+	KEY_Y,
+	KEY_Z,
+	KEY_APOSTROPHE,
+	KEY_LEFT,
+	KEY_RIGHT,
+	KEY_UP,
+	KEY_DOWN,
+	KEY_ASTERISK,
+	KEY_BACKSPACE,
+	KEY_BRACKETLEFT,
+	KEY_BRACKETRIGHT,
+	KEY_GREATER,
+	KEY_LESS,
+	KEY_CAPSLOCK,
+	KEY_ASCIICIRCUM,
+	KEY_COLON,
+	KEY_COMMA,
+	KEY_DELETE,
+	KEY_END,
+	KEY_ENTER,
+	KEY_ESCAPE,
+	KEY_EXCLAM,
+	KEY_F1,
+	KEY_F2,
+	KEY_F3,
+	KEY_F4,
+	KEY_F5,
+	KEY_F6,
+	KEY_F7,
+	KEY_F8,
+	KEY_F9,
+	KEY_F10,
+	KEY_F11,
+	KEY_F12,
+	KEY_HOME,
+	KEY_INSERT,
+	KEY_MINUS,
+	KEY_PAGEDOWN,
+	KEY_PAGEUP,
+	KEY_PERIOD,
+	KEY_PLUS,
+	KEY_PRINT,
+	KEY_QUESTION,
+	KEY_QUOTEDBL,
+	KEY_SEMICOLON,
+	KEY_SLASH,
+	KEY_BACKSLASH,
+	KEY_SPACE,
+	KEY_ASCIITILDE,
+	KEY_TAB,
+]
+
+var textures: Dictionary = {}
+
+
+func _init() -> void:
+	for k in _KEYS:
+		textures[OS.get_keycode_string(k)] = null
+
+
+# Make this Resource act like all of its properties are contained in `textures`.
+func _get(property: StringName) -> Variant:
+	if property in textures.keys():
+		return textures[property]
+	return null
+
+
+func _set(property: StringName, value: Variant) -> bool:
+	if property in textures.keys():
+		textures[property] = value
+		return true
+	return false
+
+
+# Fake the properties we have as all the supported keys.
+func _get_property_list() -> Array[Dictionary]:
+	var properties: Array[Dictionary] = []
+	for k in _KEYS:
+		properties.append(
+			{
+				name = OS.get_keycode_string(k),
+				type = TYPE_OBJECT,
+				hint = PROPERTY_HINT_RESOURCE_TYPE,
+				hint_string = "Texture2D"
+			}
+		)
+	return properties
+
+
+func get_texture(event: InputEvent) -> Texture2D:
+	if not event is InputEventKey:
+		return
+	var key_event := event as InputEventKey
+	var scancode := key_event.keycode
+	# When accessing InputMap, this is 0
+	if scancode == 0:
+		var physical := key_event.physical_keycode
+		scancode = DisplayServer.keyboard_get_keycode_from_physical(physical)
+
+	return textures.get(OS.get_keycode_string(scancode), null)
+```
+
+===== UI/prompts/resources/keys.tres
+
+#image("./images/final/keys.png")
+
+===== UI/prompts/resources/nintendo.tres
+
+#image("./images/final/nintendo.png")
+
+===== UI/prompts/resources/playstation.tres
+
+#image("./images/final/playstation.png")
+
+===== UI/prompts/resources/steam.tres
+
+#image("./images/final/steam.png")
+
+===== UI/prompts/resources/xbox.tres
+
+#image("./images/final/xbox.png")
+
+===== UI/prompts/controller_input.gd
+
+```gdscript
+class_name ControllerInput
+extends ControlInput
+
+const xb_textures: ControllerTextures = preload("./resources/xbox.tres")
+const ps_textures: ControllerTextures = preload("./resources/playstation.tres")
+const ni_textures: ControllerTextures = preload("./resources/nintendo.tres")
+const st_textures: ControllerTextures = preload("./resources/steam.tres")
+
+@export var action: StringName
+
+
+func _ready() -> void:
+	var current_events := InputMap.action_get_events(action)
+	for existing_event in current_events:
+		if existing_event is InputEventJoypadButton:
+			texture_rect.texture = get_texture(existing_event)
+			break
+
+
+func get_texture(event: InputEvent) -> Texture2D:
+	var device := event.device
+	var joy_name := Input.get_joy_name(device)
+	# The following conditions come from the public SDL controller database
+	# https://github.com/mdqinc/SDL_GameControllerDB/
+	var texture: Texture2D
+	if joy_name.contains("Xbox"):
+		texture = xb_textures.get_texture(event)
+	elif (
+		joy_name.contains("PlayStation")
+		or joy_name.contains("PS")
+		or joy_name.contains("DualShock")
+	):
+		texture = ps_textures.get_texture(event)
+	elif joy_name.contains("Nintendo") or joy_name.contains("Switch"):
+		texture = ni_textures.get_texture(event)
+	elif joy_name.contains("Steam"):
+		texture = st_textures.get_texture(event)
+	else:
+		texture = xb_textures.get_texture(event)
+
+	if texture != null:
+		store_action(event)
+
+	return texture
+
+
+func store_action(event: InputEvent) -> void:
+	var current_events := InputMap.action_get_events(action)
+	# Clear any existing key events for this current action and replace it with
+	# the new one.
+	for existing_event in current_events:
+		if existing_event is InputEventJoypadButton:
+			InputMap.action_erase_event(action, existing_event)
+
+	InputMap.action_add_event(action, event)
+```
+
+===== UI/prompts/controller_input.tscn
+
+#image("./images/final/controller_input.png")
+#image("./images/final/controller_input-signals.png")
+
+===== UI/prompts/control_input.gd
+
+```gdscript
+class_name ControlInput
+extends Button
+
+# Whether to act upon new `gui_input` events.
+var listening: bool = false
+# The texture to revert to if this input is unselected.
+var previous_texture: Texture2D = null
+
+@onready var texture_rect: TextureRect = %TextureRect
+@onready var label: Label = %Label
+
+
+func _on_pressed() -> void:
+	# Don't redo the same process if we are already listening, as that will
+	# call `unlisten` below.
+	if listening:
+		return
+	# Store the previous texture to revert to later if needed.
+	previous_texture = texture_rect.texture
+	texture_rect.texture = null
+	label.text = "Waiting for input..."
+
+	listening = true
+	if Global.listening_control != null:
+		Global.listening_control.unlisten()
+	Global.listening_control = self
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if not listening:
+		return
+	var texture := get_texture(event)
+	if texture == null:
+		return
+
+	accept_event()
+
+	label.text = ""
+	texture_rect.texture = texture
+
+	listening = false
+	Global.listening_control = null
+
+
+func _on_tree_exited() -> void:
+	unlisten()
+
+
+# Called either when this node is not visible (`tree_exited`), or a different
+# control input is selected (see above).
+func unlisten() -> void:
+	listening = false
+	label.text = ""
+	texture_rect.texture = previous_texture
+
+
+# keep `get_texture` abstract, for separate key inputs and controller inputs.
+func get_texture(_event: InputEvent) -> Texture2D:
+	return null
+```
+
+===== UI/prompts/control_input.tscn
+
+#image("./images/final/control_input.png")
+
+===== UI/prompts/key_input.gd
+
+```gdscript
+class_name KeyInput
+extends ControlInput
+
+@export var action: StringName
+const textures: KeyboardTextures = preload("./resources/keys.tres")
+
+
+func _ready() -> void:
+	var current_events := InputMap.action_get_events(action)
+	for existing_event in current_events:
+		if existing_event is InputEventKey:
+			texture_rect.texture = get_texture(existing_event)
+			break
+
+
+func get_texture(event: InputEvent) -> Texture2D:
+	var texture := textures.get_texture(event)
+	# If it is not null, this is a valid texture, store this event as action`.
+	if texture != null:
+		store_action(event)
+	return texture
+
+
+func store_action(event: InputEvent) -> void:
+	var current_events := InputMap.action_get_events(action)
+	# Clear any existing key events for this current action and replace it with
+	# the new one.
+
+	for existing_event in current_events:
+		if existing_event is InputEventKey:
+			InputMap.action_erase_event(action, existing_event)
+
+	InputMap.action_add_event(action, event)
+```
+
+===== UI/prompts/key_input.tscn
+
+#image("./images/final/key_input.png")
+#image("./images/final/key_input-signals.png")
+
+===== UI/themes/margin_stylebox.gd
+
+```gdscript
+@tool
+class_name MarginStyleBox extends StyleBox
+
+@export var style_box: StyleBox:
+	set(value):
+		style_box = value
+		emit_changed()
+@export var padding_left: int = 0:
+	set(value):
+		padding_left = value
+		emit_changed()
+@export var padding_top: int = 0:
+	set(value):
+		padding_top = value
+		emit_changed()
+@export var padding_right: int = 0:
+	set(value):
+		padding_right = value
+		emit_changed()
+@export var padding_bottom: int = 0:
+	set(value):
+		padding_bottom = value
+		emit_changed()
+
+
+func _draw(to_canvas_item: RID, rect: Rect2) -> void:
+	var new_rect: Rect2 = rect.grow_individual(
+		-padding_left, -padding_top, -padding_right, -padding_bottom
+	)
+	if style_box:
+		style_box.draw(to_canvas_item, new_rect)
+```
+
+===== global.gd
+
+```gdscript
+extends Node
+
+const SETTINGS_PATH = "user://settings.ini"
+
+enum {WINDOW_WINDOWED, WINDOW_FULLSCREEN, WINDOW_BORDERLESS}
+enum {ANTIALIASING_DISABLED, ANTIALIASING_2X, ANTIALIASING_4X, ANTIALIASING_8X}
+
+## The scene before switching, used for back/close menu buttons.
+var previous_scene: String
+## The control input that is currently listening.
+var listening_control: ControlInput
+## Config file for holding modified settings.
+var settings := ConfigFile.new()
+
+
+func _ready() -> void:
+	load_settings()
+
+
+func get_window_mode() -> int:
+	var mode := DisplayServer.window_get_mode()
+	var borderless := DisplayServer.window_get_flag(DisplayServer.WINDOW_FLAG_BORDERLESS)
+	var id := WINDOW_WINDOWED
+	if mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+		id = WINDOW_FULLSCREEN
+	elif mode == DisplayServer.WINDOW_MODE_WINDOWED and borderless:
+		id = WINDOW_BORDERLESS
+
+	return id
+
+
+func get_antialiasing() -> int:
+	# msaa_2d and msaa_3d are the same here
+	var antialiasing := get_viewport().msaa_2d
+	var id := ANTIALIASING_DISABLED
+	if antialiasing == Viewport.MSAA_2X:
+		id = ANTIALIASING_2X
+	elif antialiasing == Viewport.MSAA_4X:
+		id = ANTIALIASING_4X
+	elif antialiasing == Viewport.MSAA_8X:
+		id = ANTIALIASING_8X
+
+	return id
+
+
+func store_event(action: StringName, event: InputEvent) -> void:
+	if event is InputEventKey:
+		# Similar to prompts/resources/keys.gd#get_texture
+		var key_event := event as InputEventKey
+		var keycode := key_event.keycode
+		if keycode == 0:
+			var physical := key_event.physical_keycode
+			keycode = DisplayServer.keyboard_get_keycode_from_physical(physical)
+
+		settings.set_value("controls", action + "_key", keycode)
+	elif event is InputEventJoypadButton:
+		var joypad_event := event as InputEventJoypadButton
+		var button := joypad_event.button_index
+
+		settings.set_value("controls", action + "_control", button)
+
+
+func set_window_mode(mode: int) -> void:
+	if mode == 0:
+		# Windowed windows have a border and this sets it to maximised for a
+		# consistent size when switching away from fullscreen.
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+	elif mode == 1:
+		DisplayServer.window_set_position(Vector2i(0, 0))
+		# Exclusive fullscreen has a lower overhead as it usually avoids
+		# the display compositor.
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	elif mode == 2:
+		# Fullscreen borderless is a full screen sized window without a border.
+		# It usually works better with multiple monitor setups when alt+tab/esc
+		# in windows.
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+		DisplayServer.window_set_size(DisplayServer.screen_get_size())
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+		DisplayServer.window_set_position(Vector2i(0, 0))
+
+
+func set_antialiasing(mode: int) -> void:
+	var viewport := get_viewport()
+
+	if mode == 0:
+		viewport.msaa_2d = Viewport.MSAA_DISABLED
+		viewport.msaa_3d = Viewport.MSAA_DISABLED
+	elif mode == 1:
+		viewport.msaa_2d = Viewport.MSAA_2X
+		viewport.msaa_3d = Viewport.MSAA_2X
+	elif mode == 2:
+		viewport.msaa_2d = Viewport.MSAA_4X
+		viewport.msaa_3d = Viewport.MSAA_4X
+	elif mode == 3:
+		viewport.msaa_2d = Viewport.MSAA_8X
+		viewport.msaa_3d = Viewport.MSAA_8X
+
+
+func save_settings() -> void:
+	var bus_count := AudioServer.bus_count
+	for bus in range(bus_count):
+		var db := AudioServer.get_bus_volume_db(bus)
+		settings.set_value("audio", str(bus), db)
+
+	var vsync := DisplayServer.window_get_vsync_mode()
+	var video_mode := get_window_mode()
+	var video_antialiasing := get_antialiasing()
+	var video_vsync_enabled := vsync == DisplayServer.VSYNC_ENABLED
+
+	settings.set_value("video", "mode", video_mode)
+	settings.set_value("video", "antialiasing", video_antialiasing)
+	settings.set_value("video", "vsync", video_vsync_enabled)
+
+	var actions := InputMap.get_actions()
+	for action in actions:
+		# ui_* are default UI traversal controls.
+		if not action.begins_with("ui_"):
+			var events := InputMap.action_get_events(action)
+			for event in events:
+				store_event(action, event)
+
+	settings.save(SETTINGS_PATH)
+
+
+func load_settings() -> void:
+	var err := settings.load(SETTINGS_PATH)
+	if err == ERR_FILE_CANT_OPEN:
+		return
+
+	# Audio
+	var buses := settings.get_section_keys("audio")
+	for bus in buses:
+		var db: int = settings.get_value("audio", bus)
+		var index := int(bus)
+		AudioServer.set_bus_volume_db(index, db)
+
+	# Video
+	var mode: int = settings.get_value("video", "mode")
+	set_window_mode(mode)
+
+	var antialiasing: int = settings.get_value("video", "antialiasing")
+	set_antialiasing(antialiasing)
+
+	var vsync: bool = settings.get_value("video", "vsync")
+	if vsync:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	else:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+
+	# Controls
+	var controls := settings.get_section_keys("controls")
+	for stored_control in controls:
+		if stored_control.ends_with("_key"):
+			var control := stored_control.trim_suffix("_key")
+			for existing_event in InputMap.action_get_events(control):
+				if existing_event is InputEventKey:
+					InputMap.action_erase_event(control, existing_event)
+
+			var new_event := InputEventKey.new()
+			new_event.keycode = settings.get_value("controls", stored_control)
+			InputMap.action_add_event(control, new_event)
+
+		elif stored_control.ends_with("_control"):
+			var control := stored_control.trim_suffix("_control")
+			for existing_event in InputMap.action_get_events(control):
+				if existing_event is InputEventJoypadButton:
+					InputMap.action_erase_event(control, existing_event)
+
+			var new_event := InputEventJoypadButton.new()
+			new_event.button_index = settings.get_value("controls", stored_control)
+			InputMap.action_add_event(control, new_event)
+```

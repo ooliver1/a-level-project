@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://ci1mc6xrv5c7v"]
+[gd_scene load_steps=38 format=3 uid="uid://ci1mc6xrv5c7v"]
 
 [ext_resource type="PackedScene" uid="uid://613ehfx628d1" path="res://player/player.tscn" id="1_770rd"]
 [ext_resource type="PackedScene" uid="uid://cwbukec50b5hp" path="res://courses/scenes/start.tscn" id="2_hpgn4"]
@@ -36,7 +36,6 @@
 [ext_resource type="PackedScene" uid="uid://jhg174cp88jv" path="res://courses/scenes/bump_down_walls.tscn" id="34_bd258"]
 [ext_resource type="PackedScene" uid="uid://tn1o0ustebmu" path="res://courses/scenes/crest.tscn" id="35_u7xou"]
 [ext_resource type="PackedScene" uid="uid://c0c3c0vohm8i" path="res://courses/scenes/support.tscn" id="36_76mn1"]
-[ext_resource type="PackedScene" uid="uid://b8q65gyl61cuj" path="res://courses/scenes/ball_blue.tscn" id="37_wutxp"]
 
 [sub_resource type="Environment" id="Environment_42lcv"]
 ambient_light_color = Color(1, 1, 1, 1)
@@ -289,6 +288,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 2.5)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
-
-[node name="BallBlue" parent="." instance=ExtResource("37_wutxp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.1, 0)
